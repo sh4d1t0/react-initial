@@ -13,14 +13,18 @@
     "lint": "eslint src",
     "postmerge": "npm install",
     "postrewrite": "npm install",
-    "precommit": "npm run lint && npm run flow",
-    "prepush": "npm run test",
     "start": "npm run clean && NODE_ENV=development BABEL_ENV=development babel-node src/server",
     "start-analyzer": "npm run clean && NODE_ENV=development BABEL_ENV=development ANALYZER=true babel-node src/server",
     "start-production": "npm run build && NODE_ENV=production BABEL_ENV=production babel-node src/server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch-client": "webpack --watch --config webpack/webpack.config.client.js",
     "watch-server": "webpack --watch --config webpack/webpack.config.server.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run flow",
+      "pre-push": "npm run test",
+    }
   },
   "repository": {
     "type": "git",
