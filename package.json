@@ -23,7 +23,9 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint && npm run flow",
+      "post-commit": "npm run test",
       "pre-push": "npm run test",
+      "post-merge": "npm run test"
     }
   },
   "repository": {
