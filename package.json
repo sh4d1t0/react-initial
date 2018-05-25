@@ -25,7 +25,10 @@
     "watch-server": "webpack --watch --config webpack/webpack.config.server.js"
   },
   "lint-staged": {
-    "*.{js,jsx}": ["eslint --fix", "git add"]
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
