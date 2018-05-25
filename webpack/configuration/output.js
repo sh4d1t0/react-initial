@@ -4,7 +4,7 @@ import path from 'path'
 export default type => {
   if (type === 'server') {
     return {
-      filename: 'server.js'
+      filename: 'server.js',
       path: path.resolve(__dirname, '../../dist'),
       libraryTarget: 'commonjs2'
     }
