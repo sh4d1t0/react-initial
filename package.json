@@ -11,7 +11,7 @@
     "flow": "flow",
     "flow-init": "npm run flow init",
     "lint": "eslint src",
-    "precommit": "npm run lint && npm run flow",
+    "precommit": "npm run lint-staged & npm run lint && npm run flow",
     "postcommit": "npm run test",
     "prepush": "npm run test",
     "postmerge": "npm install",
@@ -22,6 +22,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch-client": "webpack --watch --config webpack/webpack.config.client.js",
     "watch-server": "webpack --watch --config webpack/webpack.config.server.js"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": ["eslint --fix", "git add"]
   },
   "repository": {
     "type": "git",
@@ -68,6 +71,7 @@
     "flow-bin": "^0.72.0",
     "husky": "^0.14.3",
     "isomorphic-style-loader": "^4.0.0",
+    "lint-staged": "^7.1.2",
     "node-sass": "^4.9.0",
     "open": "0.0.5",
     "react-hot-loader": "^4.2.0",
