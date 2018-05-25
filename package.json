@@ -14,7 +14,7 @@
     "lint-staged": "lint-staged",
     "precommit": "npm run lint-staged & npm run lint && npm run flow",
     "postcommit": "npm run test",
-    "prepush": "npm run test",
+    "prepush": "echo Yeah!!",
     "postmerge": "npm install",
     "postrewrite": "npm install",
     "start": "npm run clean && NODE_ENV=development BABEL_ENV=development babel-node src/server",
