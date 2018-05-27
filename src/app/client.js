@@ -5,7 +5,7 @@ import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
 // containers
-import App from './containers/App'
+import App from 'containers/App'
 
 // DOM
 const rootElement = document.getElementById('root')
@@ -25,7 +25,7 @@ renderApp(App)
 
 // react hot loader
 if (module.hot) {
-  module.hot.accept('./containers/App', () => {
-    renderApp(require('./containers/App').default)
+  module.hot.accept('containers/App', () => {
+    renderApp(require('containers/App').default)
   })
 }

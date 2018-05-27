@@ -1,8 +1,8 @@
 // dependencies
 import nodeExternals from 'webpack-node-externals'
 
-export default () => {
+export default () => [
   nodeExternals({
     whitelist: [/^redux\/(store|modules)/]
   })
-}
+]

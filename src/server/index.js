@@ -24,8 +24,8 @@ app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name =
 app.use(webpackHotServerMiddleware(compiler))
 
 // listening port
-app.listen(port, error => {
-  if (!error) {
+app.listen(port, err => {
+  if (!err) {
     open(`http://localhost:${port}`)
   }
 })

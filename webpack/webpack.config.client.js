@@ -9,6 +9,7 @@ import { context, devtool, entry, name, output, plugins, target } from './config
 const type = 'client'
 
 export default webpackMerge(commonConfig(type), {
+  mode: 'development',
   context: context(type),
   devtool: devtool(type),
   entry: entry(type),

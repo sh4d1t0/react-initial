@@ -1,8 +1,8 @@
 // dependencies
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 // enviroment
-const isDevelopment = process.env.NODE_ENV !== ' production'
+const isDevelopment = process.env.NODE_ENV !== 'production'
 
 export default type => {
   const rules = [
@@ -16,13 +16,11 @@ export default type => {
   if (!isDevelopment || type === 'server') {
     rules.push({
       test: /\.scss$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
-          'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]',
-          'sass-loader'
-        ]
-      })
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]',
+        'sass-loader'
+      ]
     })
   } else {
     rules.push({

@@ -1,5 +1,5 @@
 // dependencies
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import webpack from 'webpack'
 
 // enviroment
@@ -7,7 +7,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 export default () => {
   const plugins = [
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '../../public/css/style.css'
     })
   ]
