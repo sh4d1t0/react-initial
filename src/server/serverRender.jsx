@@ -3,7 +3,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 
 // containers
-import App from '../app/containers/App'
+import App from '../app/App'
 
 // HTML
 import html from './html'
