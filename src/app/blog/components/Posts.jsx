@@ -25,7 +25,7 @@ class Posts extends Component {
         {posts && posts.map(post =>
           <div key={post.id} className={styles.posts}>
             <p>
-              {post.id} - {post.title} by {posts.author}
+              {post.id} - {post.title} by {post.author}
             </p>
 
             <p>
