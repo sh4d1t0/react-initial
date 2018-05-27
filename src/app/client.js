@@ -1,7 +1,7 @@
 // dependencies
 import 'babel-polyfill'
 import React from 'react'
-import { render } from 'react-dom'
+import { hydrate } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
 // containers
@@ -12,7 +12,7 @@ const rootElement = document.getElementById('root')
 
 // app wrapper
 const renderApp = Component => {
-  render(
+  hydrate(
     <AppContainer>
       <Component />
     </AppContainer>,
