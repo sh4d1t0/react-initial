@@ -7,7 +7,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 export default type => {
   const rules = [
     {
-      test: /\.js$/,
+      test: /\.(js|jsx)$/,
       use: 'babel-loader',
       exclude: /node_modules/
     }

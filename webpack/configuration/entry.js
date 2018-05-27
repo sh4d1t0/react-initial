@@ -3,7 +3,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 export default type => {
   if (type === 'server') {
-    return './serverRender.js'
+    return './serverRender.jsx'
   }
 
   const entry = {
@@ -17,7 +17,7 @@ export default type => {
     )
   }
 
-  entry.main.push('./client.js')
+  entry.main.push('./client.jsx')
 
   return entry
 }
