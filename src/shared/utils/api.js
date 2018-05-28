@@ -2,7 +2,7 @@
 import 'isomorphic-fetch'
 import queryString from 'query-string'
 
-export function apiEndpoint (endpoint, qs, fetchingFrom) {
+export function apiEndpoint(endpoint, qs, fetchingFrom) {
   let query = ''
   let apiUrl = ''
 
@@ -17,7 +17,7 @@ export function apiEndpoint (endpoint, qs, fetchingFrom) {
   return `${apiUrl}/api/${endpoint}${query}`
 }
 
-export function apiFetch (endpoint, options = {}, query = false) {
+export function apiFetch(endpoint, options = {}, query = false) {
   let qs
   const { fetchingFrom = 'client' } = options
 
@@ -33,7 +33,7 @@ export function apiFetch (endpoint, options = {}, query = false) {
   return fetch(fetchEndpoint, fetchOptions).then(response => response.json())
 }
 
-export function apiOptions (options = {}) {
+export function apiOptions(options = {}) {
   const {
     method = 'GET',
     headers = {

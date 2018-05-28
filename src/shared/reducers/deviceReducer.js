@@ -1,4 +1,4 @@
-export default function deviceReducer (state = {}) {
+export default function deviceReducer(state = {}) {
   let isMobile = false
 
   if (state.isMobile === 'true') {

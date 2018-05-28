@@ -1,3 +1,3 @@
-export function isDefined (variable) {
+export function isDefined(variable) {
   return typeof variable !== 'undefined' && variable !== null
 }

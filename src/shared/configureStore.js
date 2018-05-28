@@ -5,14 +5,8 @@ import thunk from 'redux-thunk'
 // Root reducer
 import rootReducer from './reducers'
 
-export default function configureStore (initialState) {
-  const middleware = [
-    thunk
-  ]
+export default function configureStore(initialState) {
+  const middleware = [thunk]
 
-  return createStore(
-    rootReducer,
-    initialState,
-    applyMiddleware(...middleware)
-  )
+  return createStore(rootReducer, initialState, applyMiddleware(...middleware))
 }

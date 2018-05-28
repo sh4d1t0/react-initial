@@ -17,6 +17,7 @@
     "react",
     "import",
     "node",
+    "prettier",
     "promise",
     "standard"
   ],
@@ -27,6 +28,7 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:prettier/recommended",
     "plugin:react/recommended"
   ],
   "settings": {
@@ -176,12 +178,13 @@
     "operator-linebreak": ["error", "after", { "overrides": { "?": "before", ":": "before" } }],
     "padded-blocks": ["error", { "blocks": "never", "switches": "never", "classes": "never" }],
     "prefer-promise-reject-errors": "error",
+    "prettier/prettier": "error",
     "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
     "rest-spread-spacing": ["error", "never"],
     "semi": ["error", "never"],
     "semi-spacing": ["error", { "before": false, "after": true }],
     "space-before-blocks": ["error", "always"],
-    "space-before-function-paren": ["error", "always"],
+    "space-before-function-paren": ["error", "never"],
     "space-in-parens": ["error", "never"],
     "space-infix-ops": "error",
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
