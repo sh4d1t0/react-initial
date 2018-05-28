@@ -1,8 +1,13 @@
+// @flow
 // dependencies
 import 'isomorphic-fetch'
 import queryString from 'query-string'
 
-export function apiEndpoint(endpoint, qs, fetchingFrom) {
+export function apiEndpoint(
+  endpoint: string,
+  qs?: string,
+  fetchingFrom: string
+) {
   let query = ''
   let apiUrl = ''
 
@@ -17,7 +22,17 @@ export function apiEndpoint(endpoint, qs, fetchingFrom) {
   return `${apiUrl}/api/${endpoint}${query}`
 }
 
-export function apiFetch(endpoint, options = {}, query = false) {
+export function apiFetch(
+  endpoint: string,
+  options: {
+    fetchFrom?: string,
+    fetchingFrom?: string,
+    headers?: {| headers: string |},
+    method?: string,
+    body?: boolean
+  } = {},
+  query: boolean = false
+) {
   let qs
   const { fetchingFrom = 'client' } = options
 
@@ -33,13 +48,19 @@ export function apiFetch(endpoint, options = {}, query = false) {
   return fetch(fetchEndpoint, fetchOptions).then(response => response.json())
 }
 
-export function apiOptions(options = {}) {
+export function apiOptions(
+  options: {
+    method?: string,
+    headers?: {| headers: string |},
+    body?: boolean
+  } = {}
+) {
   const {
     method = 'GET',
     headers = {
       'Content-Type': 'application/json'
-    },
-    body = false
+    } /*,
+    body = false */
   } = options
 
   const newOptions = {
@@ -48,9 +69,9 @@ export function apiOptions(options = {}) {
     credentials: 'include'
   }
 
-  if (body) {
+  /* if (body) {
     newOptions.body = body
-  }
+  } */
 
   return newOptions
 }
