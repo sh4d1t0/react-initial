@@ -11,8 +11,7 @@
     "flow": "flow",
     "flow-init": "npm run flow init",
     "lint": "eslint src",
-    "lint-staged": "lint-staged",
-    "precommit": "npm run lint-staged & npm run lint && npm run flow",
+    "precommit": "lint-staged --debug && npm run flow",
     "postcommit": "npm run test",
     "prepush": "echo Yeah!!",
     "postmerge": "npm install",
@@ -23,12 +22,6 @@
     "test": "echo \"Error: no test specified\"",
     "watch-client": "webpack --watch --config webpack/webpack.config.client.js",
     "watch-server": "webpack --watch --config webpack/webpack.config.server.js"
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix prettier --parser",
-      "git add"
-    ]
   },
   "repository": {
     "type": "git",

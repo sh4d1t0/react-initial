@@ -1,0 +1,5 @@
+"linters":
+  "Fix eslint":
+    "*.{js,jsx}":
+      - npm run lint --fix prettier --write
+      - git add
