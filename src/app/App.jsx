@@ -11,9 +11,7 @@ export default ({ server, location, context }) => {
   // client router
   let router = (
     <BrowserRouter>
-      <Switch>
-        {routesMap}
-      </Switch>
+      <Switch>{routesMap}</Switch>
     </BrowserRouter>
   )
 
@@ -21,16 +19,10 @@ export default ({ server, location, context }) => {
   if (server) {
     router = (
       <StaticRouter location={location} context={context}>
-        <Switch>
-          {routesMap}
-        </Switch>
+        <Switch>{routesMap}</Switch>
       </StaticRouter>
     )
   }
 
-  return (
-    <div>
-      {router}
-    </div>
-  )
+  return <div>{router}</div>
 }
