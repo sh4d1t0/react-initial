@@ -5,3 +5,6 @@ bracketSpacing: true
 semi: false
 useTabs: false
 tabWidth: 2
+arrowParens: avoid
+jsxBracketSameLine: true
+proseWrap: preserve
