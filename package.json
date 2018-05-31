@@ -14,7 +14,7 @@
     "lint:base": "eslint --rule \"prettier/prettier: 2\"",
     "lint": "npm run lint:base -- .",
     "lint:fix": "npm run lint --fix",
-    "precommit": "lint-staged --debug",
+    "precommit": "lint-staged",
     "postcommit": "npm run test",
     "prepush": "echo Yeah!!",
     "postmerge": "npm install",
