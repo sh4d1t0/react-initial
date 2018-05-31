@@ -1,4 +1,4 @@
-export default function html (options) {
+export default function html(options) {
   const {
     app = 'main',
     title = 'Site',

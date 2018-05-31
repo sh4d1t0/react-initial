@@ -1,1 +1,1 @@
-export default type => type;
+export default type => type

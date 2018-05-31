@@ -16,6 +16,7 @@ export const fetchPosts = (fetchingFrom, query) => dispatch => {
 
   dispatch(requestPosts())
 
-  return blogApi.getAllPosts(query, fetchingFrom)
+  return blogApi
+    .getAllPosts(query, fetchingFrom)
     .then(posts => dispatch(receivedPosts(posts)))
 }

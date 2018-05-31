@@ -5,7 +5,15 @@ import webpackMerge from 'webpack-merge'
 import commonConfig from './webpack.config.common'
 
 // Configuration
-import { context, entry, externals, name, output, plugins, target } from './configuration'
+import {
+  context,
+  entry,
+  externals,
+  name,
+  output,
+  plugins,
+  target
+} from './configuration'
 
 // Type of configuration
 const type = 'server'

@@ -5,7 +5,7 @@ const initialState = {
   posts: []
 }
 
-export default function blogReducer (state = initialState, action) {
+export default function blogReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_POSTS.success(): {
       return {

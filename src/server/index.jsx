@@ -26,7 +26,11 @@ app.use('/api', api)
 
 // hot middleware replacement
 app.use(webpackDevMiddleware(compiler))
-app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name === 'client')))
+app.use(
+  webpackHotMiddleware(
+    compiler.compilers.find(compiler => compiler.name === 'client')
+  )
+)
 app.use(webpackHotServerMiddleware(compiler))
 
 // listening port

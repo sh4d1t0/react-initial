@@ -9,7 +9,7 @@ import { isFirstRender } from '../../../shared/utils/data'
 import styles from './Posts.scss'
 
 class Posts extends Component {
-  render () {
+  render() {
     const { posts } = this.props
 
     if (isFirstRender(posts)) {
@@ -22,17 +22,16 @@ class Posts extends Component {
           <h1>Blog</h1>
         </div>
 
-        {posts && posts.map(post =>
-          <div key={post.id} className={styles.posts}>
-            <p>
-              {post.id} - {post.title} by {post.author}
-            </p>
+        {posts &&
+          posts.map(post => (
+            <div key={post.id} className={styles.posts}>
+              <p>
+                {post.id} - {post.title} by {post.author}
+              </p>
 
-            <p>
-              {timeAgo(post.date)}
-            </p>
-          </div>
-        )}
+              <p>{timeAgo(post.date)}</p>
+            </div>
+          ))}
       </div>
     )
   }

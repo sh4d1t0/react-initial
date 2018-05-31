@@ -1,6 +1,7 @@
 // dependencies
 import path from 'path'
 
-export default type => type === 'server'
-? path.resolve(__dirname, '../../src/server')
-: path.resolve(__dirname, '../../src/app')
+export default type =>
+  type === 'server'
+    ? path.resolve(__dirname, '../../src/server')
+    : path.resolve(__dirname, '../../src/app')
