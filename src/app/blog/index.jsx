@@ -1,3 +1,4 @@
+// @flow
 // Dependencies
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
@@ -11,7 +12,21 @@ import { fetchPosts } from './actions'
 // Utils
 import { isFirstRender } from '../../shared/utils/data'
 
-class Blog extends Component {
+type Action = { payload: Object }
+
+type Dispatch = (action: Action | Array<Action>) => any
+
+type Props = {
+  posts: Array<{
+    id: number,
+    title: string,
+    author: string,
+    date: string
+  }>,
+  dispatch: Dispatch
+}
+
+class Blog extends Component<Props> {
   static initialAction(fetchingFrom) {
     return fetchPosts(fetchingFrom)
   }

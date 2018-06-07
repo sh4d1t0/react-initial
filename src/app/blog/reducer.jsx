@@ -1,3 +1,4 @@
+// @flow
 // Action Types
 import { FETCH_POSTS } from './actionTypes'
 
@@ -5,7 +6,7 @@ const initialState = {
   posts: []
 }
 
-export default function blogReducer(state = initialState, action) {
+export default function blogReducer(state: any = initialState, action: any) {
   switch (action.type) {
     case FETCH_POSTS.success(): {
       return {

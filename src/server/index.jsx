@@ -1,3 +1,4 @@
+// @flow
 // dependencies
 import express from 'express'
 import open from 'open'

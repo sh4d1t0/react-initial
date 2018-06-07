@@ -1,3 +1,4 @@
+// @flow
 // dependencies
 import 'babel-polyfill'
 import React from 'react'
@@ -19,14 +20,16 @@ const rootElement = document.getElementById('root')
 
 // app wrapper
 const renderApp = Component => {
-  hydrate(
-    <Provider store={store}>
-      <AppContainer>
-        <Component />
-      </AppContainer>
-    </Provider>,
-    rootElement
-  )
+  if (rootElement) {
+    hydrate(
+      <Provider store={store}>
+        <AppContainer>
+          <Component />
+        </AppContainer>
+      </Provider>,
+      rootElement
+    )
+  }
 }
 
 // rendering app

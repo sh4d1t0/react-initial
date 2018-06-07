@@ -1,7 +1,8 @@
+// @flow
 // available environments
 const environments = ['development', 'stage', 'qa', 'production']
 
-export function getEnvironment(env = false) {
+export function getEnvironment(env: any = false) {
   const environment = env || process.env.NODE_ENV
 
   return isEnvironment(environment) ? environment : 'production'
@@ -11,7 +12,7 @@ export function isDevelopment() {
   return getEnvironment() === 'development'
 }
 
-export function isEnvironment(env) {
+export function isEnvironment(env: any) {
   return environments.indexOf(env) !== -1
 }
 

@@ -1,3 +1,4 @@
+// @flow
 // components
 import Home from '../app/home/components/Home'
 import About from '../app/about/components/About'

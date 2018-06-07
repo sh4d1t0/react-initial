@@ -1,3 +1,4 @@
+// @flow
 // dependencies
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -17,7 +18,11 @@ import html from './html'
 import routes from '../shared/routes'
 
 export default function serverRender() {
-  return (req, res, next) => {
+  return (
+    req: { url: string },
+    res: { component: string, redirect: any, send: any },
+    next: any
+  ) => {
     // configure redux store
     const store = configureStore()
 

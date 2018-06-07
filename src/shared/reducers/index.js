@@ -1,3 +1,4 @@
+// @flow
 // Dependencies
 import { combineReducers } from 'redux'
 

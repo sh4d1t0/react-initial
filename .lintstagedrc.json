@@ -1,6 +1,6 @@
 {
   "linters": {
-    "*.{js,jsx}": ["npm run lint:base --fix", "git add"],
+    "*.{js,jsx}": ["npm run lint --fix", "git add"],
     "*.{js,jsx,json,css}": ["prettier --write", "git add"]
   }
 }
