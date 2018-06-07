@@ -1,11 +1,12 @@
 // dependencies
 import React from 'react'
 import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom'
+import { hot } from 'react-hot-loader'
 
 // routes
 import routes from '../shared/routes'
 
-export default ({ server, location, context }) => {
+const App = ({ server, location, context }) => {
   const routesMap = routes.map((route, i) => <Route key={i} {...route} />)
 
   // client router
@@ -26,3 +27,5 @@ export default ({ server, location, context }) => {
 
   return <div>{router}</div>
 }
+
+export default hot(module)(App)
