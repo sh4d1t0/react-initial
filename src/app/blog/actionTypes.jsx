@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 // actions
 export const FETCH_POSTS = {
   request: () => 'FETCH_POSTS_REQUEST',

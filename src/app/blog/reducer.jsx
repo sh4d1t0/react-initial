@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 // Action Types
 import { FETCH_POSTS } from './actionTypes'
 

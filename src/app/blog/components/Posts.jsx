@@ -1,3 +1,4 @@
+/* @flow */
 // dependencies
 import React, { Component } from 'react'
 import timeAgo from 'node-time-ago'
@@ -8,7 +9,9 @@ import { isFirstRender } from '../../../shared/utils/data'
 // styles
 import styles from './Posts.scss'
 
-class Posts extends Component {
+class Posts extends Component<{
+  posts: Array<{ id: number, title: string, author: string, date: string }>
+}> {
   render() {
     const { posts } = this.props
 
