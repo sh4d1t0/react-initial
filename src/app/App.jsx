@@ -1,3 +1,4 @@
+/* @flow */
 // dependencies
 import React from 'react'
 import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom'

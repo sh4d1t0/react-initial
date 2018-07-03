@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 // constants
 import { API } from './constants'
 

@@ -1,3 +1,4 @@
+/* @flow */
 // API
 import blogApi from './api'
 

@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 // dependencies
 import 'babel-polyfill'
 import React from 'react'
