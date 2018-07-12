@@ -5,7 +5,9 @@ import blogApi from './api'
 // action types
 import { FETCH_POSTS } from './actionTypes'
 
-export const fetchPosts = (fetchingFrom, query) => dispatch => {
+export const fetchPosts = (fetchingFrom: any, query: any) => (
+  dispatch: any
+) => {
   const requestPosts = () => ({
     type: FETCH_POSTS.request()
   })

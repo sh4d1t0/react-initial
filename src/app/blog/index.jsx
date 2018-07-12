@@ -12,9 +12,9 @@ import { fetchPosts } from './actions'
 // Utils
 import { isFirstRender } from '../../shared/utils/data'
 
-type Action = { payload: Object }
+type Action = { payload?: Object }
 
-type Dispatch = (action: Action | Array<Action>) => any
+type Dispatch = (action: Action | Promise<Action>) => void
 
 type Props = {
   posts: Array<{
