@@ -26,7 +26,7 @@ export default function serverRender() {
     // configure redux store
     const store = configureStore()
 
-    const promises = routes.reduce((acc, route) => {
+    const promises = routes.reduce((acc, route: mixed) => {
       if (
         matchPath(req.url, route) &&
         route.component &&
@@ -65,7 +65,7 @@ export default function serverRender() {
         }
       })
       .catch(e => {
-        console.log('Promise error: ', e) // eslint-disable-line
+        console.error('Promise error: ', e)
       })
   }
 }
