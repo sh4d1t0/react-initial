@@ -65,7 +65,7 @@ export default function serverRender() {
         }
       })
       .catch(e => {
-        console.log('Promise error: ', e) // eslint-disable-line
+        console.error('Promise error: ', e)
       })
   }
 }
