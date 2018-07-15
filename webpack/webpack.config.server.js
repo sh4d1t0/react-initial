@@ -11,6 +11,7 @@ import {
   externals,
   name,
   output,
+  optimization,
   plugins,
   target
 } from './configuration'
@@ -24,6 +25,7 @@ export default webpackMerge(commonConfig(type), {
   entry: entry(type),
   externals: externals(type),
   name: name(type),
+  optimization: optimization(type),
   output: output(type),
   plugins: plugins(type),
   target: target(type)
