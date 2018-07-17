@@ -2,28 +2,28 @@
 // available environments
 const environments = ['development', 'stage', 'qa', 'production']
 
-export function getEnvironment(env: any = false) {
+export function getEnvironment(env: any = false): string {
   const environment = env || process.env.NODE_ENV
 
   return isEnvironment(environment) ? environment : 'production'
 }
 
-export function isDevelopment() {
+export function isDevelopment(): string {
   return getEnvironment() === 'development'
 }
 
-export function isEnvironment(env: any) {
+export function isEnvironment(env: any): number {
   return environments.indexOf(env) !== -1
 }
 
-export function isProduction() {
+export function isProduction(): string {
   return getEnvironment() === 'production'
 }
 
-export function isQA() {
+export function isQA(): string {
   return getEnvironment() === 'qa'
 }
 
-export function isStage() {
+export function isStage(): string {
   return getEnvironment() === 'stage'
 }

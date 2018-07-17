@@ -7,7 +7,7 @@ export function apiEndpoint(
   endpoint: string,
   qs?: string,
   fetchingFrom: string
-) {
+): string {
   let query = ''
   let apiUrl = ''
 
@@ -31,8 +31,9 @@ export function apiFetch(
     method?: string,
     body?: boolean
   } = {},
-  query: boolean = false
-) {
+  query: boolean = false,
+  response?: any
+): any {
   let qs
   const { fetchingFrom = 'client' } = options
 
@@ -54,7 +55,7 @@ export function apiOptions(
     headers?: {| headers: string |},
     body?: boolean
   } = {}
-) {
+): any {
   const {
     method = 'GET',
     headers = {
