@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 // Root reducer
 import rootReducer from './reducers'
 
-export default function configureStore(initialState: any) {
+export default function configureStore(initialState: any): any {
   const middleware = [thunk]
 
   return createStore(rootReducer, initialState, applyMiddleware(...middleware))
