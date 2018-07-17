@@ -17,7 +17,7 @@ import html from './html'
 // routes
 import routes from '../shared/routes'
 
-export default function serverRender() {
+export default function serverRender(): any {
   return (
     req: { url: string },
     res: { component: string, redirect: any, send: any },
@@ -26,7 +26,7 @@ export default function serverRender() {
     // configure redux store
     const store = configureStore()
 
-    const promises = routes.reduce((acc, route: mixed) => {
+    const promises = routes.reduce((acc, route: mixed): any => {
       if (
         matchPath(req.url, route) &&
         route.component &&

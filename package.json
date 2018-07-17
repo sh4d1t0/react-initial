@@ -4,7 +4,8 @@
   "description": "Initial config for react",
   "main": "index.js",
   "files": [
-    "react-initial"
+    "index.js",
+    "src"
   ],
   "engines": {
     "node": ">=8.0.0"
@@ -16,8 +17,8 @@
     "clean": "rimraf dist/ && rimraf public/app",
     "flow": "flow",
     "flow-init": "npm run flow init",
-    "lint:base": "eslint src --rule \"prettier/prettier: 2\"",
-    "lint": "npm run lint:base -- src",
+    "lint:base": "eslint src --rule 'prettier/prettier: 2'",
+    "lint": "npm run lint:base -- .",
     "lint:fix": "eslint --fix --debug src",
     "precommit": "lint-staged",
     "postcommit": "npm run test",
@@ -44,6 +45,7 @@
   "dependencies": {
     "express": "^4.16.3",
     "node-time-ago": "^1.0.0",
+    "query-string": "^6.1.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -68,6 +70,7 @@
     "eslint": "^5.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-node": "^7.0.1",
