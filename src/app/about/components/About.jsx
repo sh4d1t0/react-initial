@@ -2,8 +2,12 @@
 // dependencies
 import React, { Component } from 'react'
 
-class About extends Component<{}> {
-  render() {
+type Props = {
+  /******/
+}
+
+class About extends Component<Props> {
+  render(): any {
     return <div className="About">About</div>
   }
 }

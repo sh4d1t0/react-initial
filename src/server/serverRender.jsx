@@ -26,7 +26,7 @@ export default function serverRender(): any {
     // configure redux store
     const store = configureStore()
 
-    const promises = routes.reduce((acc, route: mixed): any => {
+    const promises = routes.reduce((acc, route: any): any => {
       if (
         matchPath(req.url, route) &&
         route.component &&

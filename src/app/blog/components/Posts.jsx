@@ -9,10 +9,17 @@ import { isFirstRender } from '../../../shared/utils/data'
 // styles
 import styles from './Posts.scss'
 
-class Posts extends Component<{
-  posts: Array<{ id: number, title: string, author: string, date: string }>
-}> {
-  render() {
+type Props = {
+  posts: Array<{
+    id: number,
+    title: string,
+    author: string,
+    date: string
+  }>
+}
+
+class Posts extends Component<Props> {
+  render(): any {
     const { posts } = this.props
 
     if (isFirstRender(posts)) {

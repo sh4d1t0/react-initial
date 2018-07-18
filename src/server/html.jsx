@@ -1,5 +1,5 @@
 // @flow
-export default function html(options: any) {
+export default function html(options: any): any {
   const {
     app = 'main',
     title = 'Site',
