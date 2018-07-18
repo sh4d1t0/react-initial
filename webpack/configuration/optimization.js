@@ -1,6 +1,7 @@
 // dependencies
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import cssnano from 'cssnano'
 
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -35,24 +36,23 @@ export default type => {
       }
     },
     minimize: true,
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true // set to true if you want JS source maps
-      })
-    ]
+    minimizer: []
   }
 
   if (!isDevelopment || type === 'server') {
     optimization.minimizer.push(
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true // set to true if you want JS source maps
+      }),
       new OptimizeCSSAssetsPlugin({
         assetNameRegExp: /\.css$/g,
-        cssProcessor: require('cssnano'),
+        cssProcessor: cssnano,
         cssProcessorOptions: {
           discardComments: { removeAll: true }
         },
-        canPrint: true
+        canPrint: false
       })
     )
   }

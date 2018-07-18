@@ -1,5 +1,5 @@
 // configuration
-import { rules, extensions, modules } from './configuration'
+import { rules, extensions, modules, performance } from './configuration'
 
 export default type => ({
   module: {
@@ -8,5 +8,6 @@ export default type => ({
   resolve: {
     extensions: extensions(type),
     modules: modules(type)
-  }
+  },
+  performance: performance(type)
 })
