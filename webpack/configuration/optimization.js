@@ -9,7 +9,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 export default type => {
   const optimization = {
     splitChunks: {
-      chunks: 'async',
+      chunks: 'all',
       minSize: 30000,
       maxSize: 0,
       minChunks: 1,
@@ -19,8 +19,15 @@ export default type => {
       name: true,
       cacheGroups: {
         vendors: {
+          name: 'vendors',
           test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
           priority: -10
+        },
+        commons: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2
         },
         default: {
           minChunks: 2,
@@ -44,7 +51,16 @@ export default type => {
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true // set to true if you want JS source maps
+        sourceMap: true, // set to true if you want JS source maps
+        uglifyOptions: {
+          compress: {
+            warnings: false, // Suppress uglification warnings
+            pure_getters: true,
+            unsafe: true,
+            unsafe_comps: true,
+            ie8: true
+          }
+        }
       }),
       new OptimizeCSSAssetsPlugin({
         assetNameRegExp: /\.css$/g,

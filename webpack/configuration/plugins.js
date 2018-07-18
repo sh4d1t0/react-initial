@@ -1,5 +1,6 @@
 // dependencies
 import CompressionPlugin from 'compression-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
@@ -13,6 +14,9 @@ const isAnalyzer = process.env.ANALYZER === 'true'
 export default type => {
   const plugins = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new HtmlWebpackPlugin({
+      minify: true
+    }),
     new MiniCssExtractPlugin({
       filename: '../../public/css/style.css'
     })
