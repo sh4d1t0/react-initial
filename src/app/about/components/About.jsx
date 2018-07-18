@@ -6,7 +6,11 @@ type Props = {
   /******/
 }
 
-class About extends Component<Props> {
+type State = {
+  /******/
+}
+
+class About extends Component<Props, State> {
   render(): any {
     return <div className="About">About</div>
   }

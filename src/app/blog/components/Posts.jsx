@@ -18,7 +18,11 @@ type Props = {
   }>
 }
 
-class Posts extends Component<Props> {
+type State = {
+  /******/
+}
+
+class Posts extends Component<Props, State> {
   render(): any {
     const { posts } = this.props
 

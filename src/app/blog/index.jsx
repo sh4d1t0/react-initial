@@ -26,7 +26,11 @@ type Props = {
   dispatch: Dispatch
 }
 
-class Blog extends Component<Props> {
+type State = {
+  /******/
+}
+
+class Blog extends Component<Props, State> {
   static initialAction(fetchingFrom: string): any {
     return fetchPosts(fetchingFrom)
   }
