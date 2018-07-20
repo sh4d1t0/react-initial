@@ -54,11 +54,12 @@ export default type => {
         sourceMap: true, // set to true if you want JS source maps
         uglifyOptions: {
           compress: {
+            ecma: 8,
             warnings: false, // Suppress uglification warnings
-            pure_getters: true,
-            unsafe: true,
-            unsafe_comps: true,
-            ie8: true
+            toplevel: false,
+            ie8: false,
+            keep_classnames: undefined,
+            keep_fnames: false
           }
         }
       }),
