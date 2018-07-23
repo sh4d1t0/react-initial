@@ -26,7 +26,7 @@ export default type => {
         },
         commons: {
           name: 'commons',
-          chunks: 'initial',
+          chunks: 'all',
           minChunks: 2
         },
         default: {

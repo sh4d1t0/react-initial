@@ -14,9 +14,6 @@ const isAnalyzer = process.env.ANALYZER === 'true'
 export default type => {
   const plugins = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new HtmlWebpackPlugin({
-      minify: true
-    }),
     new MiniCssExtractPlugin({
       filename: '../../public/css/style.css'
     })
@@ -45,7 +42,8 @@ export default type => {
         test: /\.js$|\.css$|\.html$/,
         threshold: 10240,
         minRatio: 0.8
-      })
+      }),
+      new HtmlWebpackPlugin({ minify: true })
     )
   }
 
