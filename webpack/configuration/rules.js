@@ -8,7 +8,12 @@ export default type => {
   const rules = [
     {
       test: /\.(js|jsx)$/,
-      use: 'babel-loader',
+      use: {
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true
+        }
+      },
       exclude: /node_modules/
     },
     {

@@ -9,6 +9,7 @@ import {
   entry,
   name,
   output,
+  optimization,
   plugins,
   target
 } from './configuration'
@@ -23,6 +24,7 @@ export default webpackMerge(commonConfig(type), {
   entry: entry(type),
   name: name(type),
   output: output(type),
+  optimization: optimization(type),
   plugins: plugins(type),
   target: target(type)
 })

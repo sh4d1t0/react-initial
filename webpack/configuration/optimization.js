@@ -8,6 +8,8 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 export default type => {
   const optimization = {
+    concatenateModules: true,
+    // runtimeChunk: true,
     splitChunks: {
       chunks: 'all',
       minSize: 30000,
@@ -27,19 +29,16 @@ export default type => {
         commons: {
           name: 'commons',
           chunks: 'all',
+          enforce: true,
           minChunks: 2
         },
         default: {
           minChunks: 2,
           priority: -20,
+          enforce: true,
           reuseExistingChunk: true
         },
-        styles: {
-          name: 'style',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true
-        }
+        styles: { name: 'style', test: /\.css$/, chunks: 'all', enforce: true }
       }
     },
     minimize: true,
@@ -55,6 +54,7 @@ export default type => {
         uglifyOptions: {
           compress: {
             ecma: 8,
+            drop_console: true,
             warnings: false, // Suppress uglification warnings
             toplevel: false,
             ie8: false,
