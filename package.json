@@ -18,7 +18,7 @@
     "flow": "flow",
     "flow-init": "npm run flow init",
     "lint:base": "eslint src --rule 'prettier/prettier: 2'",
-    "lint": "npm run lint:base -- .",
+    "lint": "npm run lint:base -- src",
     "lint:fix": "eslint --fix --debug src",
     "precommit": "lint-staged",
     "postcommit": "npm run test",
