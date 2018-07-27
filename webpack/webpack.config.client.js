@@ -11,6 +11,7 @@ import {
   output,
   optimization,
   plugins,
+  stats,
   target
 } from './configuration'
 
@@ -19,6 +20,7 @@ const type = 'client'
 
 export default webpackMerge(commonConfig(type), {
   mode: 'development',
+  stats: stats(type),
   context: context(type),
   devtool: devtool(type),
   entry: entry(type),

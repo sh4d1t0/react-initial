@@ -30,10 +30,16 @@ export default type => {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
           enforce: true,
-          minChunks: 2
+          minChunks: Infinity
         },
         default: false,
-        styles: { name: 'style', test: /\.css$/, chunks: 'all', enforce: true }
+        styles: {
+          name: 'style',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true,
+          minChunks: Infinity
+        }
       }
     },
     minimize: true,

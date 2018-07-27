@@ -3,7 +3,8 @@ import CompressionPlugin from 'compression-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import webpack from 'webpack'
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import BundleAnalyzerPlugin from 'webpack-bundle-analyzer'
+import Stylish from 'webpack-stylish'
 
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -16,7 +17,8 @@ export default type => {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new MiniCssExtractPlugin({
       filename: '../../public/css/style.css'
-    })
+    }),
+    new Stylish()
   ]
 
   if (isAnalyzer) {
