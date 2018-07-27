@@ -11,6 +11,7 @@ import output from './output'
 import performance from './performance'
 import plugins from './plugins'
 import rules from './rules'
+import stats from './stats'
 import target from './target'
 
 export {
@@ -26,5 +27,6 @@ export {
   performance,
   plugins,
   rules,
+  stats,
   target
 }

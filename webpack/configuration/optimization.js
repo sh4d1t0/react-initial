@@ -9,7 +9,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 export default type => {
   const optimization = {
     concatenateModules: true,
-    // runtimeChunk: true,
+    runtimeChunk: false,
     splitChunks: {
       chunks: 'all',
       minSize: 30000,
@@ -23,21 +23,16 @@ export default type => {
         vendors: {
           name: 'vendors',
           test: /[\\/]node_modules[\\/]/,
-          chunks: 'all',
-          priority: -10
+          chunks: 'all'
         },
         commons: {
           name: 'commons',
+          test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
           enforce: true,
           minChunks: 2
         },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          enforce: true,
-          reuseExistingChunk: true
-        },
+        default: false,
         styles: { name: 'style', test: /\.css$/, chunks: 'all', enforce: true }
       }
     },

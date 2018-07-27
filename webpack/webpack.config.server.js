@@ -13,6 +13,7 @@ import {
   output,
   optimization,
   plugins,
+  stats,
   target
 } from './configuration'
 
@@ -21,6 +22,7 @@ const type = 'server'
 
 export default webpackMerge(commonConfig(type), {
   mode: 'production',
+  stats: stats(type),
   context: context(type),
   entry: entry(type),
   externals: externals(type),
