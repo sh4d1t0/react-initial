@@ -31,7 +31,7 @@ public/css/*
 public/**/*.bundle.js
 public/**/*.bundle.js.gz
 public/app/report.html
-public/app/node_modules/
+public/app/node_modules
 
 package-lock.json
 
