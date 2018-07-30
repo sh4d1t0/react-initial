@@ -7,7 +7,7 @@ import { FETCH_POSTS } from './actionTypes'
 
 export const fetchPosts = (fetchingFrom: any, query: any) => (
   dispatch: any
-) => {
+): string => {
   const requestPosts = () => ({
     type: FETCH_POSTS.request()
   })

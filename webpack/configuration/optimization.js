@@ -1,14 +1,17 @@
 // dependencies
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import cssnano from 'cssnano'
 
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 export default type => {
   const optimization = {
+    concatenateModules: true,
+    runtimeChunk: false,
     splitChunks: {
-      chunks: 'async',
+      chunks: 'all',
       minSize: 30000,
       maxSize: 0,
       minChunks: 1,
@@ -18,41 +21,56 @@ export default type => {
       name: true,
       cacheGroups: {
         vendors: {
+          name: 'vendors',
           test: /[\\/]node_modules[\\/]/,
-          priority: -10
+          chunks: 'all'
         },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
+        commons: {
+          name: 'commons',
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          enforce: true,
+          minChunks: Infinity
         },
+        default: false,
         styles: {
           name: 'style',
           test: /\.css$/,
           chunks: 'all',
-          enforce: true
+          enforce: true,
+          minChunks: Infinity
         }
       }
     },
     minimize: true,
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true // set to true if you want JS source maps
-      })
-    ]
+    minimizer: []
   }
 
   if (!isDevelopment || type === 'server') {
     optimization.minimizer.push(
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true, // set to true if you want JS source maps
+        uglifyOptions: {
+          compress: {
+            ecma: 8,
+            drop_console: true,
+            warnings: false, // Suppress uglification warnings
+            toplevel: false,
+            ie8: false,
+            keep_classnames: undefined,
+            keep_fnames: false
+          }
+        }
+      }),
       new OptimizeCSSAssetsPlugin({
         assetNameRegExp: /\.css$/g,
-        cssProcessor: require('cssnano'),
+        cssProcessor: cssnano,
         cssProcessorOptions: {
           discardComments: { removeAll: true }
         },
-        canPrint: true
+        canPrint: false
       })
     )
   }

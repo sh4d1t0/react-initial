@@ -7,7 +7,7 @@ import { hot } from 'react-hot-loader'
 // routes
 import routes from '../shared/routes'
 
-const App = ({ server, location, context }) => {
+const App = ({ server, location, context }): any => {
   const routesMap = routes.map((route, i) => <Route key={i} {...route} />)
 
   // client router

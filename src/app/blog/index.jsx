@@ -12,7 +12,7 @@ import { fetchPosts } from './actions'
 // Utils
 import { isFirstRender } from '../../shared/utils/data'
 
-type Action = { payload?: Object }
+type Action = { payload?: void }
 
 type Dispatch = (action: Action | Promise<Action>) => void
 
@@ -26,8 +26,12 @@ type Props = {
   dispatch: Dispatch
 }
 
-class Blog extends Component<Props> {
-  static initialAction(fetchingFrom) {
+type State = {
+  /******/
+}
+
+class Blog extends Component<Props, State> {
+  static initialAction(fetchingFrom: string): any {
     return fetchPosts(fetchingFrom)
   }
 
@@ -37,7 +41,7 @@ class Blog extends Component<Props> {
     }
   }
 
-  render() {
+  render(): any {
     const { posts } = this.props
 
     return <Posts posts={posts} />

@@ -1,7 +1,8 @@
 // @flow
-export default function html(options: any) {
+export default function html(options: any): any {
   const {
     app = 'main',
+    vendor = 'vendors',
     title = 'Site',
     stylesheet = '/css/style.css',
     markup,
@@ -23,6 +24,7 @@ export default function html(options: any) {
         <script>
           window.initialState = ${JSON.stringify(initialState)}
         </script>
+        <script src="/app/${vendor}.bundle.js"></script>
         <script src="/app/${app}.bundle.js"></script>
       </body>
     </html>

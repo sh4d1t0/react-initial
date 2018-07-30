@@ -27,10 +27,11 @@ testem.log
 # public
 *.hot-update.js
 *.hot-update.json
-public/css/style.css
+public/css/*
 public/**/*.bundle.js
 public/**/*.bundle.js.gz
 public/app/report.html
+public/app/node_modules
 
 package-lock.json
 

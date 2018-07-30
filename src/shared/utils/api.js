@@ -58,17 +58,11 @@ export function apiOptions(
 ): any {
   const {
     method = 'GET',
-    headers = {
-      'Content-Type': 'application/json'
-    } /*,
+    headers = { 'Content-Type': 'application/json' } /*,
     body = false */
   } = options
 
-  const newOptions = {
-    method,
-    headers,
-    credentials: 'include'
-  }
+  const newOptions = { method, headers, credentials: 'include' }
 
   /* if (body) {
     newOptions.body = body
