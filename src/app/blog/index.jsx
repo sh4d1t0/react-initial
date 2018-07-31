@@ -10,7 +10,7 @@ import Posts from './components/Posts'
 import { fetchPosts } from './actions'
 
 // Utils
-import { isFirstRender } from '../../shared/utils/data'
+import isFirstRender from '../../shared/utils/data'
 
 type Action = { payload?: void }
 
@@ -27,7 +27,7 @@ type Props = {
 }
 
 type State = {
-  /******/
+  /** *** */
 }
 
 class Blog extends Component<Props, State> {

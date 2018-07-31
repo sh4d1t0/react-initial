@@ -1,10 +1,10 @@
 /* @flow */
 // dependencies
 import React, { Component } from 'react'
-import timeAgo from 'node-time-ago'
+import { timeAgo } from 'node-time-ago'
 
 // utils
-import { isFirstRender } from '../../../shared/utils/data'
+import isFirstRender from '../../../shared/utils/data'
 
 // styles
 import styles from './Posts.scss'
@@ -19,7 +19,7 @@ type Props = {
 }
 
 type State = {
-  /******/
+  /** *** */
 }
 
 class Posts extends Component<Props, State> {
@@ -40,7 +40,8 @@ class Posts extends Component<Props, State> {
           posts.map(post => (
             <div key={post.id} className={styles.posts}>
               <p>
-                {post.id} - {post.title} by {post.author}
+                {post.id} -{post.title} by
+                {post.author}
               </p>
 
               <p>{timeAgo(post.date)}</p>

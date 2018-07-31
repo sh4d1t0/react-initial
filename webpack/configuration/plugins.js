@@ -13,7 +13,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 // Analyzer
 const isAnalyzer = process.env.ANALYZER === 'true'
 
-export default type => {
+export default () => {
   const plugins = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new MiniCssExtractPlugin({

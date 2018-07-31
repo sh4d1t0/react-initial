@@ -7,7 +7,7 @@ export default (): mixed => {
     hints: !isDevelopment ? 'warning' : false,
     maxAssetSize: 250000,
     maxEntrypointSize: 250000,
-    assetFilter: function(assetFilename: string): mixed {
+    assetFilter(assetFilename: string): mixed {
       // Function predicate that provides asset filenames
       return (
         assetFilename.endsWith('.css') ||
