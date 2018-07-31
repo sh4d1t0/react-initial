@@ -1,7 +1,7 @@
 /* @flow */
 // dependencies
 import React, { Component } from 'react'
-import { timeAgo } from 'node-time-ago'
+import timeAgo from 'node-time-ago'
 
 // utils
 import isFirstRender from '../../../shared/utils/data'

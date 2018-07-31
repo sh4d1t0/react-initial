@@ -1,7 +1,7 @@
 [ignore]
 .*/tests/.*
 .*/dist/.*
-.*/node_modules/.*
+.*/node_modules/jsonlint/test/.*
 
 [include]
 
