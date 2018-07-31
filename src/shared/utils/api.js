@@ -22,6 +22,23 @@ export function apiEndpoint(
   return `${apiUrl}/api/${endpoint}${query}`
 }
 
+export function apiOptions(
+  options: {
+    method?: string,
+    headers?: {| headers: string |},
+    body?: boolean
+  } = {}
+): any {
+  const {
+    method = 'GET',
+    headers = { 'Content-Type': 'application/json' }
+  } = options
+
+  const newOptions = { method, headers, credentials: 'include' }
+
+  return newOptions
+}
+
 export function apiFetch(
   endpoint: string,
   options: {
@@ -31,8 +48,7 @@ export function apiFetch(
     method?: string,
     body?: boolean
   } = {},
-  query: boolean = false,
-  response?: any
+  query: boolean = false
 ): any {
   let qs
   const { fetchingFrom = 'client' } = options
@@ -47,26 +63,4 @@ export function apiFetch(
   const fetchEndpoint = apiEndpoint(endpoint, qs, fetchingFrom)
 
   return fetch(fetchEndpoint, fetchOptions).then(response => response.json())
-}
-
-export function apiOptions(
-  options: {
-    method?: string,
-    headers?: {| headers: string |},
-    body?: boolean
-  } = {}
-): any {
-  const {
-    method = 'GET',
-    headers = { 'Content-Type': 'application/json' } /*,
-    body = false */
-  } = options
-
-  const newOptions = { method, headers, credentials: 'include' }
-
-  /* if (body) {
-    newOptions.body = body
-  } */
-
-  return newOptions
 }

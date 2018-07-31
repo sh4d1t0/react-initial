@@ -1,6 +1,7 @@
 [ignore]
 .*/tests/.*
 .*/dist/.*
+.*/node_modules/.*
 
 [include]
 
