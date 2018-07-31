@@ -33,6 +33,14 @@
     "prettier/prettier": "error",
     "react/destructuring-assignment": "off",
     "react/prefer-stateless-function": "off",
+    "react/prop-types": [
+      "error",
+      {
+        "ignore": ["server", "location", "context"],
+        "customValidators": [],
+        "skipUndeclared": false
+      }
+    ],
     "react/jsx-one-expression-per-line": "off"
   }
 }
