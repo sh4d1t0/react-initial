@@ -57,6 +57,14 @@ export default type => {
           'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]',
+          'less-loader'
+        ]
       }
     )
   } else {
@@ -74,6 +82,14 @@ export default type => {
           'style-loader',
           'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]',
           'sass-loader'
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]',
+          'less-loader'
         ]
       }
     )
