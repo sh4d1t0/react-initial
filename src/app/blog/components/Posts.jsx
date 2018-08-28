@@ -7,7 +7,7 @@ import timeAgo from 'node-time-ago'
 import isFirstRender from '../../../shared/utils/data'
 
 // styles
-import styles from './Posts.scss'
+import styles from './Posts.less'
 
 type Props = {
   posts: Array<{
