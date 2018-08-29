@@ -6,6 +6,7 @@ import webpack from 'webpack'
 import BundleAnalyzerPlugin from 'webpack-bundle-analyzer'
 import Stylish from 'webpack-stylish'
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
+import DashboardPlugin from 'webpack-dashboard/plugin'
 
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -55,13 +56,17 @@ export default () => {
   ]
 
   if (isAnalyzer) {
-    plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'static' }))
+    plugins.push(
+      new BundleAnalyzerPlugin({ analyzerMode: 'static' }),
+      new DashboardPlugin()
+    )
   }
 
   if (isDevelopment) {
     plugins.push(
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
+      new webpack.NoEmitOnErrorsPlugin(),
+      new DashboardPlugin()
     )
   } else {
     plugins.push(
