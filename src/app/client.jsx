@@ -1,6 +1,6 @@
 /* @flow */
 // dependencies
-import 'babel-polyfill'
+import '@babel/polyfill'
 import React from 'react'
 import { hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
