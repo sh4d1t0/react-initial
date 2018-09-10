@@ -4,9 +4,13 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import {
   AppBar,
+  Button,
   IconButton,
   Menu,
   MenuItem,
+  Step,
+  StepLabel,
+  Stepper,
   Tabs,
   Tab,
   Toolbar,
@@ -20,6 +24,9 @@ import style from './Home.scss'
 
 // JSS
 const styles = {
+  root: {
+    flexGrow: 1
+  },
   grow: {
     flexGrow: 1
   }
@@ -30,16 +37,46 @@ type Props = {
 }
 
 type State = {
+  activeStep: number,
   auth: boolean,
   anchorEl: ?string,
   value: number
 }
 
+function getSteps() {
+  return ['Paso 1', 'Paso 2', 'Paso 3']
+}
+
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return 'El primer paso'
+    case 1:
+      return 'El segundo paso'
+    case 2:
+      return 'El tercer paso'
+    default:
+      return 'Paso no reconocido'
+  }
+}
+
 class Home extends Component<Props, State> {
   state = {
+    activeStep: 0,
     auth: true,
     anchorEl: null,
     value: 0
+  }
+
+  handleBack = () => {
+    const { activeStep } = this.state
+    this.setState({
+      activeStep: activeStep - 1
+    })
+  }
+
+  handleClose = () => {
+    this.setState({ anchorEl: null })
   }
 
   handleChange = (event: any, value: number) => {
@@ -54,8 +91,17 @@ class Home extends Component<Props, State> {
     this.setState({ anchorEl: event.currentTarget })
   }
 
-  handleClose = () => {
-    this.setState({ anchorEl: null })
+  handleNext = () => {
+    const { activeStep } = this.state
+    this.setState({
+      activeStep: activeStep + 1
+    })
+  }
+
+  handleReset = () => {
+    this.setState({
+      activeStep: 0
+    })
   }
 
   componentDidMount = () => {
@@ -64,12 +110,13 @@ class Home extends Component<Props, State> {
 
   render(): any {
     const { classes } = this.props
-    const { auth, anchorEl, value } = this.state
+    const { activeStep, auth, anchorEl, value } = this.state
+    const steps = getSteps()
     const open = Boolean(anchorEl)
 
     return (
-      <div className={style.home}>
-        <AppBar position="static" color="default">
+      <div className={classes.root}>
+        <AppBar position="static" color="default" className={style.home}>
           <Toolbar>
             <Typography
               variant="title"
@@ -110,6 +157,51 @@ class Home extends Component<Props, State> {
             )}
           </Toolbar>
         </AppBar>
+        {/** *** */}
+        <Stepper activeStep={activeStep}>
+          {steps.map(label => {
+            const props = {}
+            const labelProps = {}
+            return (
+              <Step key={label} {...props}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
+            )
+          })}
+        </Stepper>
+        <div>
+          {activeStep === steps.length ? (
+            <div>
+              <Typography className={classes.instructions}>
+                Todos los pasos han sido completados - haz finalizado
+              </Typography>
+              <Button onClick={this.handleReset} className={classes.button}>
+                Reiniciar
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <Typography className={classes.instructions}>
+                {getStepContent(activeStep)}
+              </Typography>
+              <div>
+                <Button
+                  disabled={activeStep === 0}
+                  onClick={this.handleBack}
+                  className={classes.button}>
+                  Regresar
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleNext}
+                  className={classes.button}>
+                  {activeStep === steps.length - 1 ? 'Finalizar' : 'Siguiente'}
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     )
   }
