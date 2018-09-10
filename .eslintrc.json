@@ -33,6 +33,13 @@
     "prettier/prettier": "error",
     "react/destructuring-assignment": "off",
     "react/prefer-stateless-function": "off",
+    "react/jsx-closing-bracket-location": [
+      1,
+      {
+        "selfClosing": "props-aligned",
+        "nonEmpty": "after-props"
+      }
+    ],
     "react/prop-types": [
       "error",
       {
