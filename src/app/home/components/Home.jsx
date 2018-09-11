@@ -18,6 +18,7 @@ import {
   withStyles
 } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
+import Webcam from 'react-webcam'
 
 // styles
 import style from './Home.scss'
@@ -48,13 +49,43 @@ function getSteps() {
 }
 
 function getStepContent(step) {
+  const videoConstraints = {
+    width: 1280,
+    height: 720,
+    facingMode: 'user'
+  }
+
   switch (step) {
     case 0:
-      return 'El primer paso'
+      return (
+        <Webcam
+          audio={false}
+          height={350}
+          screenshotFormat="image/jpeg"
+          width={350}
+          videoConstraints={videoConstraints}
+        />
+      )
     case 1:
-      return 'El segundo paso'
+      return (
+        <Webcam
+          audio={false}
+          height={350}
+          screenshotFormat="image/jpeg"
+          width={350}
+          videoConstraints={videoConstraints}
+        />
+      )
     case 2:
-      return 'El tercer paso'
+      return (
+        <Webcam
+          audio={false}
+          height={350}
+          screenshotFormat="image/jpeg"
+          width={350}
+          videoConstraints={videoConstraints}
+        />
+      )
     default:
       return 'Paso no reconocido'
   }
@@ -157,7 +188,7 @@ class Home extends Component<Props, State> {
             )}
           </Toolbar>
         </AppBar>
-        {/** *** */}
+        {/** Stepper */}
         <Stepper activeStep={activeStep}>
           {steps.map(label => {
             const props = {}
