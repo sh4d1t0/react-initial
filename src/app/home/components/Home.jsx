@@ -2,36 +2,66 @@
 // dependencies
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  AppBar,
-  Button,
-  IconButton,
-  Menu,
-  MenuItem,
-  Step,
-  StepLabel,
-  Stepper,
-  Tabs,
-  Tab,
-  Toolbar,
-  Typography,
-  withStyles
-} from '@material-ui/core'
-import { AccountCircle } from '@material-ui/icons'
+// Components
+import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import Step from '@material-ui/core/Step'
+import StepLabel from '@material-ui/core/StepLabel'
+import Stepper from '@material-ui/core/Stepper'
+import Drawer from '@material-ui/core/Drawer'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+// Icons
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import SendIcon from '@material-ui/icons/Send'
+import MailIcon from '@material-ui/icons/Mail'
+import DeleteIcon from '@material-ui/icons/Delete'
+
+import HomeIcon from '@material-ui/icons/Home'
+import PersonIcon from '@material-ui/icons/Person'
 import Webcam from 'react-webcam'
 
 // styles
-import style from './Home.scss'
+// import style from './Home.scss'
 
 // JSS
-const styles = {
-  root: {
-    flexGrow: 1
+const styles = theme => ({
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1
+  },
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
+    minWidth: 0 // So the Typography noWrap works
+  },
+  drawerPaper: {
+    position: 'relative',
+    width: 240
   },
   grow: {
     flexGrow: 1
-  }
-}
+  },
+  root: {
+    flexGrow: 1,
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex'
+  },
+  toolbar: theme.mixins.toolbar
+})
 
 type Props = {
   classes: any
@@ -41,11 +71,18 @@ type State = {
   activeStep: number,
   auth: boolean,
   anchorEl: ?string,
+  screenshot: ?string,
   value: number
 }
 
 function getSteps() {
-  return ['Paso 1', 'Paso 2', 'Paso 3']
+  return [
+    'Iniciar',
+    'Tomar Selfie',
+    'Tomar foto INE frontal',
+    'Tomar foto INE posterior',
+    'Enviar'
+  ]
 }
 
 function getStepContent(step) {
@@ -57,35 +94,45 @@ function getStepContent(step) {
 
   switch (step) {
     case 0:
-      return (
-        <Webcam
-          audio={false}
-          height={350}
-          screenshotFormat="image/jpeg"
-          width={350}
-          videoConstraints={videoConstraints}
-        />
-      )
+      return 'Regístrate para covertirte en conductor'
     case 1:
       return (
-        <Webcam
-          audio={false}
-          height={350}
-          screenshotFormat="image/jpeg"
-          width={350}
-          videoConstraints={videoConstraints}
-        />
+        <div>
+          <Webcam
+            audio={false}
+            height={350}
+            screenshotFormat="image/jpeg"
+            width={350}
+            videoConstraints={videoConstraints}
+          />
+        </div>
       )
     case 2:
       return (
-        <Webcam
-          audio={false}
-          height={350}
-          screenshotFormat="image/jpeg"
-          width={350}
-          videoConstraints={videoConstraints}
-        />
+        <div>
+          <Webcam
+            audio={false}
+            height={350}
+            screenshotFormat="image/jpeg"
+            width={350}
+            videoConstraints={videoConstraints}
+          />
+        </div>
       )
+    case 3:
+      return (
+        <div>
+          <Webcam
+            audio={false}
+            height={350}
+            screenshotFormat="image/jpeg"
+            width={350}
+            videoConstraints={videoConstraints}
+          />
+        </div>
+      )
+    case 4:
+      return 'Da clic en finalizar para finalizar con el proceso'
     default:
       return 'Paso no reconocido'
   }
@@ -96,6 +143,7 @@ class Home extends Component<Props, State> {
     activeStep: 0,
     auth: true,
     anchorEl: null,
+    screenshot: null,
     value: 0
   }
 
@@ -104,6 +152,11 @@ class Home extends Component<Props, State> {
     this.setState({
       activeStep: activeStep - 1
     })
+  }
+
+  handleClick = () => {
+    const screenshot = Webcam.getScreenshot()
+    this.setState({ screenshot })
   }
 
   handleClose = () => {
@@ -141,13 +194,13 @@ class Home extends Component<Props, State> {
 
   render(): any {
     const { classes } = this.props
-    const { activeStep, auth, anchorEl, value } = this.state
+    const { activeStep, auth, anchorEl, screenshot, value } = this.state
     const steps = getSteps()
     const open = Boolean(anchorEl)
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="default" className={style.home}>
+        <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
             <Typography
               variant="title"
@@ -188,51 +241,106 @@ class Home extends Component<Props, State> {
             )}
           </Toolbar>
         </AppBar>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}>
+          <div className={classes.toolbar} />
+          <List>
+            <div>
+              <ListItem button>
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Inicio" />
+              </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+                <ListItemText primary="Identidades" />
+              </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <SendIcon />
+                </ListItemIcon>
+                <ListItemText primary="Configuración" />
+              </ListItem>
+            </div>
+          </List>
+          <Divider />
+          <List>
+            <div>
+              <ListItem button>
+                <ListItemIcon>
+                  <MailIcon />
+                </ListItemIcon>
+                <ListItemText primary="Web SDK" />
+              </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <DeleteIcon />
+                </ListItemIcon>
+                <ListItemText primary="Mobile SDK" />
+              </ListItem>
+            </div>
+          </List>
+        </Drawer>
         {/** Stepper */}
-        <Stepper activeStep={activeStep}>
-          {steps.map(label => {
-            const props = {}
-            const labelProps = {}
-            return (
-              <Step key={label} {...props}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
-              </Step>
-            )
-          })}
-        </Stepper>
-        <div>
-          {activeStep === steps.length ? (
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Typography noWrap>
+            <Stepper activeStep={activeStep}>
+              {steps.map(label => {
+                const props = {}
+                const labelProps = {}
+                return (
+                  <Step key={label} {...props}>
+                    <StepLabel {...labelProps}>{label}</StepLabel>
+                  </Step>
+                )
+              })}
+            </Stepper>
             <div>
-              <Typography className={classes.instructions}>
-                Todos los pasos han sido completados - haz finalizado
-              </Typography>
-              <Button onClick={this.handleReset} className={classes.button}>
-                Reiniciar
-              </Button>
+              {activeStep === steps.length ? (
+                <div>
+                  <Typography className={classes.instructions}>
+                    Todos los pasos han sido completados - haz finalizado
+                  </Typography>
+                  <Button onClick={this.handleReset} className={classes.button}>
+                    Reiniciar
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  <Typography className={classes.instructions}>
+                    {getStepContent(activeStep)}
+                  </Typography>
+                  <div>
+                    <Button onClick={this.handleClick}>Tomar foto</Button>
+                    {screenshot ? <img src={screenshot} alt="" /> : null}
+                    <Button
+                      disabled={activeStep === 0}
+                      onClick={this.handleBack}
+                      className={classes.button}>
+                      Regresar
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={this.handleNext}
+                      className={classes.button}>
+                      {activeStep === steps.length - 1
+                        ? 'Finalizar'
+                        : 'Siguiente'}
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
-          ) : (
-            <div>
-              <Typography className={classes.instructions}>
-                {getStepContent(activeStep)}
-              </Typography>
-              <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  className={classes.button}>
-                  Regresar
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                  className={classes.button}>
-                  {activeStep === steps.length - 1 ? 'Finalizar' : 'Siguiente'}
-                </Button>
-              </div>
-            </div>
-          )}
-        </div>
+          </Typography>
+        </main>
       </div>
     )
   }
