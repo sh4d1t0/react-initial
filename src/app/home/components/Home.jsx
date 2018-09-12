@@ -157,7 +157,7 @@ class Home extends Component<Props, State> {
   }
 
   handleClick = () => {
-    const screenshot = this.Webcam.getScreenshot()
+    const screenshot = this.webcam.getScreenshot()
     this.setState({ screenshot })
   }
 
@@ -323,7 +323,11 @@ class Home extends Component<Props, State> {
                       {getStepContent(activeStep)}
                     </Typography>
                     <div>
-                      <Button onClick={this.handleClick}>Tomar foto</Button>
+                      <Button
+                        disabled={activeStep === 0 || activeStep === 4}
+                        onClick={this.handleClick}>
+                        Tomar foto
+                      </Button>
                       {screenshot ? <img src={screenshot} alt="" /> : null}
                       <Button
                         disabled={activeStep === 0}
