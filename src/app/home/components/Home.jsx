@@ -22,14 +22,13 @@ import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
+import Grid from '@material-ui/core/Grid'
 // Icons
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import SendIcon from '@material-ui/icons/Send'
-import MailIcon from '@material-ui/icons/Mail'
-import DeleteIcon from '@material-ui/icons/Delete'
-
 import HomeIcon from '@material-ui/icons/Home'
 import PersonIcon from '@material-ui/icons/Person'
+import SettingsIcon from '@material-ui/icons/Settings'
+import FingerprintIcon from '@material-ui/icons/Fingerprint'
 import Webcam from 'react-webcam'
 
 // styles
@@ -49,6 +48,9 @@ const styles = theme => ({
   drawerPaper: {
     position: 'relative',
     width: 240
+  },
+  instructions: {
+    textAlign: 'center'
   },
   grow: {
     flexGrow: 1
@@ -155,7 +157,7 @@ class Home extends Component<Props, State> {
   }
 
   handleClick = () => {
-    const screenshot = Webcam.getScreenshot()
+    const screenshot = this.Webcam.getScreenshot()
     this.setState({ screenshot })
   }
 
@@ -200,147 +202,151 @@ class Home extends Component<Props, State> {
 
     return (
       <div className={classes.root}>
-        <AppBar position="absolute" className={classes.appBar}>
-          <Toolbar>
-            <Typography
-              variant="title"
-              color="inherit"
-              className={classes.grow}>
-              <Tabs value={value} onChange={this.handleChange}>
-                <Tab label="Home" />
-                <Tab label="About" component={Link} to="/about" />
-                <Tab label="Blog" component={Link} to="/blog" />
-              </Tabs>
-            </Typography>
-            {auth && (
-              <div>
-                <IconButton
-                  aria-owns={open ? 'menu-appbar' : null}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit">
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right'
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right'
-                  }}
-                  open={open}
-                  onClose={this.handleClose}>
-                  <MenuItem onClick={this.handleClose}>Perfil</MenuItem>
-                  <MenuItem onClick={this.handleClose}>Mi cuenta</MenuItem>
-                </Menu>
-              </div>
-            )}
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper
-          }}>
-          <div className={classes.toolbar} />
-          <List>
-            <div>
-              <ListItem button>
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Inicio" />
-              </ListItem>
-              <ListItem button>
-                <ListItemIcon>
-                  <PersonIcon />
-                </ListItemIcon>
-                <ListItemText primary="Identidades" />
-              </ListItem>
-              <ListItem button>
-                <ListItemIcon>
-                  <SendIcon />
-                </ListItemIcon>
-                <ListItemText primary="Configuración" />
-              </ListItem>
-            </div>
-          </List>
-          <Divider />
-          <List>
-            <div>
-              <ListItem button>
-                <ListItemIcon>
-                  <MailIcon />
-                </ListItemIcon>
-                <ListItemText primary="Web SDK" />
-              </ListItem>
-              <ListItem button>
-                <ListItemIcon>
-                  <DeleteIcon />
-                </ListItemIcon>
-                <ListItemText primary="Mobile SDK" />
-              </ListItem>
-            </div>
-          </List>
-        </Drawer>
-        {/** Stepper */}
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography noWrap>
-            <Stepper activeStep={activeStep}>
-              {steps.map(label => {
-                const props = {}
-                const labelProps = {}
-                return (
-                  <Step key={label} {...props}>
-                    <StepLabel {...labelProps}>{label}</StepLabel>
-                  </Step>
-                )
-              })}
-            </Stepper>
-            <div>
-              {activeStep === steps.length ? (
+        <Grid container spacing={24}>
+          <AppBar position="absolute" className={classes.appBar}>
+            <Toolbar>
+              <Typography
+                variant="title"
+                color="inherit"
+                className={classes.grow}>
+                <Tabs value={value} onChange={this.handleChange}>
+                  <Tab label="Home" />
+                  <Tab label="About" component={Link} to="/about" />
+                  <Tab label="Blog" component={Link} to="/blog" />
+                </Tabs>
+              </Typography>
+              {auth && (
                 <div>
-                  <Typography className={classes.instructions}>
-                    Todos los pasos han sido completados - haz finalizado
-                  </Typography>
-                  <Button onClick={this.handleReset} className={classes.button}>
-                    Reiniciar
-                  </Button>
-                </div>
-              ) : (
-                <div>
-                  <Typography className={classes.instructions}>
-                    {getStepContent(activeStep)}
-                  </Typography>
-                  <div>
-                    <Button onClick={this.handleClick}>Tomar foto</Button>
-                    {screenshot ? <img src={screenshot} alt="" /> : null}
-                    <Button
-                      disabled={activeStep === 0}
-                      onClick={this.handleBack}
-                      className={classes.button}>
-                      Regresar
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleNext}
-                      className={classes.button}>
-                      {activeStep === steps.length - 1
-                        ? 'Finalizar'
-                        : 'Siguiente'}
-                    </Button>
-                  </div>
+                  <IconButton
+                    aria-owns={open ? 'menu-appbar' : null}
+                    aria-haspopup="true"
+                    onClick={this.handleMenu}
+                    color="inherit">
+                    <AccountCircle />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right'
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right'
+                    }}
+                    open={open}
+                    onClose={this.handleClose}>
+                    <MenuItem onClick={this.handleClose}>Perfil</MenuItem>
+                    <MenuItem onClick={this.handleClose}>Mi cuenta</MenuItem>
+                  </Menu>
                 </div>
               )}
-            </div>
-          </Typography>
-        </main>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: classes.drawerPaper
+            }}>
+            <div className={classes.toolbar} />
+            <List>
+              <div>
+                <ListItem button>
+                  <ListItemIcon>
+                    <HomeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Inicio" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <PersonIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Identidades" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <SettingsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Configuración" />
+                </ListItem>
+              </div>
+            </List>
+            <Divider />
+            <List>
+              <div>
+                <ListItem button>
+                  <ListItemIcon>
+                    <FingerprintIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Web SDK" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <FingerprintIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Mobile SDK" />
+                </ListItem>
+              </div>
+            </List>
+          </Drawer>
+          {/** Stepper */}
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <Typography noWrap>
+              <Stepper activeStep={activeStep}>
+                {steps.map(label => {
+                  const props = {}
+                  const labelProps = {}
+                  return (
+                    <Step key={label} {...props}>
+                      <StepLabel {...labelProps}>{label}</StepLabel>
+                    </Step>
+                  )
+                })}
+              </Stepper>
+              <div>
+                {activeStep === steps.length ? (
+                  <div>
+                    <Typography className={classes.instructions}>
+                      Todos los pasos han sido completados - haz finalizado
+                    </Typography>
+                    <Button
+                      onClick={this.handleReset}
+                      className={classes.button}>
+                      Reiniciar
+                    </Button>
+                  </div>
+                ) : (
+                  <div>
+                    <Typography className={classes.instructions}>
+                      {getStepContent(activeStep)}
+                    </Typography>
+                    <div>
+                      <Button onClick={this.handleClick}>Tomar foto</Button>
+                      {screenshot ? <img src={screenshot} alt="" /> : null}
+                      <Button
+                        disabled={activeStep === 0}
+                        onClick={this.handleBack}
+                        className={classes.button}>
+                        Regresar
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.handleNext}
+                        className={classes.button}>
+                        {activeStep === steps.length - 1
+                          ? 'Finalizar'
+                          : 'Siguiente'}
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </Typography>
+          </main>
+        </Grid>
       </div>
     )
   }
