@@ -47,14 +47,44 @@ export default type => {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]'
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              minimize: true,
+              localIdentName: '[name]_[local]',
+              importLoaders: 2,
+              sourceMap: false
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                // eslint-disable-next-line
+                require('autoprefixer')({
+                  grid: true
+                })
+              ]
+            }
+          }
         ]
       },
       {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              minimize: true,
+              localIdentName: '[name]_[local]',
+              importLoaders: 2,
+              sourceMap: false
+            }
+          },
           'sass-loader'
         ]
       },
@@ -62,7 +92,16 @@ export default type => {
         test: /\.less$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              minimize: true,
+              localIdentName: '[name]_[local]',
+              importLoaders: 2,
+              sourceMap: false
+            }
+          },
           'less-loader'
         ]
       }
@@ -73,14 +112,44 @@ export default type => {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]'
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              minimize: true,
+              localIdentName: '[name]_[local]',
+              importLoaders: 2,
+              sourceMap: false
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                // eslint-disable-next-line
+                require('autoprefixer')({
+                  grid: true
+                })
+              ]
+            }
+          }
         ]
       },
       {
         test: /\.scss$/,
         use: [
           'style-loader',
-          'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              minimize: true,
+              localIdentName: '[name]_[local]',
+              importLoaders: 2,
+              sourceMap: false
+            }
+          },
           'sass-loader'
         ]
       },
@@ -88,7 +157,16 @@ export default type => {
         test: /\.less$/,
         use: [
           'style-loader',
-          'css-loader?minimize=true&modules=true&localIdentName=[name]_[local]',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              minimize: true,
+              localIdentName: '[name]_[local]',
+              importLoaders: 2,
+              sourceMap: false
+            }
+          },
           'less-loader'
         ]
       }
