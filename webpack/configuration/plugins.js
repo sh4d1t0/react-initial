@@ -77,11 +77,13 @@ export default () => {
       }),
       new webpack.optimize.AggressiveMergingPlugin(),
       new CompressionPlugin({
-        asset: '[path].gz[query]',
+        filename: '[path].gz[query]',
         algorithm: 'gzip',
         test: /\.js$|\.css$|\.html$/,
+        compressionOptions: { level: 9 },
         threshold: 10240,
-        minRatio: 0.8
+        minRatio: 0.8,
+        deleteOriginalAssets: false
       }),
       new HtmlWebpackPlugin({ minify: true })
     )
