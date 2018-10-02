@@ -2,7 +2,7 @@
 // dependencies
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { matchPath } from 'react-router-dom'
+import matchPath from 'react-router-dom/matchPath'
 import { Provider } from 'react-redux'
 
 // redux store
@@ -20,8 +20,7 @@ import routes from '../shared/routes'
 export default function serverRender(): any {
   return (
     req: { url: string },
-    res: { component: string, redirect: any, send: any },
-    next: any
+    res: { component: string, redirect: any, send: any }
   ) => {
     // configure redux store
     const store = configureStore()
