@@ -9,9 +9,10 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 export default type => {
   const optimization = {
     concatenateModules: true,
-    runtimeChunk: {
+    /* runtimeChunk: {
       name: 'vendors'
-    },
+    }, */
+    runtimeChunk: false,
     splitChunks: {
       chunks: 'all',
       minSize: 30000,
