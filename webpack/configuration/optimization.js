@@ -9,7 +9,9 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 export default type => {
   const optimization = {
     concatenateModules: true,
-    runtimeChunk: false,
+    runtimeChunk: {
+      name: 'vendors'
+    },
     splitChunks: {
       chunks: 'all',
       minSize: 30000,
@@ -31,7 +33,16 @@ export default type => {
           chunks: 'all'
         },
         commons: {
-          name: 'commons',
+          name(module) {
+            // get the name. E.g. node_modules/packageName/not/this/part.js
+            // or node_modules/packageName
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+            )[1]
+
+            // npm package names are URL-safe, but some servers don't like @ symbols
+            return `common.${packageName.replace('@', '')}`
+          },
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
           enforce: true,

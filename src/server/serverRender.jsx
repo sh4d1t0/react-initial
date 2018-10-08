@@ -2,7 +2,7 @@
 // dependencies
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import matchPath from 'react-router-dom/matchPath'
+import { matchPath } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 // redux store
@@ -20,7 +20,8 @@ import routes from '../shared/routes'
 export default function serverRender(): any {
   return (
     req: { url: string },
-    res: { component: string, redirect: any, send: any }
+    res: { component: string, redirect: any, send: any },
+    next: any // eslint-disable-line
   ) => {
     // configure redux store
     const store = configureStore()
@@ -64,7 +65,7 @@ export default function serverRender(): any {
         }
       })
       .catch(e => {
-        console.error('Promise error: ', e)
+        console.error('Promise error: ', e) // eslint-disable-line
       })
   }
 }
