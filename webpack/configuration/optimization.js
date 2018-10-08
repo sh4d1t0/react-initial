@@ -13,15 +13,20 @@ export default type => {
     splitChunks: {
       chunks: 'all',
       minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
+      maxInitialRequests: Infinity,
       name: true,
       cacheGroups: {
         vendors: {
-          name: 'vendors',
+          name(module) {
+            // get the name. E.g. node_modules/packageName/not/this/part.js
+            // or node_modules/packageName
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+            )[1]
+
+            // npm package names are URL-safe, but some servers don't like @ symbols
+            return `vendor.${packageName.replace('@', '')}`
+          },
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all'
         },

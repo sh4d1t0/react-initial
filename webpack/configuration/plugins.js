@@ -33,7 +33,8 @@ export default () => {
     plugins.push(
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
-      new DashboardPlugin()
+      new DashboardPlugin(),
+      new webpack.HashedModuleIdsPlugin() // so that file hashes don't change unexpectedly
     )
   } else {
     plugins.push(
