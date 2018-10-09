@@ -8,48 +8,26 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 export default type => {
   const optimization = {
-    concatenateModules: true,
-    /* runtimeChunk: {
-      name: 'vendors'
-    }, */
-    runtimeChunk: false,
     splitChunks: {
-      chunks: 'all',
-      minSize: 30000,
-      maxInitialRequests: Infinity,
-      name: true,
       cacheGroups: {
+        default: false,
+        // vendors chunk
         vendors: {
-          name(module) {
-            // get the name. E.g. node_modules/packageName/not/this/part.js
-            // or node_modules/packageName
-            const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-            )[1]
-
-            // npm package names are URL-safe, but some servers don't like @ symbols
-            return `vendor.${packageName.replace('@', '')}`
-          },
-          test: /[\\/]node_modules[\\/]/,
-          chunks: 'all'
-        },
-        commons: {
-          name(module) {
-            // get the name. E.g. node_modules/packageName/not/this/part.js
-            // or node_modules/packageName
-            const packageName = module.context.match(
-              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-            )[1]
-
-            // npm package names are URL-safe, but some servers don't like @ symbols
-            return `common.${packageName.replace('@', '')}`
-          },
+          name: 'vendors',
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
-          enforce: true,
-          minChunks: Infinity
+          priority: 20,
+          reuseExistingChunk: true
         },
-        default: false,
+        // commons chunk
+        commons: {
+          name: 'commons',
+          chunks: 'async',
+          enforce: true,
+          minChunks: 2,
+          priority: 10,
+          reuseExistingChunk: true
+        },
         styles: {
           name: 'style',
           test: /\.css$/,
