@@ -4,6 +4,7 @@ import '@babel/polyfill'
 import React from 'react'
 import { hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
+import Loadable from 'react-loadable'
 
 // redux store
 import configureStore from '../shared/configureStore'
@@ -19,10 +20,12 @@ const rootElement = document.getElementById('root')
 
 // app wrapper
 if (rootElement) {
-  hydrate(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    rootElement
-  )
+  Loadable.preloadReady().then(() => {
+    hydrate(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      rootElement
+    )
+  })
 }

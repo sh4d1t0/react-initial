@@ -11,17 +11,18 @@ export default type => {
     splitChunks: {
       cacheGroups: {
         default: false,
+        vendors: false,
         // vendors chunk
-        vendors: {
-          name: 'vendors',
+        vendor: {
+          name: 'vendor',
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
           priority: 20,
           reuseExistingChunk: true
         },
         // commons chunk
-        commons: {
-          name: 'commons',
+        common: {
+          name: 'common',
           chunks: 'async',
           enforce: true,
           minChunks: 2,

@@ -2,7 +2,7 @@
 export default function html(options: any): any {
   const {
     app = 'main',
-    vendor = 'vendors',
+    vendor = 'vendor',
     title = 'Site',
     stylesheet = '/css/style.css',
     markup,
