@@ -8,31 +8,26 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 export default type => {
   const optimization = {
-    concatenateModules: true,
-    runtimeChunk: false,
     splitChunks: {
-      chunks: 'all',
-      minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: true,
       cacheGroups: {
+        default: false,
+        // vendors chunk
         vendors: {
           name: 'vendors',
           test: /[\\/]node_modules[\\/]/,
-          chunks: 'all'
+          chunks: 'all',
+          priority: 20,
+          reuseExistingChunk: true
         },
+        // commons chunk
         commons: {
           name: 'commons',
-          test: /[\\/]node_modules[\\/]/,
-          chunks: 'all',
+          chunks: 'async',
           enforce: true,
-          minChunks: Infinity
+          minChunks: 2,
+          priority: 10,
+          reuseExistingChunk: true
         },
-        default: false,
         styles: {
           name: 'style',
           test: /\.css$/,

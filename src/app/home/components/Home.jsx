@@ -1,7 +1,7 @@
 /* @flow */
 // dependencies
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'react-router-dom/Link'
 
 // styles
 import styles from './Home.scss'
