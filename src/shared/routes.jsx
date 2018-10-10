@@ -21,6 +21,15 @@ const AsyncAboutComponent = Loadable({
   loading: Loading
 })
 
+/* const BlogContainerPromise = () =>
+  import(
+  '../app/blog')
+
+const AsyncBlogComponent = Loadable({
+  loader: BlogContainerPromise,
+  loading: Loading
+}) */
+
 const routes = [
   {
     path: '/',

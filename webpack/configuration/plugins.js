@@ -6,7 +6,6 @@ import webpack from 'webpack'
 import BundleAnalyzerPlugin from 'webpack-bundle-analyzer'
 import Stylish from 'webpack-stylish'
 import DashboardPlugin from 'webpack-dashboard/plugin'
-import { ReactLoadablePlugin } from 'react-loadable/webpack'
 
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -20,10 +19,7 @@ export default () => {
     new MiniCssExtractPlugin({
       filename: '../../public/css/style.css'
     }),
-    new Stylish(),
-    new ReactLoadablePlugin({
-      filename: './src/react-loadable.json'
-    })
+    new Stylish()
   ]
 
   if (isAnalyzer) {
