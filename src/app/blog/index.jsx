@@ -2,10 +2,9 @@
 // Dependencies
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Loadable from 'react-loadable'
 
 // Components
-/* import Posts from './components/Posts' */
+import Posts from './components/Posts'
 
 // Actions
 import { fetchPosts } from './actions'
@@ -31,17 +30,6 @@ type State = {
   /** *** */
 }
 
-function Loading() {
-  return '<div>Cargando...</div>'
-}
-
-const LoadablePost = Loadable({
-  loader: () =>
-    import(/* webpackChunkName: "Post" */
-    /* webpackMode: "lazy" */ './components/Posts'),
-  loading: Loading
-})
-
 class Blog extends Component<Props, State> {
   static initialAction(fetchingFrom: string): any {
     return fetchPosts(fetchingFrom)
@@ -56,7 +44,7 @@ class Blog extends Component<Props, State> {
   render(): any {
     const { posts } = this.props
 
-    return <LoadablePost posts={posts} />
+    return <Posts posts={posts} />
   }
 }
 
