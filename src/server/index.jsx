@@ -7,7 +7,6 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
-import Loadable from 'react-loadable'
 
 // API
 import api from './api'
@@ -36,10 +35,8 @@ app.use(
 app.use(webpackHotServerMiddleware(compiler))
 
 // listening port
-Loadable.preloadAll().then(() => {
-  app.listen(port, err => {
-    if (!err) {
-      open(`http://localhost:${port}`)
-    }
-  })
+app.listen(port, err => {
+  if (!err) {
+    open(`http://localhost:${port}`)
+  }
 })
