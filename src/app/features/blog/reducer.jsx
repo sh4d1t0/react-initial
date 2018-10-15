@@ -1,6 +1,6 @@
 /* @flow */
 // Action Types
-import { FETCH_POSTS } from './actionTypes'
+import FETCH_POSTS from './actionTypes'
 
 const initialState = {
   posts: []

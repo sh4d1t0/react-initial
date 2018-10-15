@@ -4,13 +4,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 // Components
-import Posts from './components/Posts'
+import Posts from '../../components/Posts'
 
 // Actions
-import { fetchPosts } from './actions'
+import fetchPosts from '../../features/blog/actions'
 
 // Utils
-import isFirstRender from '../../shared/utils/data'
+import isFirstRender from '../../../shared/utils/data'
 
 type Action = { payload?: void }
 

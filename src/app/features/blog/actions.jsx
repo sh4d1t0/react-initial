@@ -3,9 +3,9 @@
 import blogApi from './api'
 
 // action types
-import { FETCH_POSTS } from './actionTypes'
+import FETCH_POSTS from './actionTypes'
 
-export const fetchPosts = (fetchingFrom: any, query: any) => (
+const fetchPosts = (fetchingFrom: any, query: any) => (
   dispatch: any
 ): string => {
   const requestPosts = () => ({
@@ -23,3 +23,5 @@ export const fetchPosts = (fetchingFrom: any, query: any) => (
     .getAllPosts(query, fetchingFrom)
     .then(posts => dispatch(receivedPosts(posts)))
 }
+
+export default fetchPosts

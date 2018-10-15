@@ -1,6 +1,8 @@
 /* @flow */
-export const API = Object.freeze({
+const API = Object.freeze({
   BLOG: {
     POSTS: 'blog/posts'
   }
 })
+
+export default API
