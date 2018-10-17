@@ -1,9 +1,8 @@
 // @flow
 // Dependencies
 import { combineReducers } from 'redux'
-
 // Containers Reducers
-import blog from '../../app/features/blog/reducer'
+import blog from 'Features/blog/reducer'
 
 // Shared Reducers
 import device from './deviceReducer'

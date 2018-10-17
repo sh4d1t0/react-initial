@@ -2,10 +2,8 @@
 // dependencies
 import React, { Component } from 'react'
 import timeAgo from 'node-time-ago'
-
 // utils
-import isFirstRender from '../../../shared/utils/data'
-
+import isFirstRender from 'SharedUtils/data'
 // styles
 import styles from './Posts.less'
 
@@ -17,7 +15,6 @@ type Props = {
     date: string
   }>
 }
-
 type State = {
   /** *** */
 }

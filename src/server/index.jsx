@@ -7,10 +7,8 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
-
 // API
 import api from './api'
-
 // webpack config
 import webpackConfig from '../../webpack.config'
 

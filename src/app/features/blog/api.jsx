@@ -1,9 +1,8 @@
 /* @flow */
-// constants
-import API from './constants'
-
 // Utils
-import { apiFetch } from '../../../shared/utils/api'
+import { apiFetch } from 'SharedUtils/api'
+// Constants
+import API from './constants'
 
 class BlogApi {
   static getAllPosts(query: any = {}, fetchingFrom: string = 'client'): any {

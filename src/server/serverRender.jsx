@@ -4,18 +4,14 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { matchPath } from 'react-router-dom'
 import { Provider } from 'react-redux'
-
 // redux store
-import configureStore from '../shared/configureStore'
-
+import configureStore from 'Shared/configureStore'
 // containers
-import App from '../app/App'
-
+import App from 'App/App'
+// routes
+import routes from 'Shared/routes'
 // HTML
 import html from './html'
-
-// routes
-import routes from '../shared/routes'
 
 export default function serverRender(): any {
   return (

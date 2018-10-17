@@ -1,7 +1,6 @@
 // @flow
 // depencendies
 import express from 'express'
-
 // data
 import posts from './data/posts'
 

@@ -3,9 +3,8 @@
 import React from 'react'
 import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
-
 // routes
-import routes from '../shared/routes'
+import routes from 'Shared/routes'
 
 const App = ({ server, location, context }): any => {
   const routesMap = routes.map(route => (
