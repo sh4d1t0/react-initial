@@ -1,7 +1,7 @@
 // dependencies
-import path from 'path'
+const path = require('path')
 
-export default () => [
+module.exports = [
   'node_modules',
   path.resolve(__dirname, '../../src/app'),
   path.resolve(__dirname, '../../src/server')

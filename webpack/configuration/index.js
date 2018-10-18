@@ -1,20 +1,22 @@
 // configuration
-import context from './context'
-import devtool from './devtool'
-import entry from './entry'
-import extensions from './extensions'
-import externals from './externals'
-import modules from './modules'
-import name from './name'
-import optimization from './optimization'
-import output from './output'
-import performance from './performance'
-import plugins from './plugins'
-import rules from './rules'
-import stats from './stats'
-import target from './target'
+const alias = require('./alias')
+const context = require('./context')
+const devtool = require('./devtool')
+const entry = require('./entry')
+const extensions = require('./extensions')
+const externals = require('./externals')
+const modules = require('./modules')
+const name = require('./name')
+const optimization = require('./optimization')
+const output = require('./output')
+const performance = require('./performance')
+const plugins = require('./plugins')
+const rules = require('./rules')
+const stats = require('./stats')
+const target = require('./target')
 
-export {
+module.exports = {
+  alias,
   context,
   devtool,
   entry,

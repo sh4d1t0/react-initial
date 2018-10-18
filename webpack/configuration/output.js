@@ -1,7 +1,7 @@
 // dependencies
-import path from 'path'
+const path = require('path')
 
-export default type => {
+function output(type) {
   if (type === 'server') {
     return {
       filename: 'server.js',
@@ -17,3 +17,5 @@ export default type => {
     publicPath: '/app/'
   }
 }
+
+module.exports = output

@@ -1,8 +1,10 @@
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-export default () => {
-  const stats = isDevelopment ? 'verbose' : 'none'
+function stats() {
+  const stat = isDevelopment ? 'verbose' : 'none'
 
-  return stats
+  return stat
 }
+
+module.exports = stats

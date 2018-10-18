@@ -24,6 +24,7 @@ app.use(express.static(path.join(__dirname, '../../public')))
 app.use('/api', api)
 
 // hot middleware replacement
+// TODO: revisar find
 app.use(webpackDevMiddleware(compiler))
 app.use(
   webpackHotMiddleware(
