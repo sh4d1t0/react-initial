@@ -1,5 +1,5 @@
 // Webpack configuration (Client && Server)
-import clientConfig from './webpack/webpack.config.client'
-import serverConfig from './webpack/webpack.config.server'
+const clientConfig = require('./webpack/webpack.config.client')
+const serverConfig = require('./webpack/webpack.config.server')
 
-export default [clientConfig, serverConfig]
+module.exports = [clientConfig, serverConfig]

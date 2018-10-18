@@ -7,10 +7,8 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
-
 // API
 import api from './api'
-
 // webpack config
 import webpackConfig from '../../webpack.config'
 
@@ -26,10 +24,11 @@ app.use(express.static(path.join(__dirname, '../../public')))
 app.use('/api', api)
 
 // hot middleware replacement
+// TODO: revisar find
 app.use(webpackDevMiddleware(compiler))
 app.use(
   webpackHotMiddleware(
-    compiler.compilers.find(compiler => compiler.name === 'client')
+    compiler.compilers.find(compiler => compiler.name === 'client') // eslint-disable-line
   )
 )
 app.use(webpackHotServerMiddleware(compiler))

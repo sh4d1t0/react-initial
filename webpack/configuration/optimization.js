@@ -1,13 +1,12 @@
 // dependencies
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
-import TerserPlugin from 'terser-webpack-plugin'
-import cssnano from 'cssnano'
-
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const cssnano = require('cssnano')
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-export default type => {
-  const optimization = {
+function optimization(type) {
+  const optimizations = {
     splitChunks: {
       cacheGroups: {
         default: false,
@@ -42,7 +41,7 @@ export default type => {
   }
 
   if (!isDevelopment || type === 'server') {
-    optimization.minimizer.push(
+    optimizations.minimizer.push(
       new TerserPlugin({
         cache: true,
         parallel: true,
@@ -68,5 +67,7 @@ export default type => {
     )
   }
 
-  return optimization
+  return optimizations
 }
+
+module.exports = optimization

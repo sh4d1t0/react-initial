@@ -1,10 +1,9 @@
 /* @flow */
 // components
-import Home from '../app/home/components/Home'
-import About from '../app/about/components/About'
-
-// containers
-import Blog from '../app/blog'
+import Home from 'Components/Home'
+import About from 'Components/About'
+// views
+import Blog from 'Views/Blog'
 
 const routes = [
   {

@@ -1,20 +1,22 @@
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-export default type => {
+function entry(type) {
   if (type === 'server') {
     return './serverRender.jsx'
   }
 
-  const entry = {
+  const entries = {
     main: []
   }
 
   if (isDevelopment) {
-    entry.main.push('webpack-hot-middleware/client', 'react-hot-loader/patch')
+    entries.main.push('webpack-hot-middleware/client', 'react-hot-loader/patch')
   }
 
-  entry.main.push('./client.jsx')
+  entries.main.push('./client.jsx')
 
-  return entry
+  return entries
 }
+
+module.exports = entry

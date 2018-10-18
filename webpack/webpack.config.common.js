@@ -1,13 +1,20 @@
 // configuration
-import { rules, extensions, modules, performance } from './configuration'
+const {
+  alias,
+  extensions,
+  modules,
+  rules,
+  performance
+} = require('./configuration')
 
-export default type => ({
+module.exports = type => ({
   module: {
     rules: rules(type)
   },
   resolve: {
-    extensions: extensions(type),
-    modules: modules(type)
+    extensions,
+    modules,
+    alias
   },
   performance: performance(type)
 })

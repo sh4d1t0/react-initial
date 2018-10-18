@@ -2,20 +2,15 @@
 // Dependencies
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 // Components
-import Posts from './components/Posts'
-
+import Posts from 'Components/Posts'
 // Actions
-import { fetchPosts } from './actions'
-
+import fetchPosts from 'Features/blog/actions'
 // Utils
-import isFirstRender from '../../shared/utils/data'
+import isFirstRender from 'SharedUtils/data'
 
 type Action = { payload?: void }
-
 type Dispatch = (action: Action | Promise<Action>) => void
-
 type Props = {
   posts: Array<{
     id: number,
@@ -25,7 +20,6 @@ type Props = {
   }>,
   dispatch: Dispatch
 }
-
 type State = {
   /** *** */
 }
@@ -36,8 +30,10 @@ class Blog extends Component<Props, State> {
   }
 
   componentDidMount() {
-    if (isFirstRender(this.props.posts)) {
-      this.props.dispatch(Blog.initialAction('client'))
+    const { posts, dispatch } = this.props
+
+    if (isFirstRender(posts)) {
+      dispatch(Blog.initialAction('client'))
     }
   }
 

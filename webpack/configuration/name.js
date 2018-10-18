@@ -1,1 +1,1 @@
-export default type => type
+module.exports = type => type

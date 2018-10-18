@@ -1,1 +1,1 @@
-export default () => ['.css', '.js', '.json', '.jsx']
+module.exports = ['.css', '.js', '.json', '.jsx']

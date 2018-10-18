@@ -1,11 +1,10 @@
 // dependencies
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-export default type => {
-  const rules = [
+function rules(type) {
+  const rule = [
     {
       test: /\.(js|jsx)$/,
       use: {
@@ -42,7 +41,7 @@ export default type => {
   ]
 
   if (!isDevelopment || type === 'server') {
-    rules.push(
+    rule.push(
       {
         test: /\.css$/,
         use: [
@@ -107,7 +106,7 @@ export default type => {
       }
     )
   } else {
-    rules.push(
+    rule.push(
       {
         test: /\.css$/,
         use: [
@@ -173,5 +172,7 @@ export default type => {
     )
   }
 
-  return rules
+  return rule
 }
+
+module.exports = rules

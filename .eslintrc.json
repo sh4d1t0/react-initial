@@ -11,10 +11,15 @@
     "browser": true,
     "es6": true
   },
-  "plugins": ["import", "prettier", "react"],
+  "plugins": ["prettier", "react"],
   "extends": ["airbnb", "plugin:prettier/recommended"],
   "settings": {
-    "import/core-modules": ["isomorphic-fetch"]
+    "import/core-modules": ["isomorphic-fetch"],
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.js"
+      }
+    }
   },
   "rules": {
     "import/no-extraneous-dependencies": [
@@ -23,15 +28,7 @@
         "devDependencies": true
       }
     ],
-    "no-param-reassign": [
-      "error",
-      {
-        "ignorePropertyModificationsFor": ["options"]
-      }
-    ],
     "prettier/prettier": "error",
-    "react/destructuring-assignment": "off",
-    "react/prefer-stateless-function": "off",
     "react/prop-types": [
       "error",
       {
@@ -39,7 +36,6 @@
         "customValidators": [],
         "skipUndeclared": false
       }
-    ],
-    "react/jsx-one-expression-per-line": "off"
+    ]
   }
 }
