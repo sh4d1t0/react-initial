@@ -28,15 +28,7 @@
         "devDependencies": true
       }
     ],
-    "no-param-reassign": [
-      "error",
-      {
-        "ignorePropertyModificationsFor": ["options"]
-      }
-    ],
     "prettier/prettier": "error",
-    "react/destructuring-assignment": "off",
-    "react/prefer-stateless-function": "off",
     "react/prop-types": [
       "error",
       {
@@ -44,7 +36,6 @@
         "customValidators": [],
         "skipUndeclared": false
       }
-    ],
-    "react/jsx-one-expression-per-line": "off"
+    ]
   }
 }

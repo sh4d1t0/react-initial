@@ -42,7 +42,6 @@ export function apiOptions(
 export function apiFetch(
   endpoint: string,
   options: {
-    fetchFrom?: string,
     fetchingFrom?: string,
     headers?: {| headers: string |},
     method?: string,
@@ -52,8 +51,6 @@ export function apiFetch(
 ): any {
   let qs
   const { fetchingFrom = 'client' } = options
-
-  delete options.fetchFrom
 
   if (query) {
     qs = queryString.stringify(query)

@@ -30,8 +30,10 @@ class Blog extends Component<Props, State> {
   }
 
   componentDidMount() {
-    if (isFirstRender(this.props.posts)) {
-      this.props.dispatch(Blog.initialAction('client'))
+    const { posts, dispatch } = this.props
+
+    if (isFirstRender(posts)) {
+      dispatch(Blog.initialAction('client'))
     }
   }
 
