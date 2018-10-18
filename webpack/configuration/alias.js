@@ -1,14 +1,18 @@
 // dependencies
 const path = require('path')
+const fs = require('fs')
+
+const appDirectory = fs.realpathSync(process.cwd())
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
 
 module.exports = {
-  App: path.resolve(__dirname, '../../src/app/'),
-  Components: path.resolve(__dirname, '../../src/app/components/'),
-  Features: path.resolve(__dirname, '../../src/app/features/'),
-  Views: path.resolve(__dirname, '../../src/app/views/'),
-  Shared: path.resolve(__dirname, '../../src/shared/'),
-  SharedReducers: path.resolve(__dirname, '../../src/shared/reducers/'),
-  SharedUtils: path.resolve(__dirname, '../../src/shared/utils/'),
-  SharedStyles: path.resolve(__dirname, '../../src/shared/styles/'),
-  Server: path.resolve(__dirname, '../../src/server/')
+  App: resolveApp('src/app/'),
+  Components: resolveApp('src/app/components/'),
+  Features: resolveApp('src/app/features/'),
+  Views: resolveApp('src/app/views/'),
+  Shared: resolveApp('src/shared/'),
+  SharedReducers: resolveApp('src/shared/reducers/'),
+  SharedUtils: resolveApp('src/shared/utils/'),
+  SharedStyles: resolveApp('src/shared/styles/'),
+  Server: resolveApp('src/server/')
 }
