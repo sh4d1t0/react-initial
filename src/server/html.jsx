@@ -5,8 +5,8 @@ export default function html(options: any): any {
     vendor = 'vendors',
     title = 'Site',
     stylesheet = '/css/style.css',
-    markup,
-    initialState
+    markup /* ,
+    initialState */
   } = options
 
   return `
@@ -21,9 +21,6 @@ export default function html(options: any): any {
       </head>
       <body>
         <div id="root">${markup}</div>
-        <script>
-          window.initialState = ${JSON.stringify(initialState)}
-        </script>
         <script src="/app/${vendor}.bundle.js"></script>
         <script src="/app/${app}.bundle.js"></script>
       </body>

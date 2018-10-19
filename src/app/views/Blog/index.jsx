@@ -1,19 +1,17 @@
 /* @flow */
 // Dependencies
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import axios from 'axios'
+/* import { connect } from 'react-redux' */
+import GetUserInfo from 'Features/blog/api'
 // Components
 import Posts from 'Components/Posts'
 // Actions
-import fetchPosts from 'Features/blog/actions'
-// Utils
-import isFirstRender from 'SharedUtils/data'
+/* import fetchPosts from 'Features/blog/actions' */
 
-type Action = { payload?: void }
-type Dispatch = (action: Action | Promise<Action>) => void
+/* type Action = { payload?: void }
+type Dispatch = (action: Action | Promise<Action>) => void */
 type Props = {
-  dispatch: Dispatch
+  /* dispatch: Dispatch */
 }
 type State = {
   userData: {
@@ -26,10 +24,6 @@ type State = {
 }
 
 class Blog extends Component<Props, State> {
-  static initialAction(fetchingFrom: string): any {
-    return fetchPosts(fetchingFrom)
-  }
-
   state = {
     userData: {
       id: 0,
@@ -41,19 +35,8 @@ class Blog extends Component<Props, State> {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props
-
-    if (isFirstRender()) {
-      dispatch(Blog.initialAction('client'))
-    }
-
-    axios({
-      method: 'get',
-      url: 'https://api.github.com/users/sh4d1t0',
-      responseType: 'stream'
-    }).then(res => {
-      const userData = res.data
-      this.setState({ userData })
+    GetUserInfo().then(data => {
+      this.setState({ userData: data })
     })
   }
 
@@ -64,9 +47,4 @@ class Blog extends Component<Props, State> {
   }
 }
 
-export default connect(
-  ({ blog }) => ({
-    userData: blog.userData
-  }),
-  null
-)(Blog)
+export default Blog

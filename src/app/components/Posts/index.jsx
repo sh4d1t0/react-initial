@@ -2,8 +2,6 @@
 // dependencies
 import React from 'react'
 import timeAgo from 'node-time-ago'
-// utils
-/* import isFirstRender from 'SharedUtils/data' */
 // styles
 import styles from './Posts.less'
 
@@ -19,10 +17,6 @@ type Props = {
 
 function Posts(props: Props) {
   const { userData } = props
-
-  /* if (isFirstRender(posts)) {
-    return null
-  } */
 
   return (
     <div className={styles.posts}>

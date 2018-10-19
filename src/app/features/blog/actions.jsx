@@ -1,6 +1,6 @@
 /* @flow */
 // API
-import blogApi from './api'
+/* import blogApi from './api'
 
 // action types
 import FETCH_POSTS from './actionTypes'
@@ -24,4 +24,4 @@ const fetchPosts = (fetchingFrom: any, query: any) => (
     .then(posts => dispatch(receivedPosts(posts)))
 }
 
-export default fetchPosts
+export default fetchPosts */

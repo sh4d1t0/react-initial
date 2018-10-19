@@ -8,7 +8,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
 // API
-import api from './api'
+/* import api from './api' */
 // webpack config
 import webpackConfig from '../../webpack.config'
 
@@ -21,7 +21,7 @@ const port = process.env.NODE_PORT || 3000
 app.use(express.static(path.join(__dirname, '../../public')))
 
 // API middleware
-app.use('/api', api)
+/* app.use('/api', api) */
 
 // hot middleware replacement
 // TODO: revisar find
