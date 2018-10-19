@@ -2,6 +2,7 @@
 // Dependencies
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios'
 // Components
 import Posts from 'Components/Posts'
 // Actions
@@ -12,16 +13,16 @@ import isFirstRender from 'SharedUtils/data'
 type Action = { payload?: void }
 type Dispatch = (action: Action | Promise<Action>) => void
 type Props = {
-  posts: Array<{
-    id: number,
-    title: string,
-    author: string,
-    date: string
-  }>,
   dispatch: Dispatch
 }
 type State = {
-  /** *** */
+  userData: {
+    id: number,
+    public_repos: number,
+    avatar_url: string,
+    name: string,
+    created_at: string
+  }
 }
 
 class Blog extends Component<Props, State> {
@@ -29,24 +30,43 @@ class Blog extends Component<Props, State> {
     return fetchPosts(fetchingFrom)
   }
 
-  componentDidMount() {
-    const { posts, dispatch } = this.props
-
-    if (isFirstRender(posts)) {
-      dispatch(Blog.initialAction('client'))
+  state = {
+    userData: {
+      id: 0,
+      public_repos: 0,
+      avatar_url: '',
+      name: '',
+      created_at: ''
     }
   }
 
-  render(): any {
-    const { posts } = this.props
+  componentDidMount() {
+    const { dispatch } = this.props
 
-    return <Posts posts={posts} />
+    if (isFirstRender()) {
+      dispatch(Blog.initialAction('client'))
+    }
+
+    axios({
+      method: 'get',
+      url: 'https://api.github.com/users/sh4d1t0',
+      responseType: 'stream'
+    }).then(res => {
+      const userData = res.data
+      this.setState({ userData })
+    })
+  }
+
+  render(): any {
+    const { userData } = this.state
+
+    return <Posts userData={userData} />
   }
 }
 
 export default connect(
   ({ blog }) => ({
-    posts: blog.posts
+    userData: blog.userData
   }),
   null
 )(Blog)

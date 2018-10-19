@@ -3,25 +3,26 @@
 import React from 'react'
 import timeAgo from 'node-time-ago'
 // utils
-import isFirstRender from 'SharedUtils/data'
+/* import isFirstRender from 'SharedUtils/data' */
 // styles
 import styles from './Posts.less'
 
 type Props = {
-  posts: Array<{
+  userData: {
     id: number,
-    title: string,
-    author: string,
-    date: string
-  }>
+    public_repos: number,
+    avatar_url: string,
+    name: string,
+    created_at: string
+  }
 }
 
 function Posts(props: Props) {
-  const { posts } = props
+  const { userData } = props
 
-  if (isFirstRender(posts)) {
+  /* if (isFirstRender(posts)) {
     return null
-  }
+  } */
 
   return (
     <div className={styles.posts}>
@@ -29,19 +30,19 @@ function Posts(props: Props) {
         <h1>Blog</h1>
       </div>
 
-      {posts &&
-        posts.map(post => (
-          <div key={post.id} className={styles.posts}>
-            <p>
-              {post.id}
-              {' - '}
-              {post.title}
-              {' by '}
-              {post.author}
-            </p>
-            <p>{timeAgo(post.date)}</p>
-          </div>
-        ))}
+      {userData && (
+        <div key={userData.id} className={styles.posts}>
+          <p>
+            <img src={userData.avatar_url} alt="" width="100" height="100" />
+            <br />
+            {userData.name}
+            <br />
+            {'Repositorios Publicos: '}
+            {userData.public_repos}
+          </p>
+          <p>{timeAgo(userData.created_at)}</p>
+        </div>
+      )}
     </div>
   )
 }
