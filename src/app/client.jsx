@@ -4,6 +4,7 @@ import '@babel/polyfill'
 import React from 'react'
 import { hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
+import 'bootstrap/dist/css/bootstrap.min.css'
 // redux store
 import configureStore from 'Shared/configureStore'
 // containers

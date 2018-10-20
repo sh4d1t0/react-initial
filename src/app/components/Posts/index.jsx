@@ -6,7 +6,6 @@ import timeAgo from 'node-time-ago'
 import isFirstRender from 'SharedUtils/data'
 // styles
 import styles from './Posts.less'
-import 'bootstrap/dist/css/bootstrap.css'
 
 type Props = {
   posts: Array<{
