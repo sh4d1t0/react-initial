@@ -49,7 +49,7 @@ function rules(type) {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: false,
               minimize: true,
               localIdentName: '[name]_[local]',
               importLoaders: 2,
@@ -114,7 +114,7 @@ function rules(type) {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: false,
               minimize: true,
               localIdentName: '[name]_[local]',
               importLoaders: 2,
