@@ -48,7 +48,8 @@ function plugins() {
         threshold: 10240,
         minRatio: 0.8
       }),
-      new HtmlWebpackPlugin({ minify: true })
+      new HtmlWebpackPlugin({ minify: true }),
+      require('autoprefixer') // eslint-disable-line
     )
   }
 

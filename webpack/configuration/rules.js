@@ -84,6 +84,18 @@ function rules(type) {
               sourceMap: false
             }
           },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                // eslint-disable-next-line
+                require('autoprefixer')({
+                  grid: true
+                })
+              ]
+            }
+          },
           'sass-loader'
         ]
       },
@@ -99,6 +111,18 @@ function rules(type) {
               localIdentName: '[name]_[local]',
               importLoaders: 2,
               sourceMap: false
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                // eslint-disable-next-line
+                require('autoprefixer')({
+                  grid: true
+                })
+              ]
             }
           },
           'less-loader'
@@ -149,6 +173,18 @@ function rules(type) {
               sourceMap: false
             }
           },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                // eslint-disable-next-line
+                require('autoprefixer')({
+                  grid: true
+                })
+              ]
+            }
+          },
           'sass-loader'
         ]
       },
@@ -164,6 +200,18 @@ function rules(type) {
               localIdentName: '[name]_[local]',
               importLoaders: 2,
               sourceMap: false
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                // eslint-disable-next-line
+                require('autoprefixer')({
+                  grid: true
+                })
+              ]
             }
           },
           'less-loader'
