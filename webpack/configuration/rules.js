@@ -44,12 +44,13 @@ function rules(type) {
     rule.push(
       {
         test: /\.css$/,
+        exclude: /[\\/]node_modules[\\/]/,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              modules: false,
+              modules: true,
               minimize: true,
               localIdentName: '[name]_[local]',
               importLoaders: 2,
@@ -65,7 +66,25 @@ function rules(type) {
                 require('autoprefixer')({
                   grid: true
                 })
+                // eslint-enable-next-line
               ]
+            }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        include: /[\\/]node_modules[\\/]/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
+              minimize: true,
+              localIdentName: '[name]_[local]',
+              importLoaders: 2,
+              sourceMap: false
             }
           }
         ]
@@ -109,12 +128,13 @@ function rules(type) {
     rule.push(
       {
         test: /\.css$/,
+        exclude: /[\\/]node_modules[\\/]/,
         use: [
           'style-loader',
           {
             loader: 'css-loader',
             options: {
-              modules: false,
+              modules: true,
               minimize: true,
               localIdentName: '[name]_[local]',
               importLoaders: 2,
@@ -130,7 +150,25 @@ function rules(type) {
                 require('autoprefixer')({
                   grid: true
                 })
+                // eslint-enable-next-line
               ]
+            }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        include: /[\\/]node_modules[\\/]/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
+              minimize: true,
+              localIdentName: '[name]_[local]',
+              importLoaders: 2,
+              sourceMap: false
             }
           }
         ]

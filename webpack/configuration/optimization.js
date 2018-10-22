@@ -13,7 +13,7 @@ function optimization(type) {
         // vendors chunk
         vendors: {
           name: 'vendors',
-          test: /[\\/]node_modules[\\/]/,
+          test: /[\\/]node_modules[\\/].*js/,
           chunks: 'all',
           priority: 20,
           reuseExistingChunk: true
