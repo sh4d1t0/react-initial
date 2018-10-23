@@ -1,17 +1,12 @@
 /* @flow */
 // Dependencies
 import React, { Component } from 'react'
-/* import { connect } from 'react-redux' */
 import GetUserInfo from 'Features/blog/api'
 // Components
 import Posts from 'Components/Posts'
-// Actions
-/* import fetchPosts from 'Features/blog/actions' */
 
-/* type Action = { payload?: void }
-type Dispatch = (action: Action | Promise<Action>) => void */
 type Props = {
-  /* dispatch: Dispatch */
+  /** */
 }
 type State = {
   userData: {
