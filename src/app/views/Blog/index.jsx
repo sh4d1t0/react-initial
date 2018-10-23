@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 import GetUserInfo from 'Features/blog/api'
 // Components
 import Posts from 'Components/Posts'
+import { Provider } from '../../store'
 
+// Flow Props and Types
 type Props = {
   /** */
 }
@@ -35,10 +37,14 @@ class Blog extends Component<Props, State> {
     })
   }
 
-  render(): any {
-    const { userData } = this.state
+  render() {
+    const { userData }: Object = this.state
 
-    return <Posts userData={userData} />
+    return (
+      <Provider value={{ userData }}>
+        <Posts />
+      </Provider>
+    )
   }
 }
 
