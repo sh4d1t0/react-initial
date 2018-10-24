@@ -4,6 +4,7 @@ import React from 'react'
 import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
 import routes from 'Shared/routes'
+import PostStore from 'Features/blog'
 // routes
 
 const App = ({ server, location, context }): any => {
@@ -11,7 +12,7 @@ const App = ({ server, location, context }): any => {
     <Route
       key={route.toString()}
       path={route.path}
-      render={props => <route.component {...props} />}
+      render={props => <PostStore comp={<route.component />} {...props} />}
       exact={route.exact}
     />
   ))
