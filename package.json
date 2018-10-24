@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/sh4d1t0/react-initial#readme",
   "dependencies": {
-    "autoprefixer": "^9.3.0",
+    "autoprefixer": "^9.3.1",
     "axios": "^0.18.0",
     "browserslist": "^4.3.3",
     "express": "^4.16.4",

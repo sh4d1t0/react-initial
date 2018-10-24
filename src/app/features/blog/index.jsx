@@ -9,7 +9,7 @@ const PostProvider = Post.Provider
 
 // Flow Props and Types
 type Props = {
-  /** */
+  comp: Object
 }
 type State = {
   userData: {
@@ -42,12 +42,18 @@ class PostStore extends Component<Props, State> {
   }
 
   render() {
+    const { comp }: Object = this.props
     const { userData }: Object = this.state
-    console.log('User_', userData) // eslint-disable-line
-    return <PostProvider value={userData}>{this.props.comp}</PostProvider> // eslint-disable-line
+
+    return <PostProvider value={{ userData }}>{comp}</PostProvider>
   }
 }
+// eslint-disable-next-line
+const WrapperConsumer = (Component): any => (props): any => (
+  <PostConsumer>
+    {context => <Component {...props} context={context} />}
+  </PostConsumer>
+)
 
 export default PostStore
-export { PostConsumer }
-export { PostProvider }
+export { WrapperConsumer }
