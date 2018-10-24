@@ -23,7 +23,10 @@ function plugins() {
   ]
 
   if (isAnalyzer) {
-    plugin.push(new BundleAnalyzerPlugin(), new DashboardPlugin())
+    plugin.push(
+      new BundleAnalyzerPlugin({ analyzerMode: 'static' }),
+      new DashboardPlugin()
+    )
   }
 
   if (isDevelopment) {
