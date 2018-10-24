@@ -2,7 +2,7 @@
 // dependencies
 import React from 'react'
 import timeAgo from 'node-time-ago'
-import Consumer from '../../store'
+import { PostConsumer } from 'Features/blog'
 // styles
 import styles from './Posts.less'
 
@@ -27,26 +27,26 @@ function Posts(/* props: Props */) {
       </div>
 
       {
-        <Consumer>
-          {value => (
-            <div key={value.userData.id} className={styles.posts}>
+        <PostConsumer>
+          {context => (
+            <div key={context.userData.id} className={styles.posts}>
               <p>
                 <img
-                  src={value.userData.avatar_url}
+                  src={context.userData.avatar_url}
                   alt=""
                   width="100"
                   height="100"
                 />
                 <br />
-                {value.userData.name}
+                {context.userData.name}
                 <br />
                 {'Repositorios Publicos: '}
-                {value.userData.public_repos}
+                {context.userData.public_repos}
               </p>
-              <p>{timeAgo(value.userData.created_at)}</p>
+              <p>{timeAgo(context.userData.created_at)}</p>
             </div>
           )}
-        </Consumer>
+        </PostConsumer>
       }
     </div>
   )

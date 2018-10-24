@@ -3,12 +3,17 @@
 import React from 'react'
 import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
-// routes
 import routes from 'Shared/routes'
+// routes
 
 const App = ({ server, location, context }): any => {
   const routesMap = routes.map(route => (
-    <Route key={route.toString()} {...route} />
+    <Route
+      key={route.toString()}
+      path={route.path}
+      render={props => <route.component {...props} />}
+      exact={route.exact}
+    />
   ))
 
   // client router

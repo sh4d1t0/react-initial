@@ -19,19 +19,21 @@ export default async function GetUserInfo() {
   }
 }
 
-/* function GetUsers() {
-  return axios({
-    method: 'get',
-    url: 'https://api.github.com/users',
-    responseType: 'stream'
-  })
-    .then(res => res.data)
-    .catch(err => {
-      console.log(err)
+export async function GetUsers() {
+  try {
+    const response = await axios({
+      method: 'get',
+      url: 'https://api.github.com/users',
+      responseType: 'stream'
     })
+    return response.data
+  } catch (error) {
+    console.log(error) // eslint-disable-line
+    return error
+  }
 }
 
-export default function git() {
+/* export default function git() {
   axios
     .all([GetUserInfo(), GetUsers()])
     .then(axios.spread((userInfo, Users) => ({ userInfo, Users })))

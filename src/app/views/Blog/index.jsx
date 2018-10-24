@@ -1,10 +1,10 @@
 /* @flow */
 // Dependencies
 import React, { Component } from 'react'
-import GetUserInfo from 'Features/blog/api'
+import GetUserInfo, { GetUsers } from 'Features/blog/api'
 // Components
 import Posts from 'Components/Posts'
-import { Provider } from '../../store'
+import { PostProvider } from 'Features/blog'
 
 // Flow Props and Types
 type Props = {
@@ -35,15 +35,18 @@ class Blog extends Component<Props, State> {
     GetUserInfo().then(data => {
       this.setState({ userData: data })
     })
+    GetUsers().then(data => {
+      console.log('AllUsers_', data) // eslint-disable-line
+    })
   }
 
   render() {
     const { userData }: Object = this.state
 
     return (
-      <Provider value={{ userData }}>
+      <PostProvider value={{ userData }}>
         <Posts />
-      </Provider>
+      </PostProvider>
     )
   }
 }
