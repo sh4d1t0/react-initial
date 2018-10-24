@@ -3,7 +3,9 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
+// eslint-disable-next-line
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 const Stylish = require('webpack-stylish')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 // enviroment
@@ -21,10 +23,7 @@ function plugins() {
   ]
 
   if (isAnalyzer) {
-    plugin.push(
-      new BundleAnalyzerPlugin({ analyzerMode: 'static' }),
-      new DashboardPlugin()
-    )
+    plugin.push(new BundleAnalyzerPlugin(), new DashboardPlugin())
   }
 
   if (isDevelopment) {
