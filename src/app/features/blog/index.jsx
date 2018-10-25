@@ -3,9 +3,9 @@
 import React, { Component, createContext } from 'react'
 import GetUserInfo, { GetUsers } from 'Features/blog/api'
 
-const Post: Object = createContext()
-const PostConsumer = Post.Consumer
-const PostProvider = Post.Provider
+const Context: Object = createContext()
+const ContextConsumer = Context.Consumer
+const ContextProvider = Context.Provider
 
 // Flow Props and Types
 type Props = {
@@ -21,7 +21,7 @@ type State = {
   }
 }
 
-class PostStore extends Component<Props, State> {
+class ContextStore extends Component<Props, State> {
   state = {
     userData: {
       id: 0,
@@ -45,15 +45,15 @@ class PostStore extends Component<Props, State> {
     const { comp }: Object = this.props
     const { userData }: Object = this.state
 
-    return <PostProvider value={{ userData }}>{comp}</PostProvider>
+    return <ContextProvider value={{ userData }}>{comp}</ContextProvider>
   }
 }
 // eslint-disable-next-line
-const WrapperConsumer = (Component): any => (props): any => (
-  <PostConsumer>
+const WrapperConsumer = Component => props => (
+  <ContextConsumer>
     {context => <Component {...props} context={context} />}
-  </PostConsumer>
+  </ContextConsumer>
 )
 
-export default PostStore
+export default ContextStore
 export { WrapperConsumer }
