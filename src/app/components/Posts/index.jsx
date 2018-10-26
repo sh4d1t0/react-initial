@@ -2,25 +2,25 @@
 // dependencies
 import React, { Component } from 'react'
 import timeAgo from 'node-time-ago'
-import { WrapperConsumer } from 'Features/blog'
+import Context from 'Features/blog'
 // styles
 import styles from './Posts.less'
 
 // Flow Props
 type Props = {
-  context: Object,
-  userData: {}
+  /** */
 }
 
 class Posts extends Component<Props> {
+  static contextType = Context
+
   componentDidMount() {
-    // console.log(this.props)
+    /* console.log('Props_', this.props) */
   }
 
   render() {
-    const {
-      context: { userData }
-    } = this.props
+    console.log('Context', this.context) // eslint-disable-line
+    const userContext = this.context
 
     return (
       <div className={styles.posts}>
@@ -28,20 +28,25 @@ class Posts extends Component<Props> {
           <h1>Blog</h1>
         </div>
 
-        <div key={userData.id} className={styles.posts}>
+        <div key={userContext.userData.id} className={styles.posts}>
           <p>
-            <img src={userData.avatar_url} alt="" width="100" height="100" />
+            <img
+              src={userContext.userData.avatar_url}
+              alt=""
+              width="100"
+              height="100"
+            />
             <br />
-            {userData.name}
+            {userContext.userData.name}
             <br />
             {'Repositorios Publicos: '}
-            {userData.public_repos}
+            {userContext.userData.public_repos}
           </p>
-          <p>{timeAgo(userData.created_at)}</p>
+          <p>{timeAgo(userContext.userData.created_at)}</p>
         </div>
       </div>
     )
   }
 }
 
-export default WrapperConsumer(Posts)
+export default Posts
