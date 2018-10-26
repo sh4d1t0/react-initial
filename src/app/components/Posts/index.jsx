@@ -2,7 +2,7 @@
 // dependencies
 import React, { Component } from 'react'
 import timeAgo from 'node-time-ago'
-import Context from 'Features/blog'
+import { PostConsumer } from 'Features/blog'
 // styles
 import styles from './Posts.less'
 
@@ -12,15 +12,15 @@ type Props = {
 }
 
 class Posts extends Component<Props> {
-  static contextType = Context
+  static contextType = PostConsumer
 
   componentDidMount() {
-    /* console.log('Props_', this.props) */
+    /** */
   }
 
   render() {
-    console.log('Context', this.context) // eslint-disable-line
     const userContext = this.context
+    console.log('userContext:', userContext) // eslint-disable-line
 
     return (
       <div className={styles.posts}>

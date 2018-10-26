@@ -3,7 +3,7 @@
 // Dependencies
 import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
 import GetUserInfo, { GetUsers } from 'Features/blog/api'
-import Context from 'Features/blog'
+import { PostProvider } from 'Features/blog'
 // Components
 import Posts from 'Components/Posts'
 
@@ -12,11 +12,13 @@ type Props = {
   /** */
 }
 type State = {
-  userData: {}
+  users: Object,
+  userData: Object
 }
 
 class Blog extends Component<Props, State> {
   state = {
+    users: {},
     userData: {}
   }
 
@@ -25,19 +27,19 @@ class Blog extends Component<Props, State> {
       this.setState({ userData: data })
     })
     GetUsers().then(data => {
-      console.log('AllUsers_', data) // eslint-disable-line
+      this.setState({ users: data })
     })
   }
 
   render() {
-    const { userData }: Object = this.state
+    const { users, userData }: Object = this.state
 
     return (
       <Fragment>
         {/* <Suspense fallback={<div>Loading...</div>}> */}
-        <Context.Provider value={{ userData }}>
-          <Posts {...this.props} />
-        </Context.Provider>
+        <PostProvider value={{ userData, users }}>
+          <Posts {...this.props} userData={userData} users={users} />
+        </PostProvider>
         {/* </Suspense> */}
       </Fragment>
     )
