@@ -15,7 +15,7 @@ export default async function GetUserInfo() {
     return response.data
   } catch (error) {
     console.log(error) // eslint-disable-line
-    return error
+    return false
   }
 }
 
@@ -29,7 +29,7 @@ export async function GetUsers() {
     return response.data
   } catch (error) {
     console.log(error) // eslint-disable-line
-    return error
+    return false
   }
 }
 

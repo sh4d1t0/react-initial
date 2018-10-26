@@ -8,11 +8,17 @@ import styles from './Posts.less'
 
 // Flow Props
 type Props = {
-  /** */
+  /* user?: Object,
+  users?: Object */
 }
 
 class Posts extends Component<Props> {
   static contextType = PostConsumer
+
+  componentDidMount() {
+    /* console.log('Props_', this.props) // eslint-disable-line
+    console.log('Context_', this.context) // eslint-disable-line */
+  }
 
   render() {
     const userContext = this.context

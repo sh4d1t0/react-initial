@@ -12,8 +12,8 @@ type Props = {
   /** */
 }
 type State = {
-  users: Object,
-  userData: Object
+  users?: Object,
+  userData?: Object
 }
 
 class Blog extends Component<Props, State> {
@@ -24,10 +24,20 @@ class Blog extends Component<Props, State> {
 
   componentDidMount() {
     GetUserInfo().then(data => {
-      this.setState({ userData: data })
+      if (data !== false) {
+        this.setState({ userData: data })
+      } else {
+        // TODO Add Message
+        console.log('error') // eslint-disable-line
+      }
     })
     GetUsers().then(data => {
-      this.setState({ users: data })
+      if (data !== false) {
+        this.setState({ users: data })
+      } else {
+        // TODO Add Message
+        console.log('error') // eslint-disable-line
+      }
     })
   }
 
@@ -38,7 +48,7 @@ class Blog extends Component<Props, State> {
       <Fragment>
         {/* <Suspense fallback={<div>Loading...</div>}> */}
         <PostProvider value={{ userData, users }}>
-          <Posts {...this.props} userData={userData} users={users} />
+          <Posts {...this.props} />
         </PostProvider>
         {/* </Suspense> */}
       </Fragment>
