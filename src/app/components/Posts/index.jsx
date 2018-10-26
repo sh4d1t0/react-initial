@@ -14,13 +14,8 @@ type Props = {
 class Posts extends Component<Props> {
   static contextType = PostConsumer
 
-  componentDidMount() {
-    /** */
-  }
-
   render() {
     const userContext = this.context
-    console.log('userContext:', userContext) // eslint-disable-line
 
     return (
       <div className={styles.posts}>
