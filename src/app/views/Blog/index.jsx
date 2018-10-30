@@ -23,17 +23,17 @@ class Blog extends Component<Props, State> {
   }
 
   componentDidMount() {
-    GetUserInfo().then(data => {
+    GetUsers().then(data => {
       if (data !== false) {
-        this.setState({ userData: data })
+        this.setState({ users: data })
       } else {
         // TODO Add Message
         console.log('error') // eslint-disable-line
       }
     })
-    GetUsers().then(data => {
+    GetUserInfo().then(data => {
       if (data !== false) {
-        this.setState({ users: data })
+        this.setState({ userData: data })
       } else {
         // TODO Add Message
         console.log('error') // eslint-disable-line
