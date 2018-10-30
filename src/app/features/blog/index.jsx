@@ -2,7 +2,10 @@
 // Dependencies
 import { createContext } from 'react'
 
-const Context = createContext({ userData: () => {}, users: () => {} })
+export const Context = createContext<Object>({
+  userData: () => Object,
+  users: () => Array
+})
 const PostProvider = Context.Provider
 const PostConsumer = Context.Consumer
 

@@ -12,13 +12,13 @@ type Props = {
   /** */
 }
 type State = {
-  users?: Object,
+  users?: Array<mixed>,
   userData?: Object
 }
 
 class Blog extends Component<Props, State> {
   state = {
-    users: {},
+    users: [],
     userData: {}
   }
 

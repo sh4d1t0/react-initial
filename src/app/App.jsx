@@ -1,4 +1,3 @@
-/* @flow */
 // dependencies
 import React from 'react'
 import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom'
@@ -7,13 +6,13 @@ import routes from 'Shared/routes'
 /* import ContextStore from 'Features/blog' */
 // routes
 
-const App = ({ server, location, context }): any => {
+const App = ({ server, location, context }) => {
   const routesMap = routes.map(route => (
     <Route
-      key={route.toString()}
+      key={route.path.toString()}
       path={route.path}
-      render={props => <route.component {...props} />}
       exact={route.exact}
+      render={props => <route.component {...props} />}
     />
   ))
 

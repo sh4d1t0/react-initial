@@ -1,24 +1,18 @@
 /* @flow */
 // dependencies
 import React, { Component } from 'react'
-import timeAgo from 'node-time-ago'
+import UserInfo from 'Components/Users/Info'
 import { PostConsumer } from 'Features/blog'
 // styles
 import styles from './Posts.less'
 
 // Flow Props
 type Props = {
-  /* user?: Object,
-  users?: Object */
+  /** */
 }
 
 class Posts extends Component<Props> {
   static contextType = PostConsumer
-
-  componentDidMount() {
-    /* console.log('Props_', this.props) // eslint-disable-line
-    console.log('Context_', this.context) // eslint-disable-line */
-  }
 
   render() {
     const userContext = this.context
@@ -29,22 +23,7 @@ class Posts extends Component<Props> {
           <h1>Blog</h1>
         </div>
 
-        <div key={userContext.userData.id} className={styles.posts}>
-          <p>
-            <img
-              src={userContext.userData.avatar_url}
-              alt=""
-              width="100"
-              height="100"
-            />
-            <br />
-            {userContext.userData.name}
-            <br />
-            {'Repositorios Publicos: '}
-            {userContext.userData.public_repos}
-          </p>
-          <p>{timeAgo(userContext.userData.created_at)}</p>
-        </div>
+        <UserInfo userInfo={userContext.userData} />
       </div>
     )
   }
