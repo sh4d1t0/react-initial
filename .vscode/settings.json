@@ -17,7 +17,6 @@
   "javascript.validate.enable": false,
   "prettier.eslintIntegration": true,
   "typescript.validate.enable": false,
-  "window.zoomLevel": 1,
   "workbench.colorTheme": "One Dark Italic",
   "workbench.iconTheme": "eq-material-theme-icons"
 }
