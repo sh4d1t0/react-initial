@@ -1,0 +1,23 @@
+{
+  "breadcrumbs.enabled": true,
+  "editor.fontFamily": "Fira Code iScript",
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "eslint.alwaysShowStatus": true,
+  "files.autoSave": "onFocusChange",
+  "flow.pathToFlow": "${workspaceRoot}/node_modules/.bin/flow",
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
+  "importCost.typescriptExtensions": ["\\.{jsx,tsx}?$"],
+  "javascript.validate.enable": false,
+  "prettier.eslintIntegration": true,
+  "typescript.validate.enable": false,
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "One Dark Italic",
+  "workbench.iconTheme": "eq-material-theme-icons"
+}
