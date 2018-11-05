@@ -3,10 +3,9 @@
 // Dependencies
 import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
 import GetAllUsers, { GetUserInfo } from 'Api/Users'
-import GetAllPost from 'Api/Post'
-import { BlogProvider } from 'Context/Blog'
+import { UsersProvider } from 'Context/Users'
 // Components
-import Posts from 'Components/Posts'
+import User from 'Components/Users'
 
 // Flow Props and Types
 type Props = {
@@ -18,22 +17,13 @@ type State = {
   userData?: Object
 }
 
-class Blog extends Component<Props, State> {
+class Users extends Component<Props, State> {
   state = {
-    posts: [],
     users: [],
     userData: {}
   }
 
   componentDidMount() {
-    GetAllPost().then(data => {
-      if (data !== false) {
-        this.setState({ posts: data })
-      } else {
-        // TODO Add Message
-        console.log('error') // eslint-disable-line
-      }
-    })
     GetUserInfo().then(data => {
       if (data !== false) {
         this.setState({ userData: data })
@@ -58,18 +48,18 @@ class Blog extends Component<Props, State> {
   } */
 
   render() {
-    const { posts, users, userData }: Object = this.state
+    const { users, userData }: Object = this.state
 
     return (
       <Fragment>
         {/* <Suspense fallback={<div>Loading...</div>}> */}
-        <BlogProvider value={{ posts, userData, users }}>
-          <Posts {...this.props} />
-        </BlogProvider>
+        <UsersProvider value={{ userData, users }}>
+          <User {...this.props} />
+        </UsersProvider>
         {/* </Suspense> */}
       </Fragment>
     )
   }
 }
 
-export default Blog
+export default Users

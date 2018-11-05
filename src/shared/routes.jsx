@@ -4,6 +4,7 @@ import Home from 'Components/Home'
 import About from 'Components/About'
 // views
 import Blog from 'Views/Blog'
+import Users from 'Views/Users'
 
 const routes = [
   {
@@ -18,6 +19,10 @@ const routes = [
   {
     path: '/blog',
     component: Blog
+  },
+  {
+    path: '/users',
+    component: Users
   }
 ]
 
