@@ -2,7 +2,7 @@
 // dependencies
 import React, { Component } from 'react'
 import UserInfo from 'Components/Users/Info'
-import { BlogConsumer } from 'Context/blog'
+import { BlogConsumer } from 'Context/Blog'
 // styles
 import styles from './Posts.less'
 

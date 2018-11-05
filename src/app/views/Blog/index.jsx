@@ -2,9 +2,9 @@
 // TODO: lazy is not yet available for server-side rendering
 // Dependencies
 import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
-import GetAllUsers, { GetUserInfo } from 'Api/blog'
-import GetAllPost from 'Api/post'
-import { BlogProvider } from 'Context/blog'
+import GetAllUsers, { GetUserInfo } from 'Api/Blog'
+import GetAllPost from 'Api/Post'
+import { BlogProvider } from 'Context/Blog'
 // Components
 import Posts from 'Components/Posts'
 
