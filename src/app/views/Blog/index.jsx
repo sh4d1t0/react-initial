@@ -2,8 +2,8 @@
 // TODO: lazy is not yet available for server-side rendering
 // Dependencies
 import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
-import GetUserInfo, { GetUsers } from 'Features/blog/api'
-import { PostProvider } from 'Features/blog'
+import GetUserInfo, { GetUsers } from 'Api/blog'
+import { PostProvider } from 'Context/blog'
 // Components
 import Posts from 'Components/Posts'
 
@@ -40,6 +40,11 @@ class Blog extends Component<Props, State> {
       }
     })
   }
+
+  /* shouldComponentUpdate(prevState, nextState) {
+    console.log('prevS', prevState)
+    console.log('nextS', nextState)
+  } */
 
   render() {
     const { users, userData }: Object = this.state
