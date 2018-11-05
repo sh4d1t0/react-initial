@@ -12,6 +12,8 @@ function Home() {
       <Link to="/about">About</Link>
       {' - '}
       <Link to="/blog">Blog</Link>
+      {' - '}
+      <Link to="/users">Users</Link>
     </div>
   )
 }
