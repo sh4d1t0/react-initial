@@ -2,14 +2,14 @@
 // Dependencies
 import axios from 'axios'
 
-export default async function GetUserInfo() {
-  if (this instanceof GetUserInfo) {
-    return new GetUserInfo()
+export default async function GetAllUsers() {
+  if (this instanceof GetAllUsers) {
+    return new GetAllUsers()
   }
   try {
     const response = await axios({
       method: 'get',
-      url: 'https://api.github.com/users/sh4d1t0',
+      url: 'https://api.github.com/users',
       responseType: 'stream'
     })
     return response.data
@@ -19,11 +19,11 @@ export default async function GetUserInfo() {
   }
 }
 
-export async function GetUsers() {
+export async function GetUserInfo() {
   try {
     const response = await axios({
       method: 'get',
-      url: 'https://api.github.com/users',
+      url: 'https://api.github.com/users/sh4d1t0',
       responseType: 'stream'
     })
     return response.data

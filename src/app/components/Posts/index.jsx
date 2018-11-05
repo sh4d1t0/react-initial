@@ -2,7 +2,7 @@
 // dependencies
 import React, { Component } from 'react'
 import UserInfo from 'Components/Users/Info'
-import { PostConsumer } from 'Context/blog'
+import { BlogConsumer } from 'Context/blog'
 // styles
 import styles from './Posts.less'
 
@@ -12,10 +12,12 @@ type Props = {
 }
 
 class Posts extends Component<Props> {
-  static contextType = PostConsumer
+  static contextType = BlogConsumer
 
   render() {
-    const userContext = this.context
+    const blogContext = this.context
+    const userContext = blogContext.userData
+    const postsContext = blogContext.posts
 
     return (
       <div className={styles.posts}>
@@ -23,7 +25,17 @@ class Posts extends Component<Props> {
           <h1>Blog</h1>
         </div>
 
-        <UserInfo userInfo={userContext.userData} />
+        <UserInfo userInfo={userContext} />
+
+        <div>
+          {postsContext &&
+            postsContext.map(post => (
+              <div key={post.id} className={styles.posts}>
+                <h2>{post.title}</h2>
+                <p>{post.body}</p>
+              </div>
+            ))}
+        </div>
       </div>
     )
   }

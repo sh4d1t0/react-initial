@@ -2,8 +2,9 @@
 // TODO: lazy is not yet available for server-side rendering
 // Dependencies
 import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
-import GetUserInfo, { GetUsers } from 'Api/blog'
-import { PostProvider } from 'Context/blog'
+import GetAllUsers, { GetUserInfo } from 'Api/blog'
+import GetAllPost from 'Api/post'
+import { BlogProvider } from 'Context/blog'
 // Components
 import Posts from 'Components/Posts'
 
@@ -12,20 +13,22 @@ type Props = {
   /** */
 }
 type State = {
+  posts?: Array<mixed>,
   users?: Array<mixed>,
   userData?: Object
 }
 
 class Blog extends Component<Props, State> {
   state = {
+    posts: [],
     users: [],
     userData: {}
   }
 
   componentDidMount() {
-    GetUsers().then(data => {
+    GetAllPost().then(data => {
       if (data !== false) {
-        this.setState({ users: data })
+        this.setState({ posts: data })
       } else {
         // TODO Add Message
         console.log('error') // eslint-disable-line
@@ -39,6 +42,14 @@ class Blog extends Component<Props, State> {
         console.log('error') // eslint-disable-line
       }
     })
+    GetAllUsers().then(data => {
+      if (data !== false) {
+        this.setState({ users: data })
+      } else {
+        // TODO Add Message
+        console.log('error') // eslint-disable-line
+      }
+    })
   }
 
   /* shouldComponentUpdate(prevState, nextState) {
@@ -47,14 +58,14 @@ class Blog extends Component<Props, State> {
   } */
 
   render() {
-    const { users, userData }: Object = this.state
+    const { posts, users, userData }: Object = this.state
 
     return (
       <Fragment>
         {/* <Suspense fallback={<div>Loading...</div>}> */}
-        <PostProvider value={{ userData, users }}>
+        <BlogProvider value={{ posts, userData, users }}>
           <Posts {...this.props} />
-        </PostProvider>
+        </BlogProvider>
         {/* </Suspense> */}
       </Fragment>
     )
