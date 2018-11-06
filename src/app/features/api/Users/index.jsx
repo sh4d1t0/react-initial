@@ -19,11 +19,11 @@ export default async function GetAllUsers() {
   }
 }
 
-export async function GetUserInfo() {
+export async function GetUserInfo(user: string) {
   try {
     const response = await axios({
       method: 'get',
-      url: 'https://api.github.com/users/sh4d1t0',
+      url: `https://api.github.com/users/${user}`,
       responseType: 'stream'
     })
     return response.data

@@ -12,16 +12,17 @@ type Props = {
 class User extends Component<Props> {
   static contextType = UsersConsumer
 
+  componentDidUpdate() {
+    const usersContext = this.context
+    console.log('usersContext_update_', usersContext) // eslint-disable-line
+  }
+
   render() {
     const usersContext = this.context
     const usersData = usersContext.userData
 
     return (
       <div>
-        <div>
-          <h1>Blog</h1>
-        </div>
-
         <UserInfo userInfo={usersData} />
       </div>
     )

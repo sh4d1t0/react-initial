@@ -26,6 +26,7 @@ class Blog extends Component<Props, State> {
   }
 
   componentDidMount() {
+    const user = 'Sh4d1t0'
     GetAllPost().then(data => {
       if (data !== false) {
         this.setState({ posts: data })
@@ -34,7 +35,7 @@ class Blog extends Component<Props, State> {
         console.log('error') // eslint-disable-line
       }
     })
-    GetUserInfo().then(data => {
+    GetUserInfo(user).then(data => {
       if (data !== false) {
         this.setState({ userData: data })
       } else {
@@ -51,11 +52,6 @@ class Blog extends Component<Props, State> {
       }
     })
   }
-
-  /* shouldComponentUpdate(prevState, nextState) {
-    console.log('prevS', prevState)
-    console.log('nextS', nextState)
-  } */
 
   render() {
     const { posts, users, userData }: Object = this.state

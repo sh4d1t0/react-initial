@@ -6,6 +6,7 @@ import GetAllUsers, { GetUserInfo } from 'Api/Users'
 import { UsersProvider } from 'Context/Users'
 // Components
 import User from 'Components/Users'
+import UserForm from 'Components/Users/UserForm'
 
 // Flow Props and Types
 type Props = {
@@ -24,14 +25,6 @@ class Users extends Component<Props, State> {
   }
 
   componentDidMount() {
-    GetUserInfo().then(data => {
-      if (data !== false) {
-        this.setState({ userData: data })
-      } else {
-        // TODO Add Message
-        console.log('error') // eslint-disable-line
-      }
-    })
     GetAllUsers().then(data => {
       if (data !== false) {
         this.setState({ users: data })
@@ -42,17 +35,31 @@ class Users extends Component<Props, State> {
     })
   }
 
-  /* shouldComponentUpdate(prevState, nextState) {
-    console.log('prevS', prevState)
-    console.log('nextS', nextState)
-  } */
+  handleSubmit = (event: any) => {
+    event.preventDefault()
+    const user = event.target.elements.username.value
+    if (user) {
+      GetUserInfo(user).then(data => {
+        if (data !== false) {
+          this.setState({ userData: data })
+        } else {
+          // TODO Add Message
+          console.log('error') // eslint-disable-line
+        }
+      })
+    }
+  }
 
   render() {
     const { users, userData }: Object = this.state
 
     return (
       <Fragment>
+        <div>
+          <h1>Users</h1>
+        </div>
         {/* <Suspense fallback={<div>Loading...</div>}> */}
+        <UserForm getUser={this.handleSubmit} />
         <UsersProvider value={{ userData, users }}>
           <User {...this.props} />
         </UsersProvider>
