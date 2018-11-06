@@ -5,6 +5,7 @@ import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
 import GetAllUsers, { GetUserInfo } from 'Api/Users'
 import { UsersProvider } from 'Context/Users'
 // Components
+import Navbar from 'SharedComponents/Navbar'
 import User from 'Components/Users'
 import UserForm from 'Components/Users/UserForm'
 
@@ -55,6 +56,7 @@ class Users extends Component<Props, State> {
 
     return (
       <Fragment>
+        <Navbar />
         <div>
           <h1>Users</h1>
         </div>

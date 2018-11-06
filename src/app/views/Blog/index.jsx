@@ -2,11 +2,14 @@
 // TODO: lazy is not yet available for server-side rendering
 // Dependencies
 import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
+// Apis
 import GetAllUsers, { GetUserInfo } from 'Api/Users'
 import GetAllPost from 'Api/Post'
+// Contexts
 import { BlogProvider } from 'Context/Blog'
 // Components
 import Posts from 'Components/Posts'
+import Navbar from 'SharedComponents/Navbar'
 
 // Flow Props and Types
 type Props = {
@@ -58,6 +61,7 @@ class Blog extends Component<Props, State> {
 
     return (
       <Fragment>
+        <Navbar />
         {/* <Suspense fallback={<div>Loading...</div>}> */}
         <BlogProvider value={{ posts, userData, users }}>
           <Posts {...this.props} />

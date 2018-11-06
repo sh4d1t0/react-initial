@@ -1,5 +1,5 @@
 /* @flow */
-// dependencies
+// Dependencies
 import React from 'react'
 
 // Flow Props

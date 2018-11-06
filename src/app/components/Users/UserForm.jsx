@@ -1,5 +1,7 @@
 /* @flow */
 import React from 'react'
+// Dependendicies
+import styles from './Users.scss'
 
 // Flow Props
 type Props = {
@@ -11,7 +13,7 @@ function UserForm(props: Props) {
 
   return (
     <form onSubmit={getUser}>
-      <input type="text" name="username" />
+      <input type="text" name="username" className={styles.input} />
       <button type="submit">Submit</button>
     </form>
   )

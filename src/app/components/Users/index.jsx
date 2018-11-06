@@ -1,7 +1,9 @@
 /* @flow */
-// dependencies
+// Ddependencies
 import React, { Component } from 'react'
+// Ccomponents
 import UserInfo from 'Components/Users/Info'
+// Contexts
 import { UsersConsumer } from 'Context/Users'
 
 // Flow Props

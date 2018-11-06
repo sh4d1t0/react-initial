@@ -1,21 +1,13 @@
 /* @flow */
-// dependencies
+// Dependencies
 import React from 'react'
-import Link from 'react-router-dom/Link'
-// styles
-import styles from './Home.scss'
+// Components
+import Navbar from 'SharedComponents/Navbar'
+// Styles
+// import styles from './Home.scss'
 
 function Home() {
-  return (
-    <div className={styles.home}>
-      {'Home - '}
-      <Link to="/about">About</Link>
-      {' - '}
-      <Link to="/blog">Blog</Link>
-      {' - '}
-      <Link to="/users">Users</Link>
-    </div>
-  )
+  return <Navbar />
 }
 
 export default Home

@@ -1,9 +1,11 @@
 /* @flow */
-// dependencies
-import React, { Component } from 'react'
+// Dependencies
+import React, { Component, Fragment } from 'react'
+// Components
 import UserInfo from 'Components/Users/Info'
+// Contexts
 import { BlogConsumer } from 'Context/Blog'
-// styles
+// Styles
 import styles from './Posts.less'
 
 // Flow Props
@@ -20,23 +22,25 @@ class Posts extends Component<Props> {
     const postsContext = blogContext.posts
 
     return (
-      <div className={styles.posts}>
-        <div className={styles.header}>
-          <h1>Blog</h1>
-        </div>
+      <Fragment>
+        <div className={styles.posts}>
+          <div className={styles.header}>
+            <h1>Blog</h1>
+          </div>
 
-        <UserInfo userInfo={userContext} />
+          <UserInfo userInfo={userContext} />
 
-        <div>
-          {postsContext &&
-            postsContext.map(post => (
-              <div key={post.id} className={styles.posts}>
-                <h2>{post.title}</h2>
-                <p>{post.body}</p>
-              </div>
-            ))}
+          <div>
+            {postsContext &&
+              postsContext.map(post => (
+                <div key={post.id} className={styles.posts}>
+                  <h2>{post.title}</h2>
+                  <p>{post.body}</p>
+                </div>
+              ))}
+          </div>
         </div>
-      </div>
+      </Fragment>
     )
   }
 }

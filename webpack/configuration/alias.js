@@ -12,6 +12,7 @@ module.exports = {
   Context: resolveApp('src/app/features/context'),
   Views: resolveApp('src/app/views/'),
   Shared: resolveApp('src/shared/'),
+  SharedComponents: resolveApp('src/shared/components'),
   SharedUtils: resolveApp('src/shared/utils/'),
   SharedStyles: resolveApp('src/shared/styles/'),
   Server: resolveApp('src/server/')

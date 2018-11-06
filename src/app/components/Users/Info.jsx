@@ -1,9 +1,10 @@
 /* @flow */
-// dependencies
+// Dependencies
 import React from 'react'
 import timeAgo from 'node-time-ago'
+// Components
 import Avatar from 'Components/Users/Avatar'
-// styles
+// Styles
 import styles from 'Components/Posts/Posts.less'
 
 // Flow Props
