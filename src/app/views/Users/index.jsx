@@ -14,7 +14,6 @@ type Props = {
   /** */
 }
 type State = {
-  posts?: Array<mixed>,
   users?: Array<mixed>,
   userData?: Object
 }

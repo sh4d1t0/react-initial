@@ -18,5 +18,5 @@
   "prettier.eslintIntegration": true,
   "typescript.validate.enable": false,
   "workbench.colorTheme": "One Dark Italic",
-  "workbench.iconTheme": "eq-material-theme-icons"
+  "workbench.iconTheme": "material-icon-theme"
 }
