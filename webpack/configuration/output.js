@@ -5,7 +5,8 @@ function output(type) {
   if (type === 'server') {
     return {
       filename: 'server.js',
-      path: path.resolve(__dirname, '../../dist'),
+      path: path.resolve(__dirname, '../../dist/app'),
+      publicPath: '/app/',
       libraryTarget: 'commonjs2'
     }
   }

@@ -8,17 +8,29 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 const Stylish = require('webpack-stylish')
 const DashboardPlugin = require('webpack-dashboard/plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
 // Analyzer
 const isAnalyzer = process.env.ANALYZER === 'true'
 
 function plugins() {
+  // the path(s) that should be cleaned
+  const pathsToClean = ['dist', 'build']
+
+  // the clean options to use
+  const cleanOptions = {
+    verbose: true,
+    dry: false,
+    watch: false
+  }
+
   const plugin = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new MiniCssExtractPlugin({
-      filename: '../../public/css/style.css'
+      filename: '[name].css'
     }),
+    new CleanWebpackPlugin(pathsToClean, cleanOptions),
     new Stylish()
   ]
 

@@ -4,7 +4,7 @@ export default function html(options: any): any {
     app = 'main',
     vendor = 'vendors',
     title = 'Site',
-    stylesheet = '/css/style.css',
+    stylesheet = '/app/main.css',
     markup /* ,
 initialState */
   } = options
@@ -18,7 +18,7 @@ initialState */
   <title>${title}</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="${stylesheet}" />
+  <link type="text/css" href="${stylesheet}" />
 </head>
 
 <body>

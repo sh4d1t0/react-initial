@@ -1,1 +1,1 @@
-module.exports = ['.css', '.js', '.json', '.jsx']
+module.exports = ['.css', 'sass', 'less', '.js', '.json', '.jsx']

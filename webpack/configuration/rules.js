@@ -1,6 +1,7 @@
 // dependencies
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const Autoprefixer = require('autoprefixer')
+const PostCssImport = require('postcss-import')
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -17,19 +18,20 @@ function rules(type) {
       exclude: /node_modules/
     },
     {
-      test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-      loader: 'url-loader',
+      test: /\.(eot|otf|ttf|woff|woff2)$/,
+      loader: 'file-loader',
       options: {
-        limit: 10000
+        name: '[name].[ext]',
+        outputPath: 'assets/fonts/'
       }
     },
     {
-      test: /\.(png|svg|jpg|gif)$/,
-      use: ['file-loader']
-    },
-    {
-      test: /\.(woff|woff2|eot|ttf|otf)$/,
-      use: ['file-loader']
+      test: /\.(png|jpg|jpeg|gif|svg)$/,
+      loader: 'file-loader',
+      options: {
+        name: '[name].[ext]',
+        outputPath: 'assets/images/'
+      }
     },
     {
       test: /\.(csv|tsv)$/,
@@ -45,6 +47,11 @@ function rules(type) {
     rule.push(
       {
         test: /\.css$/,
+        include: [
+          /[\\/]src\/app\/components[\\/]/,
+          /[\\/]src\/shared\/components[\\/]/,
+          /[\\/]src\/shared\/styles[\\/]/
+        ],
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -72,6 +79,11 @@ function rules(type) {
       },
       {
         test: /\.scss$/,
+        include: [
+          /[\\/]src\/app\/components[\\/]/,
+          /[\\/]src\/shared\/components[\\/]/,
+          /[\\/]src\/shared\/styles[\\/]/
+        ],
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -100,6 +112,11 @@ function rules(type) {
       },
       {
         test: /\.less$/,
+        include: [
+          /[\\/]src\/app\/components[\\/]/,
+          /[\\/]src\/shared\/components[\\/]/,
+          /[\\/]src\/shared\/styles[\\/]/
+        ],
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -131,6 +148,11 @@ function rules(type) {
     rule.push(
       {
         test: /\.css$/,
+        include: [
+          /[\\/]src\/app\/components[\\/]/,
+          /[\\/]src\/shared\/components[\\/]/,
+          /[\\/]src\/shared\/styles[\\/]/
+        ],
         use: [
           'style-loader',
           {
@@ -147,10 +169,11 @@ function rules(type) {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [
+              plugins: loader => [
+                (new PostCssImport({ root: loader.resourcePath }),
                 new Autoprefixer({
                   grid: true
-                })
+                }))
               ]
             }
           }
@@ -158,6 +181,11 @@ function rules(type) {
       },
       {
         test: /\.scss$/,
+        include: [
+          /[\\/]src\/app\/components[\\/]/,
+          /[\\/]src\/shared\/components[\\/]/,
+          /[\\/]src\/shared\/styles[\\/]/
+        ],
         use: [
           'style-loader',
           {
@@ -174,7 +202,8 @@ function rules(type) {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [
+              plugins: loader => [
+                new PostCssImport({ root: loader.resourcePath }),
                 new Autoprefixer({
                   grid: true
                 })
@@ -186,6 +215,11 @@ function rules(type) {
       },
       {
         test: /\.less$/,
+        include: [
+          /[\\/]src\/app\/components[\\/]/,
+          /[\\/]src\/shared\/components[\\/]/,
+          /[\\/]src\/shared\/styles[\\/]/
+        ],
         use: [
           'style-loader',
           {
@@ -202,7 +236,8 @@ function rules(type) {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [
+              plugins: loader => [
+                new PostCssImport({ root: loader.resourcePath }),
                 new Autoprefixer({
                   grid: true
                 })
