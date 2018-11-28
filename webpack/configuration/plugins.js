@@ -28,7 +28,8 @@ function plugins() {
   const plugin = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     }),
     new CleanWebpackPlugin(pathsToClean, cleanOptions),
     new Stylish()
@@ -62,7 +63,10 @@ function plugins() {
         threshold: 10240,
         minRatio: 0.8
       }),
-      new HtmlWebpackPlugin({ minify: true })
+      new HtmlWebpackPlugin({
+        title: 'React Initial',
+        minify: true
+      })
     )
   }
 

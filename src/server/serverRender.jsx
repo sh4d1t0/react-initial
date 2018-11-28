@@ -18,15 +18,15 @@ export default function serverRender(): any {
     const markup = renderToString(
       <App server location={req.url} context={context} />
     )
+    const title = 'SSR'
+    const app = 'main'
+    const vendor = 'vendors'
+    const stylesheet = '/app/main.css'
 
     if (context.url) {
       res.redirect(301, context.url)
     } else {
-      res.send(
-        html({
-          markup
-        })
-      )
+      res.send(html({ markup, title, app, vendor, stylesheet }))
     }
   }
 }
