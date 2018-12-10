@@ -58,7 +58,6 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              minimize: true,
               localIdentName: '[name]_[local]',
               importLoaders: 2,
               sourceMap: false
@@ -90,7 +89,6 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              minimize: true,
               localIdentName: '[name]_[local]',
               importLoaders: 2,
               sourceMap: false
@@ -123,7 +121,6 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              minimize: true,
               localIdentName: '[name]_[local]',
               importLoaders: 2,
               sourceMap: false
@@ -159,7 +156,6 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              minimize: true,
               localIdentName: '[name]_[local]',
               importLoaders: 2,
               sourceMap: false
@@ -192,7 +188,6 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              minimize: true,
               localIdentName: '[name]_[local]',
               importLoaders: 2,
               sourceMap: false
@@ -226,7 +221,6 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              minimize: true,
               localIdentName: '[name]_[local]',
               importLoaders: 2,
               sourceMap: false

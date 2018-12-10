@@ -15,16 +15,16 @@ function optimization(type) {
           name: 'vendors',
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
-          priority: 20,
+          priority: 1,
           reuseExistingChunk: true
         },
         // commons chunk
         commons: {
           name: 'commons',
-          chunks: 'async',
+          chunks: 'initial',
           enforce: true,
           minChunks: 2,
-          priority: 10,
+          priority: 1,
           reuseExistingChunk: true
         },
         styles: {
@@ -43,7 +43,7 @@ function optimization(type) {
   if (!isDevelopment || type === 'server') {
     optimizations.minimizer.push(
       new TerserPlugin({
-        cache: false,
+        cache: true,
         parallel: true,
         sourceMap: true, // set to true if you want JS source maps
         terserOptions: {

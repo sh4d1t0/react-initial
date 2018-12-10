@@ -1,6 +1,7 @@
 // @flow
 // dependencies
 import express from 'express'
+import compression from 'compression'
 import open from 'open'
 import path from 'path'
 import webpack from 'webpack'
@@ -16,6 +17,18 @@ import webpackConfig from '../../webpack.config'
 const app = express()
 const compiler = webpack(webpackConfig)
 const port = process.env.NODE_PORT || 3000
+
+function shouldCompress(req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res)
+}
+
+app.use(compression({ filter: shouldCompress }))
 
 // public static
 app.use(express.static(path.join(__dirname, '../../public')))

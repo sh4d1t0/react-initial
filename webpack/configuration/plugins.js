@@ -1,4 +1,5 @@
 // dependencies
+const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -9,6 +10,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const Stylish = require('webpack-stylish')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const AssetsPlugin = require('assets-webpack-plugin')
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
 // Analyzer
@@ -57,15 +59,16 @@ function plugins() {
       }),
       new webpack.optimize.AggressiveMergingPlugin(),
       new CompressionPlugin({
-        filename: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: /\.js$|\.css$|\.html$/,
-        threshold: 10240,
-        minRatio: 0.8
+        test: /\.js$|\.css$|\.html$/
       }),
       new HtmlWebpackPlugin({
         title: 'React Initial',
         minify: true
+      }),
+      new AssetsPlugin({
+        prettyPrint: true,
+        filename: 'assets.json',
+        path: path.resolve(__dirname, '../../dist/app')
       })
     )
   }
