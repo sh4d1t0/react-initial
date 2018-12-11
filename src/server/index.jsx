@@ -1,7 +1,7 @@
 // @flow
 // dependencies
 import express from 'express'
-import compression from 'compression'
+import expressStaticGzip from 'express-static-gzip'
 import open from 'open'
 import path from 'path'
 import webpack from 'webpack'
@@ -18,20 +18,14 @@ const app = express()
 const compiler = webpack(webpackConfig)
 const port = process.env.NODE_PORT || 3000
 
-function shouldCompress(req, res) {
-  if (req.headers['x-no-compression']) {
-    // don't compress responses with this request header
-    return false
-  }
-
-  // fallback to standard filter function
-  return compression.filter(req, res)
-}
-
-app.use(compression({ filter: shouldCompress }))
-
 // public static
-app.use(express.static(path.join(__dirname, '../../public')))
+// app.use(express.static(path.join(__dirname, '../../public')))
+app.use(
+  '/',
+  expressStaticGzip(path.join(__dirname, '../../public'), {
+    enableBrotli: true
+  })
+)
 
 // API middleware
 /* app.use('/api', api) */

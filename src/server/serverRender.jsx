@@ -20,7 +20,7 @@ export default function serverRender(): any {
     )
     const title = 'SSR'
     const app = 'main'
-    const vendor = 'vendors'
+    const vendor = 'vendor'
     const stylesheet = '/app/main.css'
 
     if (context.url) {

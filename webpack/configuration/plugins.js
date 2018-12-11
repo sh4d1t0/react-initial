@@ -1,13 +1,14 @@
 // dependencies
 const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin')
+const zopfli = require('@gfx/zopfli')
+const BrotliPlugin = require('brotli-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
 // eslint-disable-next-line
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
-const Stylish = require('webpack-stylish')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const AssetsPlugin = require('assets-webpack-plugin')
@@ -29,12 +30,12 @@ function plugins() {
 
   const plugin = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
-    new CleanWebpackPlugin(pathsToClean, cleanOptions),
-    new Stylish()
+    new CleanWebpackPlugin(pathsToClean, cleanOptions)
   ]
 
   if (isAnalyzer) {
@@ -59,7 +60,18 @@ function plugins() {
       }),
       new webpack.optimize.AggressiveMergingPlugin(),
       new CompressionPlugin({
-        test: /\.js$|\.css$|\.html$/
+        compressionOptions: {
+          numiterations: 15
+        },
+        algorithm(input, compressionOptions, callback) {
+          return zopfli.gzip(input, compressionOptions, callback)
+        }
+      }),
+      new BrotliPlugin({
+        asset: '[path].br[query]',
+        test: /\.js$|\.css$|\.html$/,
+        threshold: 10240,
+        minRatio: 0.8
       }),
       new HtmlWebpackPlugin({
         title: 'React Initial',

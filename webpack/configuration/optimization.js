@@ -8,12 +8,21 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 function optimization(type) {
   const optimizations = {
     splitChunks: {
+      chunks: 'async',
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
       cacheGroups: {
         default: false,
-        // vendors chunk
-        vendors: {
-          name: 'vendors',
-          test: /[\\/]node_modules[\\/]/,
+        vendors: false,
+        // vendor chunk; splitting react and react-dom into a separate chunk
+        vendor: {
+          name: 'vendor',
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
           chunks: 'all',
           priority: 1,
           reuseExistingChunk: true
@@ -21,11 +30,11 @@ function optimization(type) {
         // commons chunk
         commons: {
           name: 'commons',
-          chunks: 'initial',
-          enforce: true,
+          chunks: 'async',
           minChunks: 2,
           priority: 1,
-          reuseExistingChunk: true
+          reuseExistingChunk: true,
+          enforce: true
         },
         styles: {
           name: 'style',
