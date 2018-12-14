@@ -10,6 +10,8 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
 // API
 /* import api from './api' */
+// Utils
+import { isMobile } from '../shared/utils/device'
 // webpack config
 import webpackConfig from '../../webpack.config'
 
@@ -29,6 +31,12 @@ app.use(
 
 // API middleware
 /* app.use('/api', api) */
+
+// Device Detection
+app.use((req, res, next) => {
+  req.isMobile = isMobile(req.headers['user-agent'])
+  return next()
+})
 
 // hot middleware replacement
 app.use(webpackDevMiddleware(compiler))
