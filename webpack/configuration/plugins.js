@@ -1,8 +1,6 @@
 // dependencies
 const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin')
-const zopfli = require('@gfx/zopfli')
-const BrotliPlugin = require('brotli-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
@@ -19,17 +17,14 @@ const isAnalyzer = process.env.ANALYZER === 'true'
 
 function plugins() {
   // the path(s) that should be cleaned
-  const pathsToClean = [
-    path.resolve(__dirname, '../../dist'),
-    path.resolve(__dirname, '../../build')
-  ]
+  const pathsToClean = [path.resolve(__dirname, '../../dist')]
 
   // the clean options to use
   const cleanOptions = {
     verbose: true,
     dry: false,
     watch: false,
-    allowExternal: true,
+    allowExternal: false,
     beforeEmit: true
   }
 
@@ -65,15 +60,8 @@ function plugins() {
       }),
       new webpack.optimize.AggressiveMergingPlugin(),
       new CompressionPlugin({
-        compressionOptions: {
-          numiterations: 15
-        },
-        algorithm(input, compressionOptions, callback) {
-          return zopfli.gzip(input, compressionOptions, callback)
-        }
-      }),
-      new BrotliPlugin({
-        asset: '[path].br[query]',
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
         test: /\.js$|\.css$|\.html$/,
         threshold: 10240,
         minRatio: 0.8

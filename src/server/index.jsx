@@ -1,7 +1,6 @@
 // @flow
 // dependencies
 import express from 'express'
-import expressStaticGzip from 'express-static-gzip'
 import open from 'open'
 import path from 'path'
 import webpack from 'webpack'
@@ -14,20 +13,25 @@ import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
 import { isMobile } from '../shared/utils/device'
 // webpack config
 import webpackConfig from '../../webpack.config'
+// Environment
+const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // express App
 const app = express()
 const compiler = webpack(webpackConfig)
 const port = process.env.NODE_PORT || 3000
 
-// public static
-// app.use(express.static(path.join(__dirname, '../../public')))
-app.use(
-  '/',
-  expressStaticGzip(path.join(__dirname, '../../public'), {
-    enableBrotli: true
+// GZip Compression just for Production
+if (!isDevelopment) {
+  app.get('*.js', (req, res, next) => {
+    req.url = `${req.url}.gz`
+    res.set('Content-Encoding', 'gzip')
+    next()
   })
-)
+}
+
+// public static
+app.use(express.static(path.join(__dirname, '../../public')))
 
 // API middleware
 /* app.use('/api', api) */
