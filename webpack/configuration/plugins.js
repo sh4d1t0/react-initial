@@ -19,13 +19,18 @@ const isAnalyzer = process.env.ANALYZER === 'true'
 
 function plugins() {
   // the path(s) that should be cleaned
-  const pathsToClean = ['dist', 'build']
+  const pathsToClean = [
+    path.resolve(__dirname, '../../dist'),
+    path.resolve(__dirname, '../../build')
+  ]
 
   // the clean options to use
   const cleanOptions = {
     verbose: true,
     dry: false,
-    watch: false
+    watch: false,
+    allowExternal: true,
+    beforeEmit: true
   }
 
   const plugin = [
