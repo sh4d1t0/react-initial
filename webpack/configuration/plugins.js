@@ -24,8 +24,8 @@ function plugins() {
     verbose: true,
     dry: false,
     watch: false,
-    allowExternal: false,
-    beforeEmit: true
+    allowExternal: true,
+    beforeEmit: false
   }
 
   const plugin = [
@@ -35,7 +35,9 @@ function plugins() {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
-    new CleanWebpackPlugin(pathsToClean, cleanOptions)
+    new HtmlWebpackPlugin({
+      title: 'React Initial'
+    })
   ]
 
   if (isAnalyzer) {
@@ -49,7 +51,8 @@ function plugins() {
     plugin.push(
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
-      new DashboardPlugin()
+      new DashboardPlugin(),
+      new CleanWebpackPlugin(pathsToClean, cleanOptions)
     )
   } else {
     plugin.push(
