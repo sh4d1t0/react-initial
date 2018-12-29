@@ -6,14 +6,13 @@ function output(type) {
     return {
       filename: 'server.js',
       path: path.resolve(__dirname, '../../dist/app'),
-      publicPath: '/app/',
       libraryTarget: 'commonjs2'
     }
   }
 
   return {
     filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    chunkFilename: '[id].bundle.js',
     path: path.resolve(__dirname, '../../public/app'),
     publicPath: '/app/'
   }

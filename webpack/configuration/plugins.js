@@ -7,8 +7,8 @@ const webpack = require('webpack')
 // eslint-disable-next-line
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 const AssetsPlugin = require('assets-webpack-plugin')
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -16,18 +16,6 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 const isAnalyzer = process.env.ANALYZER === 'true'
 
 function plugins() {
-  // the path(s) that should be cleaned
-  const pathsToClean = [path.resolve(__dirname, '../../dist')]
-
-  // the clean options to use
-  const cleanOptions = {
-    verbose: true,
-    dry: false,
-    watch: false,
-    allowExternal: true,
-    beforeEmit: false
-  }
-
   const plugin = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.HashedModuleIdsPlugin(),
@@ -37,6 +25,22 @@ function plugins() {
     }),
     new HtmlWebpackPlugin({
       title: 'React Initial'
+    }),
+    new HardSourceWebpackPlugin({
+      cacheDirectory: '../../node_modules/.cache/hard-source/[confighash]',
+      environmentHash: {
+        root: process.cwd(),
+        directories: [],
+        files: ['package-lock.json', 'yarn.lock']
+      },
+      info: {
+        mode: 'none',
+        level: 'debug'
+      },
+      cachePrune: {
+        maxAge: 2 * 24 * 60 * 60 * 1000,
+        sizeThreshold: 50 * 1024 * 1024
+      }
     })
   ]
 
@@ -51,10 +55,11 @@ function plugins() {
     plugin.push(
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
-      new DashboardPlugin(),
-      new CleanWebpackPlugin(pathsToClean, cleanOptions)
+      new DashboardPlugin()
     )
-  } else {
+  }
+
+  if (!isDevelopment) {
     plugin.push(
       new webpack.DefinePlugin({
         'process.env': {
@@ -68,10 +73,6 @@ function plugins() {
         test: /\.js$|\.css$|\.html$/,
         threshold: 10240,
         minRatio: 0.8
-      }),
-      new HtmlWebpackPlugin({
-        title: 'React Initial',
-        minify: true
       }),
       new AssetsPlugin({
         prettyPrint: true,

@@ -25,7 +25,7 @@ module.exports = webpackMerge(commonConfig(type), {
   entry: entry(type),
   name: name(type),
   output: output(type),
-  optimization,
+  optimization: optimization(type),
   plugins: plugins(type),
   target: target(type)
 })
