@@ -8,14 +8,6 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 function optimization(type) {
   const optimizations = {
     splitChunks: {
-      chunks: 'async',
-      minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: true,
       cacheGroups: {
         default: false,
         vendors: false,
