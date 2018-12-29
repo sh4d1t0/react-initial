@@ -62,7 +62,6 @@ if (isDevelopment) {
       compiler.compilers.find(compiler => compiler.name === 'client') // eslint-disable-line
     )
   )
-  app.use(webpackHotServerMiddleware(compiler))
 }
 
 // Client Side Rendering
@@ -79,12 +78,11 @@ if (!isDevelopment) {
 }
 
 // For Server Side Rendering on Development Mode
-//! TODO: check this when type is client
-// app.use(webpackHotServerMiddleware(compiler))
+app.use(webpackHotServerMiddleware(compiler))
 
 // listening port
 app.listen(port, err => {
-  if (!err && !isAnalyzer) {
+  if (!err || isAnalyzer) {
     open(`http://localhost:${port}`)
   }
 })

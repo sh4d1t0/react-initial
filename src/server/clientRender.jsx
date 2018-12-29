@@ -10,14 +10,23 @@ export default function clientRender() {
 
     const initialState = {
       device: {
-        isMobile: res.locals.isMobile
+        isMobile: req.isMobile
       }
     }
+
+    const title = 'SSR'
+    const app = 'main'
+    const vendor = 'vendor'
+    const stylesheet = '/app/main.css'
 
     res.send(
       html({
         markup: '',
-        initialState
+        initialState,
+        title,
+        app,
+        vendor,
+        stylesheet
       })
     )
   }
