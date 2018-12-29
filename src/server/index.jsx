@@ -33,8 +33,10 @@ const port = process.env.NODE_PORT || 3000
 // GZip Compression just for Production
 if (!isDevelopment) {
   app.get('*.js', (req, res, next) => {
-    req.url = `${req.url}.gz`
-    res.set('Content-Encoding', 'gzip')
+    /* req.url = `${req.url}.gz`
+    res.set('Content-Encoding', 'gzip') */
+    req.url = `${req.url}.br`
+    res.set('Content-Encoding', 'br')
 
     next()
   })

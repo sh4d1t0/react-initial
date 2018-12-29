@@ -49,11 +49,24 @@ function optimization(type) {
         sourceMap: true, // set to true if you want JS source maps
         terserOptions: {
           ecma: 8,
-          warnings: false, // Suppress terser warnings
+          warnings: false,
+          parse: {},
+          compress: {
+            dead_code: true,
+            global_defs: {
+              DEBUG: false
+            }
+          },
+          mangle: true, // Note `mangle.properties` is `false` by default.
+          module: true,
+          output: {
+            comments: false
+          },
+          toplevel: true,
+          nameCache: null,
+          ie8: false,
           keep_classnames: undefined,
           keep_fnames: false,
-          toplevel: false,
-          ie8: false,
           safari10: false
         }
       }),
