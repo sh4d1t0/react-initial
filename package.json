@@ -8,7 +8,7 @@
     "src"
   ],
   "engines": {
-    "node": ">=8.0.0"
+    "node": "current"
   },
   "scripts": {
     "build": "npm run clean && npm run build-client && npm run build-server",
@@ -117,7 +117,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.1",
-    "webpack": "^4.28.2",
+    "webpack": "^4.28.3",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "webpack-dashboard": "^2.0.0",

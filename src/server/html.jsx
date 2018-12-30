@@ -1,9 +1,16 @@
-const html = ({ app, initialState, markup, stylesheet, title, vendor }) => `
+const html: Array<mixed> = ({
+  app,
+  initialState,
+  markup,
+  stylesheet,
+  title,
+  vendor
+}) => `
   <!DOCTYPE html>
   <html>
 
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <script>window.initialState = ${JSON.stringify(initialState)}</script>
     <title>${title}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

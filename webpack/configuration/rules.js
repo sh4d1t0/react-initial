@@ -9,13 +9,14 @@ function rules(type) {
   const rule = [
     {
       test: /\.(js|jsx)$/,
+      exclude: /(node_modules|bower_components)/,
       use: {
         loader: 'babel-loader',
         options: {
+          presets: ['@babel/preset-env'],
           cacheDirectory: true
         }
-      },
-      exclude: /node_modules/
+      }
     },
     {
       test: /\.(eot|otf|ttf|woff|woff2)$/,

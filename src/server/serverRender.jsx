@@ -7,21 +7,21 @@ import App from 'App/App'
 // HTML
 import html from './html'
 
-export default function serverRender(): any {
+export default function serverRender() {
   return (
     req: { url: string },
-    res: { component: string, redirect: any, send: any },
-    next: any // eslint-disable-line
+    res: { redirect: void, send: void },
+    next: void // eslint-disable-line
   ) => {
-    const context = {}
+    const context: Array<mixed> = {}
 
-    const markup = renderToString(
+    const markup: void = renderToString(
       <App server location={req.url} context={context} />
     )
-    const title = 'SSR'
-    const app = 'main'
-    const vendor = 'vendor'
-    const stylesheet = '/app/main.css'
+    const title: string = 'SSR'
+    const app: string = 'main'
+    const vendor: string = 'vendor'
+    const stylesheet: string = '/app/main.css'
 
     if (context.url) {
       res.redirect(301, context.url)
