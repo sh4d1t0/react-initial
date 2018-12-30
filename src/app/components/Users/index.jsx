@@ -15,13 +15,25 @@ class User extends Component<Props> {
   static contextType = UsersConsumer
 
   componentDidUpdate() {
-    const usersContext = this.context
+    const usersContext: Array<mixed> = this.context
     console.log('usersContext_update_', usersContext) // eslint-disable-line
   }
 
   render() {
-    const usersContext = this.context
-    const usersData = usersContext.userData
+    const usersContext: {
+      userData: {
+        name: string,
+        avatar_url: string,
+        public_repos: string,
+        created_at: string
+      }
+    } = this.context
+    const usersData: {
+      name: string,
+      avatar_url: string,
+      public_repos: string,
+      created_at: string
+    } = usersContext.userData
 
     return (
       <div>

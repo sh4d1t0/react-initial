@@ -1,23 +1,28 @@
 /* @flow */
 // Dependencies
-import React from 'react'
+import React, { Fragment } from 'react'
 
 // Flow Props
 type Props = {
   avatarUrl: string,
-  avatarSize: Object,
+  avatarSize: {
+    width: number,
+    height: number
+  },
   userName: string
 }
 
 function Avatar(props: Props) {
   const { avatarUrl, avatarSize, userName } = props
   return (
-    <img
-      src={avatarUrl}
-      alt={userName}
-      width={avatarSize.width}
-      height={avatarSize.height}
-    />
+    <Fragment>
+      <img
+        src={avatarUrl}
+        alt={userName}
+        width={avatarSize.width}
+        height={avatarSize.height}
+      />
+    </Fragment>
   )
 }
 
