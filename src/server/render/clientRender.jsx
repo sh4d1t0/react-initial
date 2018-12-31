@@ -1,6 +1,6 @@
 // @flow
 // HTML
-import html from '../html'
+import html from './html'
 
 function clientRender() {
   // eslint-disable-next-line consistent-return

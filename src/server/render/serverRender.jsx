@@ -5,7 +5,7 @@ import { renderToString } from 'react-dom/server'
 // containers
 import App from 'App/App'
 // HTML
-import html from '../html'
+import html from './html'
 
 function serverRender() {
   return (
