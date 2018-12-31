@@ -3,7 +3,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 function entry(type) {
   if (type === 'server') {
-    return './serverRender.jsx'
+    return './render/serverRender.jsx'
   }
 
   const entries = {

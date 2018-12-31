@@ -1,8 +1,8 @@
 // @flow
 // HTML
-import html from './html'
+import html from '../html'
 
-export default function clientRender() {
+function clientRender() {
   // eslint-disable-next-line consistent-return
   return (
     req: { url: string, isMobile: boolean, isBot: boolean },
@@ -39,3 +39,5 @@ export default function clientRender() {
     return true
   }
 }
+
+export default clientRender

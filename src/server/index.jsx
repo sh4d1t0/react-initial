@@ -11,7 +11,7 @@ import { isMobile, isBot } from '../shared/utils/device'
 // webpack config
 import webpackConfig from '../../webpack.config'
 // Client Render
-import clientRender from './clientRender'
+import clientRender from './render/clientRender'
 // API
 /* import api from './api' */
 // Environment
