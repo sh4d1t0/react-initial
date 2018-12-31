@@ -59,7 +59,7 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]_[local]',
+              localIdentName: '[name]__[local]_[hash:base64]',
               importLoaders: 2,
               sourceMap: false
             }
@@ -90,7 +90,7 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]_[local]',
+              localIdentName: '[name]__[local]_[hash:base64]',
               importLoaders: 2,
               sourceMap: false
             }
@@ -122,7 +122,7 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]_[local]',
+              localIdentName: '[name]__[local]_[hash:base64]',
               importLoaders: 2,
               sourceMap: false
             }
@@ -157,7 +157,7 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]_[local]',
+              localIdentName: '[name]__[local]_[hash:base64]',
               importLoaders: 2,
               sourceMap: false
             }
@@ -189,7 +189,7 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]_[local]',
+              localIdentName: '[name]__[local]_[hash:base64]',
               importLoaders: 2,
               sourceMap: false
             }
@@ -222,7 +222,7 @@ function rules(type) {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]_[local]',
+              localIdentName: '[name]__[local]_[hash:base64]',
               importLoaders: 2,
               sourceMap: false
             }

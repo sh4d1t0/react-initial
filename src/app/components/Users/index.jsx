@@ -1,6 +1,6 @@
 /* @flow */
 // Ddependencies
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 // Ccomponents
 import UserInfo from 'Components/Users/Info'
 // Contexts
@@ -36,9 +36,9 @@ class User extends Component<Props> {
     } = usersContext.userData
 
     return (
-      <div>
+      <Fragment>
         <UserInfo userInfo={usersData} />
-      </div>
+      </Fragment>
     )
   }
 }

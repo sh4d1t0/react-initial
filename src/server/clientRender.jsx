@@ -5,12 +5,12 @@ import html from './html'
 export default function clientRender() {
   // eslint-disable-next-line consistent-return
   return (
-    req: { url: string, isMobile: boolean },
+    req: { url: string, isMobile: boolean, isBot: boolean },
     res: { redirect: void, send: void },
     next: void
   ) => {
     if (req.isBot) {
-      return next()
+      next()
     }
 
     const initialState: Object = {

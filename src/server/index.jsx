@@ -6,38 +6,32 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
-
 // Utils
 import { isMobile, isBot } from '../shared/utils/device'
-
 // webpack config
 import webpackConfig from '../../webpack.config'
-
 // Client Render
 import clientRender from './clientRender'
-
 // API
 /* import api from './api' */
-
 // Environment
-const isDevelopment = process.env.NODE_ENV !== 'production'
-
+const isProduction = process.env.NODE_ENV === 'production'
 // Analyzer
 const isAnalyzer = process.env.ANALYZER === 'true'
-
 // express App
 const app = express()
+// Webpack Compiler
 const compiler = webpack(webpackConfig)
+// Port listen
 const port = process.env.NODE_PORT || 3000
 
 // GZip Compression just for Production
-if (!isDevelopment) {
+if (isProduction) {
   app.get('*.js', (req, res, next) => {
     /* req.url = `${req.url}.gz`
     res.set('Content-Encoding', 'gzip') */
     req.url = `${req.url}.br`
     res.set('Content-Encoding', 'br')
-
     next()
   })
 }
@@ -50,14 +44,14 @@ app.use(express.static(path.join(__dirname, '../../public')))
 
 // Device Detection
 app.use((req, res, next) => {
-  req.isBot = isBot(req.headers['user-agent'])
   req.isMobile = isMobile(req.headers['user-agent'])
-
-  return next()
+  // We detect if a search bot is accessing...
+  req.isBot = isBot(req.headers['user-agent'])
+  next()
 })
 
-if (isDevelopment) {
-  // hot middleware replacement
+if (!isProduction) {
+  // hot module replacement
   app.use(webpackDevMiddleware(compiler))
   app.use(
     webpackHotMiddleware(
@@ -69,9 +63,10 @@ if (isDevelopment) {
 // Client Side Rendering
 app.use(clientRender())
 
-if (!isDevelopment) {
+if (isProduction) {
   try {
-    const serverRender = require('../../dist/app/server.js').default // eslint-disable-line
+    // eslint-disable-next-line
+    const serverRender = require('../../dist/app/server.js').default
 
     app.use(serverRender())
   } catch (e) {
@@ -81,6 +76,9 @@ if (!isDevelopment) {
 
 // For Server Side Rendering on Development Mode
 app.use(webpackHotServerMiddleware(compiler))
+
+// Disabling x-powered-by
+app.disable('x-powered-by')
 
 // listening port
 app.listen(port, err => {
