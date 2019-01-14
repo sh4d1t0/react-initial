@@ -2,6 +2,7 @@
 // dependencies
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import Helmet from 'react-helmet'
 // containers
 import App from 'App/App'
 // HTML
@@ -10,23 +11,21 @@ import html from './html'
 function serverRender() {
   return (
     req: { url: string },
-    res: { redirect: void, send: void },
-    next: void // eslint-disable-line
+    res: { redirect: any, send: any },
+    next: any // eslint-disable-line
   ) => {
-    const context: Array<mixed> = {}
+    const context = {}
 
-    const markup: void = renderToString(
+    const markup: any = renderToString(
       <App server location={req.url} context={context} />
     )
-    const title: string = 'SSR'
-    const app: string = 'main'
-    const vendor: string = 'vendor'
-    const stylesheet: string = '/app/main.css'
+    // Let Helmet know to insert the right tags
+    const helmet = Helmet.renderStatic()
 
     if (context.url) {
       res.redirect(301, context.url)
     } else {
-      res.send(html({ markup, title, app, vendor, stylesheet }))
+      res.send(html({ helmet, initialState: '', markup }))
     }
   }
 }

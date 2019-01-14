@@ -6,8 +6,8 @@ function clientRender() {
   // eslint-disable-next-line consistent-return
   return (
     req: { url: string, isMobile: boolean, isBot: boolean },
-    res: { redirect: void, send: void },
-    next: void
+    res: { redirect: any, send: any },
+    next: any
   ) => {
     if (req.isBot) {
       next()
@@ -19,20 +19,10 @@ function clientRender() {
       }
     }
 
-    const markup: string = ''
-    const title: string = 'SSR'
-    const app: string = 'main'
-    const vendor: string = 'vendor'
-    const stylesheet: string = '/app/main.css'
-
     res.send(
       html({
-        markup,
-        initialState,
-        title,
-        app,
-        vendor,
-        stylesheet
+        markup: '',
+        initialState
       })
     )
 
