@@ -2,7 +2,7 @@
 // dependencies
 import '@babel/polyfill'
 import React from 'react'
-import { hydrate } from 'react-dom'
+import { hydrate, render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 // containers
 import App from 'App/App'
@@ -10,9 +10,11 @@ import App from 'App/App'
 // DOM
 const rootElement = document.getElementById('root')
 
+const clientDomRenderer = rootElement.hasChildNodes() ? hydrate : render
+
 // App Wrapper
 const renderApp = Component => {
-  hydrate(
+  clientDomRenderer(
     <AppContainer>
       <Component />
     </AppContainer>,
