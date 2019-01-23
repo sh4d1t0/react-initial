@@ -10,6 +10,7 @@ module.exports = {
   Components: resolveApp('src/app/components/'),
   Api: resolveApp('src/app/features/api'),
   Context: resolveApp('src/app/features/context'),
+  Features: resolveApp('src/app/features/'),
   Views: resolveApp('src/app/views/'),
   Shared: resolveApp('src/shared/'),
   SharedComponents: resolveApp('src/shared/components'),

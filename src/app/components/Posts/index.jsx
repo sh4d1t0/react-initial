@@ -5,6 +5,8 @@ import React, { Component, Fragment } from 'react'
 import UserInfo from 'Components/Users/Info'
 // Contexts
 import { BlogConsumer } from 'Context/Blog'
+// Utils
+/* import isFirstRender from 'SharedUtils/data' */
 // Styles
 import styles from './Posts.less'
 
@@ -20,6 +22,11 @@ class Posts extends Component<Props> {
     const blogContext = this.context
     const userContext = blogContext.userData
     const postsContext = blogContext.posts
+    console.log(this.props)
+
+    /* if (isFirstRender(posts)) {
+      return null
+    } */
 
     return (
       <Fragment>

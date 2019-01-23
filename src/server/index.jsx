@@ -13,7 +13,7 @@ import webpackConfig from '../../webpack.config'
 // Client Render
 import clientRender from './render/clientRender'
 // API
-/* import api from './api' */
+import api from './api'
 // Environment
 const isProduction = process.env.NODE_ENV === 'production'
 // Analyzer
@@ -40,7 +40,7 @@ if (isProduction) {
 app.use(express.static(path.join(__dirname, '../../public')))
 
 // API middleware
-/* app.use('/api', api) */
+app.use('/api', api)
 
 // Device Detection
 app.use((req, res, next) => {

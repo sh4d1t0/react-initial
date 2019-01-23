@@ -2,6 +2,7 @@
 // TODO: lazy is not yet available for server-side rendering
 // Dependencies
 import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
+import { connect } from 'react-redux'
 // Apis
 import GetAllUsers, { GetUserInfo } from 'Api/Users'
 import GetAllPost from 'Api/Post'
@@ -10,10 +11,16 @@ import { BlogProvider } from 'Context/Blog'
 // Components
 import Posts from 'Components/Posts'
 import Navbar from 'SharedComponents/Navbar'
+// Actions
+import fetchPosts from 'Features/blog/actions'
+// Utils
+import isFirstRender from 'SharedUtils/data'
 
 // Flow Props and Types
+type Action = { payload?: void }
+type Dispatch = (action: Action | Promise<Action>) => void
 type Props = {
-  /** */
+  dispatch: Dispatch
 }
 type State = {
   posts?: Array<mixed>,
@@ -22,6 +29,10 @@ type State = {
 }
 
 class Blog extends Component<Props, State> {
+  static initialAction(fetchingFrom: string): any {
+    return fetchPosts(fetchingFrom)
+  }
+
   state = {
     posts: [],
     users: [],
@@ -29,6 +40,12 @@ class Blog extends Component<Props, State> {
   }
 
   componentDidMount() {
+    const { dispatch } = this.props
+
+    if (isFirstRender()) {
+      dispatch(Blog.initialAction('client'))
+    }
+
     const user = 'Sh4d1t0'
     GetAllPost().then(data => {
       if (data !== false) {
@@ -72,4 +89,10 @@ class Blog extends Component<Props, State> {
   }
 }
 
-export default Blog
+export default connect(
+  ({ blog }) => ({
+    posts: blog.posts,
+    userData: blog.userData
+  }),
+  null
+)(Blog)
