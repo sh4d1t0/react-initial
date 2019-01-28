@@ -1,49 +1,54 @@
 /* @flow */
-// dependencies
-import React from 'react'
-import timeAgo from 'node-time-ago'
-// utils
-import isFirstRender from 'SharedUtils/data'
-// styles
+// Dependencies
+import React, { Component, Fragment } from 'react'
+// Components
+import UserInfo from 'Components/Users/Info'
+// Contexts
+import { BlogConsumer } from 'Context/Blog'
+// Utils
+/* import isFirstRender from 'SharedUtils/data' */
+// Styles
 import styles from './Posts.less'
 
+// Flow Props
 type Props = {
-  posts: Array<{
-    id: number,
-    title: string,
-    author: string,
-    date: string
-  }>
+  /** */
 }
 
-function Posts(props: Props) {
-  const { posts } = props
+class Posts extends Component<Props> {
+  static contextType = BlogConsumer
 
-  if (isFirstRender(posts)) {
-    return null
-  }
+  render() {
+    const blogContext = this.context
+    const userContext = blogContext.userData
+    const postsContext = blogContext.posts
 
-  return (
-    <div className={styles.posts}>
-      <div className={styles.header}>
-        <h1>Blog</h1>
-      </div>
+    /* if (isFirstRender(posts)) {
+      return null
+    } */
 
-      {posts &&
-        posts.map(post => (
-          <div key={post.id} className={styles.posts}>
-            <p>
-              {post.id}
-              {' - '}
-              {post.title}
-              {' by '}
-              {post.author}
-            </p>
-            <p>{timeAgo(post.date)}</p>
+    return (
+      <Fragment>
+        <div className={styles.posts}>
+          <div className={styles.header}>
+            <h1>Blog</h1>
           </div>
-        ))}
-    </div>
-  )
+
+          <UserInfo userInfo={userContext} />
+
+          <div>
+            {postsContext &&
+              postsContext.map(post => (
+                <div key={post.id} className={styles.posts}>
+                  <h2>{post.title}</h2>
+                  <p>{post.body}</p>
+                </div>
+              ))}
+          </div>
+        </div>
+      </Fragment>
+    )
+  }
 }
 
 export default Posts

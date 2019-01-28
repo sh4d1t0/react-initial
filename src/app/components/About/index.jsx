@@ -1,9 +1,17 @@
 /* @flow */
-// dependencies
-import React from 'react'
+// Dependencies
+import React, { Fragment } from 'react'
+import Navbar from 'SharedComponents/Navbar'
+// Styles
+import styles from './About.css'
 
 function About() {
-  return <div className="About">About</div>
+  return (
+    <Fragment>
+      <Navbar />
+      <div className={styles.about}>About</div>
+    </Fragment>
+  )
 }
 
 export default About

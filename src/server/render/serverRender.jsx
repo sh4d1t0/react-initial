@@ -1,28 +1,28 @@
-/* @flow */
 // dependencies
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { matchPath } from 'react-router-dom'
 import { Provider } from 'react-redux'
-// redux store
-import configureStore from 'Shared/configureStore'
+import Helmet from 'react-helmet'
 // containers
 import App from 'App/App'
-// routes
+// Routes
 import routes from 'Shared/routes'
+// Redux Store
+import configureStore from 'Shared/redux/configureStore'
 // HTML
 import html from './html'
 
-export default function serverRender(): any {
+function serverRender() {
   return (
     req: { url: string },
-    res: { component: string, redirect: any, send: any },
-    next: any // eslint-disable-line
+    res: { redirect: any, send: any },
+    next: any
   ) => {
     // configure redux store
     const store = configureStore()
-
-    const promises = routes.reduce((acc, route: any): any => {
+    // Getting the promises from the components which has initialAction.
+    const promises = routes.reduce((acc, route) => {
       if (
         matchPath(req.url, route) &&
         route.component &&
@@ -41,6 +41,7 @@ export default function serverRender(): any {
     Promise.all(promises)
       .then(() => {
         const context = {}
+
         const initialState = store.getState()
 
         const markup = renderToString(
@@ -49,19 +50,18 @@ export default function serverRender(): any {
           </Provider>
         )
 
+        // Let Helmet know to insert the right tags
+        const helmet = Helmet.renderStatic()
+
+        // Sending our HTML code.
         if (context.url) {
           res.redirect(301, context.url)
         } else {
-          res.send(
-            html({
-              markup,
-              initialState
-            })
-          )
+          res.send(html({ helmet, initialState, markup }))
         }
       })
-      .catch(e => {
-        console.error('Promise error: ', e) // eslint-disable-line
-      })
+      .catch(next)
   }
 }
+
+export default serverRender

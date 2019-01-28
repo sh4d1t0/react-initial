@@ -1,18 +1,17 @@
-// @flow
-export function getCurrentDevice(ua: string): string {
+export function getCurrentDevice(ua) {
   return /mobile/i.test(ua) ? 'mobile' : 'desktop'
 }
 
-export function isBot(ua: string): string {
-  return /curl|bot|googlebot|google|baidu|bing|msn|duckduckgo|teoma|slurp|crawler|spider|robot|crawling/i.test(
+export function isBot(ua) {
+  return /curl|bot|googlebot|google|baidu|bing|msn|duckduckgo|teoma|slurp|yandex|crawler|spider|robot|crawling/i.test(
     ua
   )
 }
 
-export function isDesktop(ua: string): string {
+export function isDesktop(ua) {
   return !/mobile/i.test(ua)
 }
 
-export function isMobile(ua: string): string {
+export function isMobile(ua) {
   return /mobile/i.test(ua)
 }

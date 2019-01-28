@@ -1,25 +1,41 @@
-/* @flow */
 // dependencies
 import '@babel/polyfill'
 import React from 'react'
-import { hydrate } from 'react-dom'
+import { hydrate, render } from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
-// redux store
-import configureStore from 'Shared/configureStore'
 // containers
 import App from 'App/App'
+// Redux Store
+import configureStore from 'Shared/redux/configureStore'
 
-// configuring redux store
+// Configuring Redux Store
 const store = configureStore(window.initialState)
+
 // DOM
 const rootElement = document.getElementById('root')
 
-// app wrapper
-if (rootElement) {
-  hydrate(
+const clientDomRenderer = rootElement.hasChildNodes() ? hydrate : render
+
+// App Wrapper
+const renderApp = Component => {
+  clientDomRenderer(
     <Provider store={store}>
-      <App />
+      <AppContainer>
+        <Component />
+      </AppContainer>
     </Provider>,
     rootElement
   )
+}
+
+// Rendering app
+renderApp(App)
+
+// HMR
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    // eslint-disable-next-line global-require
+    renderApp(require('./App').default)
+  })
 }

@@ -1,18 +1,22 @@
 /* @flow */
-// dependencies
-import React from 'react'
-import Link from 'react-router-dom/Link'
-// styles
-import styles from './Home.scss'
+// Dependencies
+import React, { Fragment } from 'react'
+import Helmet from 'react-helmet'
+// Components
+import Navbar from 'SharedComponents/Navbar'
+// Styles
+// import styles from './Home.scss'
 
 function Home() {
   return (
-    <div className={styles.home}>
-      {'Home - '}
-      <Link to="/about">About</Link>
-      {' - '}
-      <Link to="/blog">Blog</Link>
-    </div>
+    <Fragment>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+      <Navbar />
+    </Fragment>
   )
 }
 

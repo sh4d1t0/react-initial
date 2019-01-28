@@ -1,6 +1,13 @@
 /** @prettier */
-@import '../../../shared/styles/global';
+@import '../../../shared/styles/vars';
 
 .home {
   border: 1px solid red;
+}
+
+.example {
+  display: grid;
+  transition: all 0.5s;
+  user-select: none;
+  background: linear-gradient(to bottom, $white, $black);
 }

@@ -1,27 +1,30 @@
 /* @flow */
+// TODO: lazy is not yet available for server-side rendering
 // Dependencies
-import React, { Component } from 'react'
+import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
 import { connect } from 'react-redux'
+// Apis
+import GetAllUsers, { GetUserInfo } from 'Api/Users'
+// Contexts
+import { BlogProvider } from 'Context/Blog'
 // Components
 import Posts from 'Components/Posts'
+import Navbar from 'SharedComponents/Navbar'
 // Actions
-import fetchPosts from 'Features/blog/actions'
+import fetchPosts from 'Features/actions/Posts'
 // Utils
 import isFirstRender from 'SharedUtils/data'
 
+// Flow Props and Types
 type Action = { payload?: void }
 type Dispatch = (action: Action | Promise<Action>) => void
 type Props = {
-  posts: Array<{
-    id: number,
-    title: string,
-    author: string,
-    date: string
-  }>,
-  dispatch: Dispatch
+  dispatch: Dispatch,
+  posts: Array<mixed>
 }
 type State = {
-  /** *** */
+  users?: Array<mixed>,
+  userData?: Object
 }
 
 class Blog extends Component<Props, State> {
@@ -29,18 +32,51 @@ class Blog extends Component<Props, State> {
     return fetchPosts(fetchingFrom)
   }
 
-  componentDidMount() {
-    const { posts, dispatch } = this.props
-
-    if (isFirstRender(posts)) {
-      dispatch(Blog.initialAction('client'))
-    }
+  state = {
+    users: [],
+    userData: {}
   }
 
-  render(): any {
-    const { posts } = this.props
+  componentDidMount() {
+    const { dispatch } = this.props
 
-    return <Posts posts={posts} />
+    if (isFirstRender()) {
+      dispatch(Blog.initialAction('client'))
+    }
+
+    const user = 'Sh4d1t0'
+    GetUserInfo(user).then(data => {
+      if (data !== false) {
+        this.setState({ userData: data })
+      } else {
+        // TODO Add Message
+        console.log('error') // eslint-disable-line
+      }
+    })
+    GetAllUsers().then(data => {
+      if (data !== false) {
+        this.setState({ users: data })
+      } else {
+        // TODO Add Message
+        console.log('error') // eslint-disable-line
+      }
+    })
+  }
+
+  render() {
+    const { posts } = this.props
+    const { users, userData }: Object = this.state
+
+    return (
+      <Fragment>
+        <Navbar />
+        {/* <Suspense fallback={<div>Loading...</div>}> */}
+        <BlogProvider value={{ posts, userData, users }}>
+          <Posts {...this.props} />
+        </BlogProvider>
+        {/* </Suspense> */}
+      </Fragment>
+    )
   }
 }
 

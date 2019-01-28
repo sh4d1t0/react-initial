@@ -1,11 +1,17 @@
 // dependencies
+const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
+const WebpackNotifierPlugin = require('webpack-notifier')
+// eslint-disable-next-line
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-const Stylish = require('webpack-stylish')
+  .BundleAnalyzerPlugin
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
+const BrotliPlugin = require('brotli-webpack-plugin')
+const AssetsPlugin = require('assets-webpack-plugin')
 // enviroment
 const isDevelopment = process.env.NODE_ENV !== 'production'
 // Analyzer
@@ -14,10 +20,30 @@ const isAnalyzer = process.env.ANALYZER === 'true'
 function plugins() {
   const plugin = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
-      filename: '../../public/css/style.css'
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     }),
-    new Stylish()
+    new HtmlWebpackPlugin({
+      title: 'React Initial'
+    }),
+    new HardSourceWebpackPlugin({
+      cacheDirectory: '../../node_modules/.cache/hard-source/[confighash]',
+      environmentHash: {
+        root: process.cwd(),
+        directories: [],
+        files: ['package-lock.json', 'yarn.lock']
+      },
+      info: {
+        mode: 'none',
+        level: 'debug'
+      },
+      cachePrune: {
+        maxAge: 2 * 24 * 60 * 60 * 1000,
+        sizeThreshold: 50 * 1024 * 1024
+      }
+    })
   ]
 
   if (isAnalyzer) {
@@ -31,6 +57,9 @@ function plugins() {
     plugin.push(
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
+      new WebpackNotifierPlugin({
+        title: 'SSR'
+      }),
       new DashboardPlugin()
     )
   } else {
@@ -48,7 +77,17 @@ function plugins() {
         threshold: 10240,
         minRatio: 0.8
       }),
-      new HtmlWebpackPlugin({ minify: true })
+      new BrotliPlugin({
+        asset: '[path].br[query]',
+        test: /\.(js|css|html|svg)$/,
+        threshold: 10240,
+        minRatio: 0.8
+      }),
+      new AssetsPlugin({
+        prettyPrint: true,
+        filename: 'assets.json',
+        path: path.resolve(__dirname, '../../dist/app')
+      })
     )
   }
 
