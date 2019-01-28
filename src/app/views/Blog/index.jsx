@@ -5,14 +5,13 @@ import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
 import { connect } from 'react-redux'
 // Apis
 import GetAllUsers, { GetUserInfo } from 'Api/Users'
-import GetAllPost from 'Api/Post'
 // Contexts
 import { BlogProvider } from 'Context/Blog'
 // Components
 import Posts from 'Components/Posts'
 import Navbar from 'SharedComponents/Navbar'
 // Actions
-import fetchPosts from 'Features/blog/actions'
+import fetchPosts from 'Features/actions/Posts'
 // Utils
 import isFirstRender from 'SharedUtils/data'
 
@@ -20,10 +19,10 @@ import isFirstRender from 'SharedUtils/data'
 type Action = { payload?: void }
 type Dispatch = (action: Action | Promise<Action>) => void
 type Props = {
-  dispatch: Dispatch
+  dispatch: Dispatch,
+  posts: Array<mixed>
 }
 type State = {
-  posts?: Array<mixed>,
   users?: Array<mixed>,
   userData?: Object
 }
@@ -34,7 +33,6 @@ class Blog extends Component<Props, State> {
   }
 
   state = {
-    posts: [],
     users: [],
     userData: {}
   }
@@ -47,14 +45,6 @@ class Blog extends Component<Props, State> {
     }
 
     const user = 'Sh4d1t0'
-    GetAllPost().then(data => {
-      if (data !== false) {
-        this.setState({ posts: data })
-      } else {
-        // TODO Add Message
-        console.log('error') // eslint-disable-line
-      }
-    })
     GetUserInfo(user).then(data => {
       if (data !== false) {
         this.setState({ userData: data })
@@ -74,7 +64,8 @@ class Blog extends Component<Props, State> {
   }
 
   render() {
-    const { posts, users, userData }: Object = this.state
+    const { posts } = this.props
+    const { users, userData }: Object = this.state
 
     return (
       <Fragment>
@@ -91,8 +82,7 @@ class Blog extends Component<Props, State> {
 
 export default connect(
   ({ blog }) => ({
-    posts: blog.posts,
-    userData: blog.userData
+    posts: blog.posts
   }),
   null
 )(Blog)

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 // containers
 import App from 'App/App'
 // Redux Store
-import configureStore from 'Shared/configureStore'
+import configureStore from 'Shared/redux/configureStore'
 
 // Configuring Redux Store
 const store = configureStore(window.initialState)

@@ -22,7 +22,6 @@ class Posts extends Component<Props> {
     const blogContext = this.context
     const userContext = blogContext.userData
     const postsContext = blogContext.posts
-    console.log(this.props)
 
     /* if (isFirstRender(posts)) {
       return null

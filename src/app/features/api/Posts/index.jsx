@@ -1,6 +1,6 @@
 /* @flow */
 // Dependencies
-import axios from 'axios'
+/* import axios from 'axios'
 
 export default async function GetAllPost() {
   if (this instanceof GetAllPost) {
@@ -17,7 +17,7 @@ export default async function GetAllPost() {
     console.log(error) // eslint-disable-line
     return false
   }
-}
+} */
 
 /* export default function git() {
   axios

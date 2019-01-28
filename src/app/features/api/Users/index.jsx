@@ -9,8 +9,7 @@ export default async function GetAllUsers() {
   try {
     const response = await axios({
       method: 'get',
-      url: 'https://api.github.com/users',
-      responseType: 'stream'
+      url: 'https://api.github.com/users'
     })
     return response.data
   } catch (error) {
@@ -23,8 +22,7 @@ export async function GetUserInfo(user: string) {
   try {
     const response = await axios({
       method: 'get',
-      url: `https://api.github.com/users/${user}`,
-      responseType: 'stream'
+      url: `https://api.github.com/users/${user}`
     })
     return response.data
   } catch (error) {

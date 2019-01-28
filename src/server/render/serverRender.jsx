@@ -9,7 +9,7 @@ import App from 'App/App'
 // Routes
 import routes from 'Shared/routes'
 // Redux Store
-import configureStore from 'Shared/configureStore'
+import configureStore from 'Shared/redux/configureStore'
 // HTML
 import html from './html'
 

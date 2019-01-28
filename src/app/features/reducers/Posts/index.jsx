@@ -1,5 +1,5 @@
 // Action Types
-import FETCH_POSTS from './actionTypes'
+import { FETCH_POSTS_SUCCESS } from 'Actions/Posts/actionTypes'
 
 const initialState = {
   posts: []
@@ -7,7 +7,7 @@ const initialState = {
 
 export default function blogReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_POSTS.success(): {
+    case FETCH_POSTS_SUCCESS: {
       return {
         ...state,
         posts: action.payload
