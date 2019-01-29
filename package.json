@@ -46,7 +46,6 @@
     "axios": "^0.18.0",
     "browserslist": "^4.4.1",
     "express": "^4.16.4",
-    "isomorphic-fetch": "^2.2.1",
     "node-object-hash": "^1.4.1",
     "node-time-ago": "^1.0.0",
     "onchange": "^5.2.0",

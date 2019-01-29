@@ -1,4 +1,4 @@
-// @flow
+/* // @flow
 // dependencies
 import 'isomorphic-fetch'
 import queryString from 'query-string'
@@ -61,3 +61,4 @@ export function apiFetch(
 
   return fetch(fetchEndpoint, fetchOptions).then(response => response.json())
 }
+ */
