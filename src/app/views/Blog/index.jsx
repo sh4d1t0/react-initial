@@ -20,7 +20,8 @@ type Action = { payload?: void }
 type Dispatch = (action: Action | Promise<Action>) => void
 type Props = {
   dispatch: Dispatch,
-  posts: Array<mixed>
+  posts: Array<mixed>,
+  isMobile: boolean
 }
 type State = {
   users?: Array<mixed>,
@@ -64,14 +65,14 @@ class Blog extends Component<Props, State> {
   }
 
   render() {
-    const { posts } = this.props
+    const { isMobile, posts } = this.props
     const { users, userData }: Object = this.state
 
     return (
       <Fragment>
         <Navbar />
         {/* <Suspense fallback={<div>Loading...</div>}> */}
-        <BlogProvider value={{ posts, userData, users }}>
+        <BlogProvider value={{ isMobile, posts, userData, users }}>
           <Posts {...this.props} />
         </BlogProvider>
         {/* </Suspense> */}
@@ -81,8 +82,9 @@ class Blog extends Component<Props, State> {
 }
 
 export default connect(
-  ({ blog }) => ({
-    posts: blog.posts
+  ({ blog, device }) => ({
+    posts: blog.posts,
+    isMobile: device.isMobile
   }),
   null
 )(Blog)

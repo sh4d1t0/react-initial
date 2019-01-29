@@ -2,7 +2,10 @@
 // TODO: lazy is not yet available for server-side rendering
 // Dependencies
 import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
+import { connect } from 'react-redux'
+// API
 import GetAllUsers, { GetUserInfo } from 'Api/Users'
+// Context
 import { UsersProvider } from 'Context/Users'
 // Components
 import Navbar from 'SharedComponents/Navbar'
@@ -11,7 +14,7 @@ import UserForm from 'Components/Users/UserForm'
 
 // Flow Props and Types
 type Props = {
-  /** */
+  isMobile: boolean
 }
 type State = {
   users?: Array<mixed>,
@@ -70,4 +73,9 @@ class Users extends Component<Props, State> {
   }
 }
 
-export default Users
+export default connect(
+  ({ device }) => ({
+    isMobile: device.isMobile
+  }),
+  null
+)(Users)

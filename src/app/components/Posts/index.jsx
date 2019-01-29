@@ -1,12 +1,11 @@
 /* @flow */
 // Dependencies
 import React, { Component, Fragment } from 'react'
+import Helmet from 'react-helmet'
 // Components
 import UserInfo from 'Components/Users/Info'
 // Contexts
 import { BlogConsumer } from 'Context/Blog'
-// Utils
-/* import isFirstRender from 'SharedUtils/data' */
 // Styles
 import styles from './Posts.less'
 
@@ -20,15 +19,19 @@ class Posts extends Component<Props> {
 
   render() {
     const blogContext = this.context
+    const mobileContext = blogContext.isMobile
     const userContext = blogContext.userData
     const postsContext = blogContext.posts
 
-    /* if (isFirstRender(posts)) {
-      return null
-    } */
-
     return (
       <Fragment>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+            {'Blog - '}
+            {mobileContext ? 'mobile' : 'desktop'}
+          </title>
+        </Helmet>
         <div className={styles.posts}>
           <div className={styles.header}>
             <h1>Blog</h1>

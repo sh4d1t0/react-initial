@@ -3,6 +3,7 @@
 import { createContext } from 'react'
 
 export const BlogContext = createContext<Object>({
+  isMobile: () => Boolean,
   users: () => Array,
   userData: () => Object,
   posts: () => Array
