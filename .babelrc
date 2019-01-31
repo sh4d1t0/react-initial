@@ -61,7 +61,8 @@
           "@sharedReducers": "./src/shared/reducers/index.jsx",
           "@sharedUtils": "./src/shared/utils",
           "@sharedStyles": "./src/shared/styles",
-          "@server": "./src/server"
+          "@server": "./src/server",
+          "@webpack": "./webpack.config.js"
         }
       }
     ]

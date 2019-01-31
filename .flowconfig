@@ -24,6 +24,7 @@ module.name_mapper.extension='less' -> 'empty/object'
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=src
 module.name_mapper='^@app' ->'<PROJECT_ROOT>/src/app/App.jsx'
+module.name_mapper='^@baseActions' -> '<PROJECT_ROOT>/src/shared/redux/baseActions.jsx',
 module.name_mapper='^@configureStore' -> '<PROJECT_ROOT>/src/shared/redux/configureStore.jsx'
 module.name_mapper='^@routes' -> '<PROJECT_ROOT>/src/shared/routes.jsx'
 module.name_mapper='^@components' ->'<PROJECT_ROOT>/src/app/components'
@@ -37,6 +38,7 @@ module.name_mapper='^@sharedReducers' ->'<PROJECT_ROOT>/src/shared/reducers'
 module.name_mapper='^@sharedUtils' ->'<PROJECT_ROOT>/src/shared/utils'
 module.name_mapper='^@sharedStyles' ->'<PROJECT_ROOT>/src/shared/styles'
 module.name_mapper='^@server' ->'<PROJECT_ROOT>/src/server'
+module.name_mapper='^@webpack' ->'<PROJECT_ROOT>/webpack.config.js'
 
 [strict]
 

@@ -5,9 +5,9 @@ import html from './html'
 function clientRender() {
   // eslint-disable-next-line consistent-return
   return (
-    req: { url: string, isMobile: boolean, isBot: boolean },
-    res: { redirect: void, send: void },
-    next: void
+    req: { isMobile: boolean, isBot: boolean },
+    res: { send: any },
+    next: any
   ) => {
     if (req.isBot) {
       next()
