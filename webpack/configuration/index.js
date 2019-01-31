@@ -1,5 +1,4 @@
 // configuration
-const alias = require('./alias')
 const context = require('./context')
 const devtool = require('./devtool')
 const entry = require('./entry')
@@ -16,7 +15,6 @@ const stats = require('./stats')
 const target = require('./target')
 
 module.exports = {
-  alias,
   context,
   devtool,
   entry,
