@@ -2,7 +2,7 @@
 import { combineReducers } from 'redux'
 
 // Containers Reducers
-import blog from 'Reducers/Posts'
+import blog from '@reducers/Posts'
 
 // Shared Reducers
 import device from './deviceReducer'

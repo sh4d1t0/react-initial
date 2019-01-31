@@ -5,11 +5,11 @@ import { matchPath } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import Helmet from 'react-helmet'
 // containers
-import App from 'App/App'
+import App from '@app'
 // Routes
-import routes from 'Shared/routes'
+import routes from '@routes'
 // Redux Store
-import configureStore from 'Shared/redux/configureStore'
+import configureStore from '@configureStore'
 // HTML
 import html from './html'
 

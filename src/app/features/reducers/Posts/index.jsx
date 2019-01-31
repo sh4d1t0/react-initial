@@ -1,5 +1,5 @@
 // Action Types
-import FETCH_POSTS from 'Actions/Posts/actionTypes'
+import FETCH_POSTS from '@actions/Posts/actionTypes'
 
 const initialState = {
   posts: []

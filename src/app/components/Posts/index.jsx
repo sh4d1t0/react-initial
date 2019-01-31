@@ -3,9 +3,9 @@
 import React, { Component, Fragment } from 'react'
 import Helmet from 'react-helmet'
 // Components
-import UserInfo from 'Components/Users/Info'
+import UserInfo from '@components/Users/Info'
 // Contexts
-import { BlogConsumer } from 'Context/Blog'
+import { BlogConsumer } from '@context/Blog'
 // Styles
 import styles from './Posts.less'
 

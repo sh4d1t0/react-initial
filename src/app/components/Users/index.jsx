@@ -3,9 +3,9 @@
 import React, { Component, Fragment } from 'react'
 import Helmet from 'react-helmet'
 // Ccomponents
-import UserInfo from 'Components/Users/Info'
+import UserInfo from '@components/Users/Info'
 // Contexts
-import { UsersConsumer } from 'Context/Users'
+import { UsersConsumer } from '@context/Users'
 
 // Flow Props
 type Props = {

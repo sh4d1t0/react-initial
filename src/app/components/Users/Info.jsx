@@ -3,9 +3,9 @@
 import React, { Fragment } from 'react'
 import timeAgo from 'node-time-ago'
 // Components
-import Avatar from 'Components/Users/Avatar'
+import Avatar from '@components/Users/Avatar'
 // Styles
-import styles from 'Components/Posts/Posts.less'
+import styles from '@components/Posts/Posts.less'
 
 // Flow Props
 type Props = {

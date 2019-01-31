@@ -4,13 +4,13 @@
 import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
 import { connect } from 'react-redux'
 // API
-import GetAllUsers, { GetUserInfo } from 'Api/Users'
+import GetAllUsers, { GetUserInfo } from '@api/Users'
 // Context
-import { UsersProvider } from 'Context/Users'
+import { UsersProvider } from '@context/Users'
 // Components
-import Navbar from 'SharedComponents/Navbar'
-import User from 'Components/Users'
-import UserForm from 'Components/Users/UserForm'
+import Navbar from '@sharedComponents/Navbar'
+import User from '@components/Users'
+import UserForm from '@components/Users/UserForm'
 
 // Flow Props and Types
 type Props = {

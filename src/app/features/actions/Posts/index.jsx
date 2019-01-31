@@ -2,10 +2,10 @@
 import axios from 'axios'
 
 // action types
-import FETCH_POSTS from 'Actions/Posts/actionTypes'
+import FETCH_POSTS from '@actions/Posts/actionTypes'
 
 // Base Actions
-import { request, received, error } from 'Shared/redux/baseActions'
+import { request, received, error } from '@baseActions'
 
 const fetchPosts = (fetchingFrom: any) => (dispatch: any) => {
   const action = FETCH_POSTS

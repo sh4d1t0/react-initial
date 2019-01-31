@@ -1,11 +1,5 @@
 // configuration
-const {
-  alias,
-  extensions,
-  modules,
-  rules,
-  performance
-} = require('./configuration')
+const { extensions, modules, rules, performance } = require('./configuration')
 
 module.exports = type => ({
   module: {
@@ -13,8 +7,7 @@ module.exports = type => ({
   },
   resolve: {
     extensions,
-    modules,
-    alias
+    modules
   },
   performance: performance(type)
 })
