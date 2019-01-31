@@ -5,6 +5,7 @@ import About from '@components/About'
 // views
 import Blog from '@views/Blog'
 import Users from '@views/Users'
+import noMatch from '@views/PageNotFound'
 
 const routes = [
   {
@@ -23,6 +24,10 @@ const routes = [
   {
     path: '/users',
     component: Users
+  },
+  {
+    path: '*',
+    component: noMatch
   }
 ]
 
