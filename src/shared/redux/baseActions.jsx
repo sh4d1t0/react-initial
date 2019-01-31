@@ -1,13 +1,13 @@
 // Base Actions
-export const request = type => ({
-  type
+export const request = ACTION => ({
+  type: ACTION.request()
 })
 
-export const received = (type, payload) => ({
-  type,
-  payload
+export const received = (ACTION, data) => ({
+  type: ACTION.success(),
+  payload: data
 })
 
-export const error = type => ({
-  type
+export const error = ACTION => ({
+  type: ACTION.error()
 })

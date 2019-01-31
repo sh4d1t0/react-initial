@@ -1,10 +1,11 @@
 /* @flow */
 // components
-import Home from 'Components/Home'
-import About from 'Components/About'
+import Home from '@components/Home'
+import About from '@components/About'
 // views
-import Blog from 'Views/Blog'
-import Users from 'Views/Users'
+import Blog from '@views/Blog'
+import Users from '@views/Users'
+import noMatch from '@views/PageNotFound'
 
 const routes = [
   {
@@ -23,6 +24,10 @@ const routes = [
   {
     path: '/users',
     component: Users
+  },
+  {
+    path: '*',
+    component: noMatch
   }
 ]
 

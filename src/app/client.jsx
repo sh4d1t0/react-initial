@@ -5,26 +5,26 @@ import { hydrate, render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 // containers
-import App from 'App/App'
+import App from '@app'
 // Redux Store
-import configureStore from 'Shared/redux/configureStore'
+import configureStore from '@configureStore'
 
 // Configuring Redux Store
 const store = configureStore(window.initialState)
 
 // DOM
-const rootElement = document.getElementById('root')
+const rootElement = document.querySelector('#root')
 
 const clientDomRenderer = rootElement.hasChildNodes() ? hydrate : render
 
 // App Wrapper
 const renderApp = Component => {
   clientDomRenderer(
-    <Provider store={store}>
-      <AppContainer>
+    <AppContainer>
+      <Provider store={store}>
         <Component />
-      </AppContainer>
-    </Provider>,
+      </Provider>
+    </AppContainer>,
     rootElement
   )
 }

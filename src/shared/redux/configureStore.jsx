@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 // Root Reducer
-import rootReducer from '../reducers'
+import rootReducer from '@sharedReducers'
 
 export default function configureStore(initialState) {
   const middleware = [thunk]

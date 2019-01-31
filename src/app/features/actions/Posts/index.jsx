@@ -2,20 +2,17 @@
 import axios from 'axios'
 
 // action types
-import {
-  FETCH_POSTS_REQUEST,
-  FETCH_POSTS_SUCCESS,
-  FETCH_POSTS_ERROR
-} from 'Actions/Posts/actionTypes'
+import FETCH_POSTS from '@actions/Posts/actionTypes'
 
 // Base Actions
-import { request, received, error } from 'Shared/redux/baseActions'
+import { request, received, error } from '@baseActions'
 
 const fetchPosts = (fetchingFrom: any) => (dispatch: any) => {
-  // Dispatching our request action
-  dispatch(request(FETCH_POSTS_REQUEST))
+  const action = FETCH_POSTS
 
-  // Axios Data
+  // Dispatchinquest action
+  dispatch(request(action))
+
   const axiosData = {
     method: 'get',
     url: 'https://jsonplaceholder.typicode.com/posts',
@@ -27,10 +24,10 @@ const fetchPosts = (fetchingFrom: any) => (dispatch: any) => {
 
   // If everything is correct we dispatch our received action otherwise our error action.
   return axios(axiosData, fetchingFrom)
-    .then(response => dispatch(received(FETCH_POSTS_SUCCESS, response.data)))
+    .then(response => dispatch(received(action, response.data)))
     .catch(err => {
       console.log('AXIOS ERROR:', err.response) // eslint-disable-line no-console
-      dispatch(error(FETCH_POSTS_ERROR))
+      dispatch(error(action))
     })
 }
 

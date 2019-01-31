@@ -2,7 +2,7 @@
 // depencendies
 import express from 'express'
 // data
-import posts from './data/posts'
+import posts from '@server/api/data/posts'
 
 // express router
 const router = express.Router()

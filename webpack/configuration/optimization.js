@@ -14,7 +14,7 @@ function optimization(type) {
         // vendor chunk; splitting react and react-dom into a separate chunk
         vendor: {
           name: 'vendor',
-          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|react-redux|redux|axios|express)[\\/]/,
           chunks: 'all',
           priority: 1,
           reuseExistingChunk: true

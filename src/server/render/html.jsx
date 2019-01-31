@@ -1,3 +1,5 @@
+// Dependencies
+import serialize from 'serialize-javascript'
 // Environment
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -30,7 +32,7 @@ export default function html(options) {
       <body>
         <div id="root">${markup}</div>
         <script>
-          window.initialState = ${JSON.stringify(initialState)};
+          window.initialState = ${serialize(initialState)};
         </script>
         <script src="/app/${vendor}.bundle.js"></script>
         <script src="/app/${app}.bundle.js"></script>

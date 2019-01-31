@@ -13,20 +13,11 @@
   },
   "plugins": ["prettier", "react"],
   "extends": ["airbnb", "plugin:prettier/recommended"],
-  "settings": {
-    "import/core-modules": ["isomorphic-fetch"],
-    "import/resolver": {
-      "webpack": {
-        "config": "webpack.config.js"
-      }
-    }
-  },
+  "settings": {},
   "rules": {
-    "import/no-extraneous-dependencies": [
+    "import/no-unresolved": [
       "error",
-      {
-        "devDependencies": true
-      }
+      { "commonjs": true, "caseSensitive": true, "ignore": ["@"] }
     ],
     "prettier/prettier": "error",
     "react/prop-types": [

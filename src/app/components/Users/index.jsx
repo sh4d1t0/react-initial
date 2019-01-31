@@ -1,14 +1,15 @@
 /* @flow */
 // Ddependencies
 import React, { Component, Fragment } from 'react'
+import Helmet from 'react-helmet'
 // Ccomponents
-import UserInfo from 'Components/Users/Info'
+import UserInfo from '@components/Users/Info'
 // Contexts
-import { UsersConsumer } from 'Context/Users'
+import { UsersConsumer } from '@context/Users'
 
 // Flow Props
 type Props = {
-  /** */
+  isMobile: boolean
 }
 
 class User extends Component<Props> {
@@ -20,6 +21,7 @@ class User extends Component<Props> {
   }
 
   render() {
+    const { isMobile } = this.props
     const usersContext: {
       userData: {
         name: string,
@@ -37,6 +39,13 @@ class User extends Component<Props> {
 
     return (
       <Fragment>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>
+            {'Users -'}
+            {isMobile ? 'mobile' : 'desktop'}
+          </title>
+        </Helmet>
         <UserInfo userInfo={usersData} />
       </Fragment>
     )

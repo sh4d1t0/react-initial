@@ -7,13 +7,13 @@ import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
 // Utils
-import { isMobile, isBot } from '../shared/utils/device'
-// webpack config
-import webpackConfig from '../../webpack.config'
+import { isMobile, isBot } from '@sharedUtils/device'
 // Client Render
-import clientRender from './render/clientRender'
+import clientRender from '@server/render/clientRender'
 // API
-import api from './api'
+import api from '@server/api'
+// webpack config
+import webpackConfig from '@webpack'
 // Environment
 const isProduction = process.env.NODE_ENV === 'production'
 // Analyzer
