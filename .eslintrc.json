@@ -11,7 +11,7 @@
     "browser": true,
     "es6": true
   },
-  "plugins": ["prettier", "react"],
+  "plugins": ["prettier", "react", "react-hooks"],
   "extends": ["airbnb", "plugin:prettier/recommended"],
   "settings": {},
   "rules": {
@@ -27,6 +27,7 @@
         "customValidators": [],
         "skipUndeclared": false
       }
-    ]
+    ],
+    "react-hooks/rules-of-hooks": "error"
   }
 }
