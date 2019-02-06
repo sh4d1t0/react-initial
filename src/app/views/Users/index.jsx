@@ -1,7 +1,6 @@
 /* @flow */
-// TODO: lazy is not yet available for server-side rendering
 // Dependencies
-import React, { Component, Fragment /* , lazy, Suspense */ } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 // API
 import GetAllUsers, { GetUserInfo } from '@api/Users'
@@ -32,7 +31,6 @@ class Users extends Component<Props, State> {
       if (data !== false) {
         this.setState({ users: data })
       } else {
-        // TODO Add Message
         console.log('error') // eslint-disable-line
       }
     })
@@ -46,7 +44,6 @@ class Users extends Component<Props, State> {
         if (data !== false) {
           this.setState({ userData: data })
         } else {
-          // TODO Add Message
           console.log('error') // eslint-disable-line
         }
       })
@@ -62,12 +59,10 @@ class Users extends Component<Props, State> {
         <div>
           <h1>Users</h1>
         </div>
-        {/* <Suspense fallback={<div>Loading...</div>}> */}
         <UserForm getUser={this.handleSubmit} />
         <UsersProvider value={{ userData, users }}>
           <User {...this.props} />
         </UsersProvider>
-        {/* </Suspense> */}
       </Fragment>
     )
   }
