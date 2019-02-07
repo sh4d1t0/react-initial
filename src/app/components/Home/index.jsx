@@ -5,8 +5,6 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 // Components
 import Navbar from '@sharedComponents/Navbar'
-// Styles
-// import styles from './Home.scss'
 
 // Flow Props
 type Props = {

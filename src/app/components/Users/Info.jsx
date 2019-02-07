@@ -5,7 +5,7 @@ import timeAgo from 'node-time-ago'
 // Components
 import Avatar from '@components/Users/Avatar'
 // Styles
-import styles from '@components/Posts/Posts.less'
+import styled from 'styled-components'
 
 // Flow Props
 type Props = {
@@ -19,9 +19,14 @@ type Props = {
 
 function UserInfo(props: Props) {
   const { userInfo } = props
+
+  const Post = styled.div`
+    color: rgb(0, 0, 255);
+  `
+
   return (
     <Fragment>
-      <div className={styles.posts}>
+      <Post>
         <p>
           <Avatar
             userName={userInfo.name}
@@ -35,7 +40,7 @@ function UserInfo(props: Props) {
           {userInfo.public_repos}
         </p>
         <p>{timeAgo(userInfo.created_at)}</p>
-      </div>
+      </Post>
     </Fragment>
   )
 }
