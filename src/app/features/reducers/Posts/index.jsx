@@ -13,7 +13,9 @@ export default function blogReducer(state = initialState, action) {
         posts: action.payload
       }
     }
-
+    case FETCH_POSTS.error(): {
+      return { ...state }
+    }
     default:
       return state
   }

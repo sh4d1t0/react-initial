@@ -6,7 +6,7 @@ import Helmet from 'react-helmet'
 // Components
 import Navbar from '@sharedComponents/Navbar'
 // Styles
-import styles from './About.css'
+import styled from 'styled-components'
 
 // Flow Props
 type Props = {
@@ -15,6 +15,12 @@ type Props = {
 
 function About(props: Props) {
   const { isMobile } = props
+
+  const Paragraph = styled.p`
+    font-size: 2em;
+    color: red;
+  `
+
   return (
     <Fragment>
       <Helmet>
@@ -23,9 +29,10 @@ function About(props: Props) {
           {'About - '}
           {isMobile ? 'mobile' : 'desktop'}
         </title>
+        <meta name="description" content="About component" />
       </Helmet>
       <Navbar />
-      <div className={styles.about}>About</div>
+      <Paragraph>About</Paragraph>
     </Fragment>
   )
 }

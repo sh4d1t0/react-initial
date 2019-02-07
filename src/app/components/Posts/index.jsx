@@ -7,12 +7,16 @@ import UserInfo from '@components/Users/Info'
 // Contexts
 import { BlogConsumer } from '@context/Blog'
 // Styles
-import styles from './Posts.less'
+import styled from 'styled-components'
 
 // Flow Props
 type Props = {
   /** */
 }
+
+const Post = styled.div`
+  color: rgb(0, 0, 255);
+`
 
 class Posts extends Component<Props> {
   static contextType = BlogConsumer
@@ -31,9 +35,10 @@ class Posts extends Component<Props> {
             {'Blog - '}
             {mobileContext ? 'mobile' : 'desktop'}
           </title>
+          <meta name="description" content="Blog component" />
         </Helmet>
-        <div className={styles.posts}>
-          <div className={styles.header}>
+        <Post>
+          <div>
             <h1>Blog</h1>
           </div>
 
@@ -42,13 +47,13 @@ class Posts extends Component<Props> {
           <div>
             {postsContext &&
               postsContext.map(post => (
-                <div key={post.id} className={styles.posts}>
+                <posts key={post.id}>
                   <h2>{post.title}</h2>
                   <p>{post.body}</p>
-                </div>
+                </posts>
               ))}
           </div>
-        </div>
+        </Post>
       </Fragment>
     )
   }

@@ -5,13 +5,12 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 // Components
 import Navbar from '@sharedComponents/Navbar'
-// Styles
-// import styles from './Home.scss'
 
 // Flow Props
 type Props = {
   isMobile: boolean
 }
+
 function Home(props: Props) {
   const { isMobile } = props
   return (
@@ -22,6 +21,7 @@ function Home(props: Props) {
           {'Home - '}
           {isMobile ? 'mobile' : 'desktop'}
         </title>
+        <meta name="description" content="Home component" />
       </Helmet>
       <Navbar />
     </Fragment>
