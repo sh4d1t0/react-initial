@@ -21,6 +21,7 @@ function Home(props: Props) {
           {'Home - '}
           {isMobile ? 'mobile' : 'desktop'}
         </title>
+        <meta name="description" content="Home component" />
       </Helmet>
       <Navbar />
     </Fragment>

@@ -29,6 +29,7 @@ function About(props: Props) {
           {'About - '}
           {isMobile ? 'mobile' : 'desktop'}
         </title>
+        <meta name="description" content="About component" />
       </Helmet>
       <Navbar />
       <Paragraph>About</Paragraph>

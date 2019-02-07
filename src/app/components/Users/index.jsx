@@ -45,6 +45,7 @@ class User extends Component<Props> {
             {'Users -'}
             {isMobile ? 'mobile' : 'desktop'}
           </title>
+          <meta name="description" content="Users component" />
         </Helmet>
         <UserInfo userInfo={usersData} />
       </Fragment>

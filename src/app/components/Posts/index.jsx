@@ -35,6 +35,7 @@ class Posts extends Component<Props> {
             {'Blog - '}
             {mobileContext ? 'mobile' : 'desktop'}
           </title>
+          <meta name="description" content="Blog component" />
         </Helmet>
         <Post>
           <div>
