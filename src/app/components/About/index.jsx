@@ -4,7 +4,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 // Components
-import Navbar from '@sharedComponents/Navbar'
+import Navbar from '@components/Navbar'
 // Styles
 import styled from 'styled-components'
 

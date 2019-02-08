@@ -2,7 +2,6 @@
 .*/tests/.*
 .*/dist/.*
 .*/node_modules/jsonlint/test/.*
-.*/node_modules/styled-components/.*
 
 [include]
 

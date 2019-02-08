@@ -58,7 +58,6 @@
           "@actions": "./src/app/features/actions",
           "@reducers": "./src/app/features/reducers",
           "@views": "./src/app/views",
-          "@sharedComponents": "./src/shared/components",
           "@sharedReducers": "./src/shared/reducers/index.jsx",
           "@sharedUtils": "./src/shared/utils",
           "@sharedStyles": "./src/shared/styles",
