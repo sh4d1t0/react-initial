@@ -7,7 +7,7 @@ import FETCH_POSTS from '@actions/Posts/actionTypes'
 // Base Actions
 import { request, received, error } from '@baseActions'
 
-const fetchPosts = (fetchingFrom: any) => (dispatch: any) => {
+const fetchPosts = (fetchingFrom: any) => async (dispatch: any) => {
   const action = FETCH_POSTS
 
   // Dispatchinquest action
@@ -21,14 +21,13 @@ const fetchPosts = (fetchingFrom: any) => (dispatch: any) => {
       'Content-Type': 'application/json'
     }
   }
-
-  // If everything is correct we dispatch our received action otherwise our error action.
-  return axios(axiosData, fetchingFrom)
-    .then(response => dispatch(received(action, response.data)))
-    .catch(err => {
-      console.log('AXIOS ERROR:', err.response) // eslint-disable-line no-console
-      dispatch(error(action))
-    })
+  try {
+    const response = await axios(axiosData, fetchingFrom)
+    return dispatch(received(action, response.data))
+  } catch (err) {
+    console.log('AXIOS ERROR:', err.message) // eslint-disable-line no-console
+    return dispatch(error(action))
+  }
 }
 
 export default fetchPosts

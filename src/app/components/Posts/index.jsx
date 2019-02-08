@@ -47,10 +47,10 @@ class Posts extends Component<Props> {
           <div>
             {postsContext &&
               postsContext.map(post => (
-                <posts key={post.id}>
+                <div key={post.id}>
                   <h2>{post.title}</h2>
                   <p>{post.body}</p>
-                </posts>
+                </div>
               ))}
           </div>
         </Post>
