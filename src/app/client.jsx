@@ -35,7 +35,6 @@ renderApp(App)
 // HMR
 if (module.hot) {
   module.hot.accept('./App', () => {
-    // eslint-disable-next-line global-require
-    renderApp(require('./App').default)
+    renderApp(App)
   })
 }

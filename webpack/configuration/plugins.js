@@ -1,10 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // dependencies
 const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
-const WebpackNotifierPlugin = require('webpack-notifier')
 // eslint-disable-next-line
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
@@ -57,9 +57,6 @@ function plugins() {
     plugin.push(
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
-      new WebpackNotifierPlugin({
-        title: 'SSR'
-      }),
       new DashboardPlugin()
     )
   } else {
