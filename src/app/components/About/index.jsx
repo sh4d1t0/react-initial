@@ -13,7 +13,7 @@ type Props = {
   isMobile: boolean
 }
 
-function About(props: Props) {
+const About = (props: Props) => {
   const { isMobile } = props
 
   const Paragraph = styled.p`

@@ -5,23 +5,23 @@ import { Link } from 'react-router-dom'
 // styles
 import styled from 'styled-components'
 
-function Home() {
-  const Navbar = styled.div`
+const Navbar = () => {
+  const NavBar = styled.div`
     border: 1px solid red;
   `
 
   return (
     <Fragment>
-      <Navbar>
+      <NavBar>
         {'Home - '}
         <Link to="/about">About</Link>
         {' - '}
         <Link to="/blog">Blog</Link>
         {' - '}
         <Link to="/users">Users</Link>
-      </Navbar>
+      </NavBar>
     </Fragment>
   )
 }
 
-export default Home
+export default Navbar

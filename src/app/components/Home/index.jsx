@@ -11,7 +11,7 @@ type Props = {
   isMobile: boolean
 }
 
-function Home(props: Props) {
+const Home = (props: Props) => {
   const { isMobile } = props
   return (
     <Fragment>
