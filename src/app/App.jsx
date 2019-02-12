@@ -2,7 +2,7 @@
 import React from 'react'
 import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom'
 import { hot } from 'react-hot-loader/root'
-import routes from '@routes'
+import routess from '@routes'
 /* import ContextStore from 'Features/blog' */
 // routes
 
