@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 // dependencies
 const path = require('path')
 const CompressionPlugin = require('compression-webpack-plugin')
@@ -59,7 +58,9 @@ function plugins() {
       new webpack.NoEmitOnErrorsPlugin(),
       new DashboardPlugin()
     )
-  } else {
+  }
+
+  if (!isDevelopment) {
     plugin.push(
       new webpack.DefinePlugin({
         'process.env': {
