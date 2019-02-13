@@ -28,10 +28,18 @@ const port = process.env.NODE_PORT || 3000
 // GZip Compression just for Production
 if (isProduction) {
   app.get('*.js', (req, res, next) => {
-    /* req.url = `${req.url}.gz`
-    res.set('Content-Encoding', 'gzip') */
-    req.url = `${req.url}.br`
-    res.set('Content-Encoding', 'br')
+    const preencoding = req.headers['accept-encoding']
+    console.log('preencoding_:', preencoding)
+    const encodingBrotli = preencoding.includes('br')
+    console.log('encodingBrotli_:', encodingBrotli)
+    if (encodingBrotli === true) {
+      req.url = `${req.url}.br`
+      res.set('Content-Encoding', 'br')
+    } else {
+      req.url = `${req.url}.gz`
+      res.set('Content-Encoding', 'gzip')
+      res.set('Content-Type', 'text/javascript')
+    }
     next()
   })
 }
