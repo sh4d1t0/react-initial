@@ -29,9 +29,7 @@ const port = process.env.NODE_PORT || 3000
 if (isProduction) {
   app.get('*.js', (req, res, next) => {
     const preencoding = req.headers['accept-encoding']
-    console.log('preencoding_:', preencoding)
     const encodingBrotli = preencoding.includes('br')
-    console.log('encodingBrotli_:', encodingBrotli)
     if (encodingBrotli === true) {
       req.url = `${req.url}.br`
       res.set('Content-Encoding', 'br')
