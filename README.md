@@ -2,4 +2,4 @@
 
 Initial config for react
 
-After clone or download this project run: npm install
+After clone or download this project run: yarn install
