@@ -11,7 +11,6 @@ describe('Check login section', () => {
 
   beforeEach(() => {
     wrapper = shallow(<Blog />)
-    console.log(wrapper.debug())
   })
 
   it('should render <LoginForm /> element to auth', () => {
