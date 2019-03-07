@@ -1,17 +1,16 @@
 import React from 'react'
 import { configure, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import Blog from '@views/Blog'
+import Home from '@components/Home'
 import Navbar from '@components/Navbar'
 
 configure({ adapter: new Adapter() })
 
-describe('Check login section', () => {
+describe('Check home section', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = shallow(<Blog />)
-    console.log(wrapper.debug())
+    wrapper = shallow(<Home />)
   })
 
   it('should render <LoginForm /> element to auth', () => {

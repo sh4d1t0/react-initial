@@ -29,7 +29,9 @@ testem.log
 *.hot-update.json
 /public
 
+# npm or yarn lock
 package-lock.json
+yarn.lock
 
 # yarn Integrity file
 .yarn-integrity
