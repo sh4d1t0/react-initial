@@ -13,7 +13,7 @@ describe('Check home section', () => {
     wrapper = shallow(<Home />)
   })
 
-  it('should render <LoginForm /> element to auth', () => {
+  it('should render <Navbar /> element', () => {
     expect(wrapper.find(Navbar).children()).toBeTruthy()
   })
 })
