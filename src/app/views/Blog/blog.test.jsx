@@ -6,7 +6,7 @@ import Navbar from '@components/Navbar'
 
 configure({ adapter: new Adapter() })
 
-describe('Check login section', () => {
+describe('Check blog section', () => {
   let wrapper
 
   beforeEach(() => {

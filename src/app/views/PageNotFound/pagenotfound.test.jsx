@@ -7,19 +7,20 @@ import PageNotFound from '@views/PageNotFound'
 
 configure({ adapter: new Adapter() })
 
-describe('Check home section', () => {
+describe('Check Page not found, 404', () => {
   let wrapper
-  const mockInitialState = { device: { isMobile: undefined } }
+  let mockStore
+  const mockInitialState = { device: { isMobile: false } }
 
   /**
-   * Factory function to create a ShallowWrapper for the App component.
+   * Factory function to create a MountWrapper for the App component.
    * @function setup
    * @param {object} props - Component props specific to this setup.
    * @param {object} state - Initial state for setup.
-   * @returns {ShallowWrapper}
+   * @returns {MountWrapper}
    */
   const setup = (props = {}, state = null) => {
-    const mockStore = configureStore()(mockInitialState)
+    mockStore = configureStore()(mockInitialState)
     return mount(
       <Provider store={mockStore}>
         <PageNotFound {...props} {...state} />
@@ -32,10 +33,9 @@ describe('Check home section', () => {
   })
 
   it('should map device and get the device isMobile from Initial State', () => {
-    const { device } = wrapper.props()
-    const {
-      device: { isMobile }
-    } = mockInitialState
-    expect(device).toEqual(isMobile)
+    const { store } = wrapper.props()
+    const newState = store.getState()
+    const { isMobile } = newState.device
+    expect(isMobile).toEqual(false)
   })
 })

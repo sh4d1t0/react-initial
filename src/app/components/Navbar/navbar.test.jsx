@@ -5,7 +5,7 @@ import Navbar from '@components/Navbar'
 
 configure({ adapter: new Adapter() })
 
-describe('Check home section', () => {
+describe('Check navbar component', () => {
   let wrapper
 
   /**

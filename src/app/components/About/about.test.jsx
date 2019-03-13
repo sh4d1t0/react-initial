@@ -7,9 +7,10 @@ import About from '@components/About'
 
 configure({ adapter: new Adapter() })
 
-describe('Check home section', () => {
+describe('Check about section', () => {
   let wrapper
-  const mockInitialState = { device: { isMobile: undefined } }
+  let mockStore
+  const mockInitialState = { device: { isMobile: false } }
 
   /**
    * Factory function to create a ShallowWrapper for the App component.
@@ -19,7 +20,7 @@ describe('Check home section', () => {
    * @returns {ShallowWrapper}
    */
   const setup = (props = {}, state = null) => {
-    const mockStore = configureStore()(mockInitialState)
+    mockStore = configureStore()(mockInitialState)
     return shallow(
       <Provider store={mockStore}>
         <About {...props} {...state} />
@@ -32,10 +33,10 @@ describe('Check home section', () => {
   })
 
   it('should map device and get the device isMobile from Initial State', () => {
-    const { device } = wrapper.props()
-    const {
-      device: { isMobile }
-    } = mockInitialState
-    expect(device).toEqual(isMobile)
+    const { value } = wrapper.props()
+    const { store } = value
+    const newState = store.getState()
+    const { storeState } = value
+    expect(storeState).toEqual(newState)
   })
 })
