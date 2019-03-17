@@ -1,11 +1,8 @@
 import React from 'react'
-import { configure, mount } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 import PageNotFound from '@views/PageNotFound'
-
-configure({ adapter: new Adapter() })
 
 describe('Check Page not found, 404', () => {
   let wrapper

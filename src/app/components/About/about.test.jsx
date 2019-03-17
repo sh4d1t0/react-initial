@@ -1,11 +1,8 @@
 import React from 'react'
-import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import { shallow } from 'enzyme'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 import About from '@components/About'
-
-configure({ adapter: new Adapter() })
 
 describe('Check about section', () => {
   let wrapper

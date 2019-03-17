@@ -10,12 +10,6 @@
   "engines": {
     "node": ">=10.15.3"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less|sass)$": "identity-obj-proxy"
-    }
-  },
   "scripts": {
     "build": "yarn run clean && yarn run build-client && yarn run build-server",
     "build-client": "NODE_ENV=production BABEL_ENV=production node -r @babel/register node_modules/.bin/webpack --progress --display-modules --config webpack/webpack.config.client.js",
@@ -32,7 +26,7 @@
     "start": "yarn run clean && NODE_ENV=development BABEL_ENV=development webpack-dashboard babel-node src/server --hot",
     "start-analyzer": "yarn run clean && NODE_ENV=development BABEL_ENV=development ANALYZER=true webpack-dashboard babel-node src/server",
     "start-production": "yarn run build && NODE_ENV=production BABEL_ENV=production babel-node src/server",
-    "test": "jest --coverage -u",
+    "test": "jest --coverage --env=jsdom",
     "test:watch": "jest --watch",
     "watch-prettier": "onchange '**/*.jsx' -- prettier --write {{event}} to {{changed}}",
     "watch-client": "webpack --watch --config webpack/webpack.config.client.js",
@@ -52,7 +46,7 @@
     "@babel/polyfill": "^7.2.5",
     "autoprefixer": "^9.5.0",
     "axios": "^0.18.0",
-    "browserslist": "^4.5.0",
+    "browserslist": "^4.5.1",
     "express": "^4.16.4",
     "node-object-hash": "^1.4.2",
     "node-time-ago": "^1.0.0",
