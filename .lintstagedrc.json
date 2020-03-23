@@ -1,6 +1,4 @@
 {
-  "linters": {
-    "*.{js,jsx}": ["prettier --write", "yarn run lint --fix", "git add"],
-    "*.{js,jsx,json,css,sass,less}": ["yarn run precise-commits", "git add"]
-  }
+  "*.{js,jsx}": ["prettier --write", "yarn run lint --fix", "git add"],
+  "*.{js,jsx,json,css,sass,less}": ["yarn run precise-commits", "git add"]
 }
