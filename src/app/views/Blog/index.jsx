@@ -9,7 +9,7 @@ import GetAllUsers, { GetUserInfo } from '@api/Users'
 import { BlogProvider } from '@context/Blog'
 // Components
 import Posts from '@components/Posts'
-import Navbar from '@sharedComponents/Navbar'
+import Navbar from '@components/Navbar'
 // Actionsimport { connect } from 'react-redux'
 import fetchPosts from '@actions/Posts'
 // Utils

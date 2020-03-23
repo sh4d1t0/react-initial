@@ -29,8 +29,6 @@ testem.log
 *.hot-update.json
 /public
 
-package-lock.json
-
 # yarn Integrity file
 .yarn-integrity
 

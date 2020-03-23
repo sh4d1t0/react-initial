@@ -4,14 +4,14 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 // Components
-import Navbar from '@sharedComponents/Navbar'
+import Navbar from '@components/Navbar'
 
 // Flow Props
 type Props = {
   isMobile: boolean
 }
 
-function Home(props: Props) {
+const Home = (props: Props) => {
   const { isMobile } = props
   return (
     <Fragment>

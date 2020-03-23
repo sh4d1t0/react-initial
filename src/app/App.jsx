@@ -1,7 +1,7 @@
 // dependencies
 import React from 'react'
 import { BrowserRouter, StaticRouter, Switch, Route } from 'react-router-dom'
-import { hot } from 'react-hot-loader'
+import { hot } from 'react-hot-loader/root'
 import routes from '@routes'
 /* import ContextStore from 'Features/blog' */
 // routes
@@ -35,4 +35,4 @@ const App = ({ server, location, context }) => {
   return <div>{router}</div>
 }
 
-export default hot(module)(App)
+export default hot(App)

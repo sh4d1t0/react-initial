@@ -7,7 +7,7 @@ import GetAllUsers, { GetUserInfo } from '@api/Users'
 // Context
 import { UsersProvider } from '@context/Users'
 // Components
-import Navbar from '@sharedComponents/Navbar'
+import Navbar from '@components/Navbar'
 import User from '@components/Users'
 import UserForm from '@components/Users/UserForm'
 

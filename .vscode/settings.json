@@ -15,6 +15,7 @@
   },
   "importCost.typescriptExtensions": ["\\.{jsx,tsx}?$"],
   "javascript.validate.enable": false,
+  "jshint.enable": false,
   "prettier.eslintIntegration": true,
   "typescript.validate.enable": false,
   "workbench.colorTheme": "One Dark Italic",
