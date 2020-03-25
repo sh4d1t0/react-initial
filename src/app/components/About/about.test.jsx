@@ -33,7 +33,6 @@ describe('Check about section', () => {
     const { value } = wrapper.props()
     const { store } = value
     const newState = store.getState()
-    const { storeState } = value
-    expect(storeState).toEqual(newState)
+    expect(mockInitialState).toEqual(expect.objectContaining(newState))
   })
 })
