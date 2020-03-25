@@ -6,6 +6,7 @@ import Home from '@components/Home'
 
 describe('Check home section', () => {
   let wrapper
+  let mockStore
   const mockInitialState = { device: { isMobile: false } }
 
   /**
@@ -16,7 +17,7 @@ describe('Check home section', () => {
    * @returns {ShallowWrapper}
    */
   const setup = (props = {}, state = null) => {
-    const mockStore = configureStore()(mockInitialState)
+    mockStore = configureStore()(mockInitialState)
     return shallow(
       <Provider store={mockStore}>
         <Home {...props} {...state} />
@@ -32,7 +33,6 @@ describe('Check home section', () => {
     const { value } = wrapper.props()
     const { store } = value
     const newState = store.getState()
-    const { storeState } = value
-    expect(storeState).toEqual(newState)
+    expect(mockInitialState).toEqual(expect.objectContaining(newState))
   })
 })
